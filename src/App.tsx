@@ -414,24 +414,55 @@ export default function App() {
             </section>
 
             {/* Socios Comerciales — logos reales */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-              <div className="text-center mb-10">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              <div className="text-center mb-8">
                 <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900 mt-1">Nuestros Socios Comerciales</h3>
               </div>
-              <div className="flex flex-col sm:flex-row items-center justify-center w-full max-w-4xl mx-auto gap-8 sm:gap-16">
-                {[
-                  { src: '/images/socio_wompi.png', alt: 'Wompi' },
-                  { src: '/images/socio_addi.png', alt: 'Addi' },
-                  { src: '/images/socio_mercadopago.png', alt: 'Mercado Pago' },
-                ].map((logo) => (
-                  <div key={logo.alt} className="flex items-center justify-center shrink-0">
-                    <img
-                      src={logo.src}
-                      alt={logo.alt}
-                      className="h-20 sm:h-28 md:h-36 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
-                    />
-                  </div>
-                ))}
+              <div className="flex flex-wrap items-center justify-center w-full max-w-5xl mx-auto gap-6 sm:gap-10">
+                {/* Nequi — color rosa/morado original */}
+                <div className="flex items-center justify-center shrink-0 group">
+                  <svg viewBox="0 0 120 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="32" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="34" className="transition-all duration-300 group-hover:fill-[#9B1FC1]" fill="#aaa">nequi</text>
+                  </svg>
+                </div>
+                {/* Bancolombia — color amarillo original */}
+                <div className="flex items-center justify-center shrink-0 group">
+                  <svg viewBox="0 0 220 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="4" width="32" height="32" rx="4" className="transition-all duration-300 group-hover:fill-[#FDDA24]" fill="#ccc"/>
+                    <text x="38" y="30" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="22" className="transition-all duration-300 group-hover:fill-[#1A1A1A]" fill="#aaa">Bancolombia</text>
+                  </svg>
+                </div>
+                {/* PSE — azul institucional */}
+                <div className="flex items-center justify-center shrink-0 group">
+                  <svg viewBox="0 0 80 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="4" width="80" height="32" rx="6" className="transition-all duration-300 group-hover:fill-[#003DA5]" fill="#ccc"/>
+                    <text x="40" y="27" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="18" className="transition-all duration-300 group-hover:fill-white" fill="#888">PSE</text>
+                  </svg>
+                </div>
+                {/* Wompi */}
+                <div className="flex items-center justify-center shrink-0">
+                  <img
+                    src="/images/socio_wompi.png"
+                    alt="Wompi"
+                    className="h-8 sm:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                  />
+                </div>
+                {/* Addi */}
+                <div className="flex items-center justify-center shrink-0">
+                  <img
+                    src="/images/socio_addi.png"
+                    alt="Addi"
+                    className="h-8 sm:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                  />
+                </div>
+                {/* Mercado Pago */}
+                <div className="flex items-center justify-center shrink-0">
+                  <img
+                    src="/images/socio_mercadopago.png"
+                    alt="Mercado Pago"
+                    className="h-8 sm:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                  />
+                </div>
               </div>
             </section>
 
@@ -560,11 +591,8 @@ export default function App() {
       </main>
 
       {/* Elegant Editorial Footer block (Vogue aesthetic) */}
-      <footer id="editorial-footer" className="bg-[#121212] border-t border-charcoal-800 text-white py-12 mt-16 font-serif">
-        
-
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 font-sans text-xs">
+      <footer id="editorial-footer" className="bg-[#121212] border-t border-charcoal-800 text-white py-10 mt-8 font-serif">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-8 font-sans text-xs">
           {/* Column 1: PRIME DROP */}
           <div className="md:col-span-5 space-y-4 text-left">
             <span className="font-serif text-2xl font-black tracking-[0.25em] text-white">PRIME DROP</span>

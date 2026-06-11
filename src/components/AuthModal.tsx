@@ -268,7 +268,7 @@ export default function AuthModal({
                     <form onSubmit={handleLogin} className="space-y-5">
                       <div className="space-y-1.5 text-left">
                         <label className="text-xs font-semibold text-charcoal-800 font-sans">
-                          Correo electrónico o usuario
+                          Correo electrónico
                         </label>
                         <input
                           id="modal-login-email-input"
@@ -330,7 +330,7 @@ export default function AuthModal({
                         type="submit"
                         className="w-full py-3.5 bg-black text-white rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-neutral-850 active:scale-98 transition duration-200 mt-2 shadow-md leading-none"
                       >
-                        Iniciar Sesión
+                        Acceder
                       </button>
                     </form>
                   ) : (
