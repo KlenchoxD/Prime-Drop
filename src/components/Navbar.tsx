@@ -60,11 +60,11 @@ export default function Navbar({
       id="main-navbar"
       className="absolute top-0 left-0 right-0 z-50 bg-white border-b border-[#ecebe6] shadow-xs"
     >
-      {/* Top Bar - Identical to reference (White background, dark text) */}
-      <div className="bg-white border-b border-[#ecebe6] text-charcoal-800 py-2.5 px-4 sm:px-6 lg:px-8 text-[11px] font-serif flex items-center justify-between">
+      {/* Top Bar - Black background with white text */}
+      <div className="bg-black text-white py-2.5 px-4 sm:px-6 lg:px-8 text-[11px] font-serif flex items-center justify-between">
         <div className="hidden md:block w-1/3 text-left">
           {currentUserEmail && (
-            <span className="text-charcoal-500 font-semibold">{currentUserEmail}</span>
+            <span className="text-neutral-300 font-semibold">{currentUserEmail}</span>
           )}
         </div>
         
@@ -84,17 +84,17 @@ export default function Navbar({
         </div>
 
         <div className="hidden md:flex w-1/3 justify-end items-center gap-3.5">
-          <span className="text-charcoal-400 uppercase tracking-[0.2em] text-[10px] font-semibold">Síguenos</span>
+          <span className="text-neutral-400 uppercase tracking-[0.2em] text-[10px] font-semibold">Síguenos</span>
           <div className="flex items-center gap-1">
-            <a href="https://facebook.com/primedrop_elite" target="_blank" rel="noreferrer" aria-label="Facebook" className="w-8 h-8 rounded-full flex items-center justify-center text-charcoal-500 hover:text-[#1877F2] hover:bg-neutral-100 transition-colors duration-200">
+            <a href="https://facebook.com/primedrop_elite" target="_blank" rel="noreferrer" aria-label="Facebook" className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-300 hover:text-white hover:bg-white/10 transition-colors duration-200">
               <Facebook className="w-[17px] h-[17px]" strokeWidth={1.6} />
             </a>
-            <a href="https://tiktok.com/@primedrop_elite" target="_blank" rel="noreferrer" aria-label="TikTok" className="w-8 h-8 rounded-full flex items-center justify-center text-charcoal-500 hover:text-black hover:bg-neutral-100 transition-colors duration-200">
+            <a href="https://tiktok.com/@primedrop_elite" target="_blank" rel="noreferrer" aria-label="TikTok" className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-300 hover:text-white hover:bg-white/10 transition-colors duration-200">
               <svg className="w-[16px] h-[16px] fill-current" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .8.11v-3.5a6.39 6.39 0 0 0-3.32-.23c-3.1.64-5.32 3.53-5.32 6.87A6.38 6.38 0 0 0 8 22c3.5 0 6.38-2.88 6.38-6.38V7.78a8.31 8.31 0 0 0 5.21 1.74V6.69z" />
               </svg>
             </a>
-            <a href="https://instagram.com/primedrop_elite" target="_blank" rel="noreferrer" aria-label="Instagram" className="w-8 h-8 rounded-full flex items-center justify-center text-charcoal-500 hover:text-[#dc2743] hover:bg-neutral-100 transition-colors duration-200">
+            <a href="https://instagram.com/primedrop_elite" target="_blank" rel="noreferrer" aria-label="Instagram" className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-300 hover:text-white hover:bg-white/10 transition-colors duration-200">
               <Instagram className="w-[17px] h-[17px]" strokeWidth={1.6} />
             </a>
           </div>
