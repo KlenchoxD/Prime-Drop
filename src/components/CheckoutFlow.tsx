@@ -10,6 +10,7 @@ import { SHIPPING_METHODS } from '../data/products';
 import { COLOMBIA_DEPARTMENTS, COLOMBIA_LOCATIONS } from '../data/colombia';
 import { PAYMENT_METHODS, PAYMENT_CONFIG, PSE_BANKS } from '../data/payment';
 import { BACKEND_ENABLED, apiCreateOrder } from '../lib/api';
+import { REFUND_CONTENT, TERMS_CONTENT } from '../data/policies';
 import { motion, AnimatePresence } from 'motion/react';
 import { formatCOP } from '../utils';
 
@@ -55,6 +56,8 @@ export default function CheckoutFlow({
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethodKey>('Wompi');
   const [pseBank, setPseBank] = useState('');
   const [paymentErrors, setPaymentErrors] = useState<Record<string, string>>({});
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [policyView, setPolicyView] = useState<'terms' | 'refund' | null>(null);
 
   // Cities available for the selected department
   const availableCities = useMemo(
@@ -112,6 +115,9 @@ export default function CheckoutFlow({
     const errors: Record<string, string> = {};
     if (paymentMethod === 'PSE' && !pseBank) {
       errors.pseBank = 'Selecciona tu banco para continuar con PSE';
+    }
+    if (!acceptedTerms) {
+      errors.terms = 'Debes aceptar los términos y la política de reembolso para continuar.';
     }
     setPaymentErrors(errors);
     return Object.keys(errors).length === 0;
@@ -369,7 +375,7 @@ export default function CheckoutFlow({
                         name="fullName"
                         value={customerInfo.fullName}
                         onChange={handleInfoChange}
-                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse ${
+                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-charcoal-400 ${
                           infoErrors.fullName ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250 bg-neutral-50/50'
                         }`}
                         placeholder="Ej. Valentina Restrepo"
@@ -384,7 +390,7 @@ export default function CheckoutFlow({
                         name="email"
                         value={customerInfo.email}
                         onChange={handleInfoChange}
-                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse ${
+                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-charcoal-400 ${
                           infoErrors.email ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250 bg-neutral-50/50'
                         }`}
                         placeholder="valentina@gmail.com"
@@ -400,7 +406,7 @@ export default function CheckoutFlow({
                       name="phone"
                       value={customerInfo.phone}
                       onChange={handleInfoChange}
-                      className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse ${
+                      className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-charcoal-400 ${
                         infoErrors.phone ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250 bg-neutral-50/50'
                       }`}
                       placeholder="300 123 4567"
@@ -415,7 +421,7 @@ export default function CheckoutFlow({
                         name="department"
                         value={customerInfo.department}
                         onChange={handleInfoChange}
-                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse bg-neutral-50/50 ${
+                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-charcoal-400 bg-neutral-50/50 ${
                           infoErrors.department ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250'
                         }`}
                       >
@@ -434,7 +440,7 @@ export default function CheckoutFlow({
                         value={customerInfo.city}
                         onChange={handleInfoChange}
                         disabled={!customerInfo.department}
-                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse bg-neutral-50/50 disabled:opacity-50 disabled:cursor-not-allowed ${
+                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-charcoal-400 bg-neutral-50/50 disabled:opacity-50 disabled:cursor-not-allowed ${
                           infoErrors.city ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250'
                         }`}
                       >
@@ -456,7 +462,7 @@ export default function CheckoutFlow({
                         name="address"
                         value={customerInfo.address}
                         onChange={handleInfoChange}
-                        className={`w-full text-xs py-3 pl-10 pr-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse ${
+                        className={`w-full text-xs py-3 pl-10 pr-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-charcoal-400 ${
                           infoErrors.address ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250 bg-neutral-50/50'
                         }`}
                         placeholder="Ej. Cra 43A # 18-95, Apto 502, Torre 2"
@@ -472,7 +478,7 @@ export default function CheckoutFlow({
                       value={customerInfo.notes}
                       onChange={handleInfoChange}
                       rows={2}
-                      className="w-full text-xs py-3 px-4 border border-neutral-250 bg-neutral-50/50 rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse resize-none"
+                      className="w-full text-xs py-3 px-4 border border-neutral-250 bg-neutral-50/50 rounded-xl focus:outline-none focus:ring-1 focus:ring-charcoal-400 resize-none"
                       placeholder="Punto de referencia, horario preferido, conjunto residencial…"
                     />
                   </div>
@@ -515,7 +521,7 @@ export default function CheckoutFlow({
                         onClick={() => setSelectedShipping(method)}
                         className={`w-full text-left p-4 rounded-2xl border flex items-start justify-between transition-all ${
                           isSelected
-                            ? 'border-gold-coulisse bg-gold-50/15 ring-1 ring-gold-coulisse shadow-sm'
+                            ? 'border-charcoal-900 bg-neutral-50 ring-1 ring-charcoal-900 shadow-sm'
                             : 'border-neutral-200 hover:bg-neutral-50/50'
                         }`}
                       >
@@ -524,7 +530,7 @@ export default function CheckoutFlow({
                             type="radio"
                             checked={isSelected}
                             onChange={() => setSelectedShipping(method)}
-                            className="mt-1 accent-gold-coulisse h-4 w-4"
+                            className="mt-1 accent-black h-4 w-4"
                           />
                           <div>
                             <p className="font-serif font-extrabold text-sm text-charcoal-900 uppercase tracking-wide">{method.name}</p>
@@ -616,7 +622,7 @@ export default function CheckoutFlow({
                           setPseBank(e.target.value);
                           setPaymentErrors((prev) => ({ ...prev, pseBank: '' }));
                         }}
-                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse bg-white ${
+                        className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-charcoal-400 bg-white ${
                           paymentErrors.pseBank ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250'
                         }`}
                       >
@@ -646,6 +652,30 @@ export default function CheckoutFlow({
                     <strong>Pago 100% seguro.</strong> No almacenamos datos de tu tarjeta ni de tus cuentas bancarias. El cobro lo realiza directamente la pasarela autorizada.
                   </div>
                 </div>
+
+                {/* Aceptación de términos y política de reembolso */}
+                <label className="flex items-start gap-2.5 text-xs text-charcoal-700 font-sans cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={acceptedTerms}
+                    onChange={(e) => {
+                      setAcceptedTerms(e.target.checked);
+                      setPaymentErrors((prev) => ({ ...prev, terms: '' }));
+                    }}
+                    className="mt-0.5 h-4 w-4 accent-black shrink-0"
+                  />
+                  <span>
+                    He leído y acepto los{' '}
+                    <button type="button" onClick={() => setPolicyView('terms')} className="underline font-semibold text-charcoal-900 hover:text-black">
+                      Términos y Condiciones
+                    </button>{' '}
+                    y la{' '}
+                    <button type="button" onClick={() => setPolicyView('refund')} className="underline font-semibold text-charcoal-900 hover:text-black">
+                      Política de Reembolso
+                    </button>.
+                  </span>
+                </label>
+                {paymentErrors.terms && <p className="text-[11px] text-charcoal-900 font-semibold -mt-3">{paymentErrors.terms}</p>}
 
                 {/* Back / Pay Actions */}
                 <div className="pt-6 border-t border-neutral-100 flex justify-between items-center">
@@ -761,6 +791,34 @@ export default function CheckoutFlow({
           </AnimatePresence>
         </div>
       </div>
+
+      {/* Modal de política (Términos / Reembolso) dentro del checkout */}
+      {policyView && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60" onClick={() => setPolicyView(null)} />
+          <div className="relative bg-white text-charcoal-900 w-full max-w-lg rounded-2xl shadow-2xl border border-neutral-200 z-10 flex flex-col max-h-[85vh]">
+            <div className="flex items-center justify-between p-5 border-b border-neutral-150">
+              <h4 className="font-serif text-lg font-black">
+                {policyView === 'terms' ? 'Términos y Condiciones' : 'Política de Reembolso'}
+              </h4>
+              <button onClick={() => setPolicyView(null)} className="p-1.5 rounded-full hover:bg-neutral-100">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-5 overflow-y-auto text-sm font-light text-charcoal-600 leading-relaxed whitespace-pre-line">
+              {policyView === 'terms' ? TERMS_CONTENT : REFUND_CONTENT}
+            </div>
+            <div className="p-4 border-t border-neutral-150 text-right">
+              <button
+                onClick={() => setPolicyView(null)}
+                className="px-6 py-2.5 bg-charcoal-900 text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-charcoal-700"
+              >
+                Entendido
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

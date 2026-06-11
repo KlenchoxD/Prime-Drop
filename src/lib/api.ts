@@ -64,6 +64,13 @@ export function apiMe() {
   return request<{ user: ApiUser | null }>('me.php');
 }
 
+export function apiRequestReset(email: string) {
+  return request<{ ok: boolean }>('request_reset.php', {
+    method: 'POST',
+    body: JSON.stringify({ email }),
+  });
+}
+
 export interface CreateOrderPayload {
   customer: {
     fullName: string;

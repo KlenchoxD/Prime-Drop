@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { X, ShieldCheck, LogOut, AlertCircle, Sparkles, Eye, EyeOff } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { BACKEND_ENABLED, apiLogin, apiRegister } from '../lib/api';
+import { BACKEND_ENABLED, apiLogin, apiRegister, apiRequestReset } from '../lib/api';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -40,9 +40,38 @@ export default function AuthModal({
   const [regEmail, setRegEmail] = useState('');
   const [regPassword, setRegPassword] = useState('');
 
+  // Recuperación de contraseña
+  const [recoverMode, setRecoverMode] = useState(false);
+  const [recoverEmail, setRecoverEmail] = useState('');
+  const [recoverSent, setRecoverSent] = useState(false);
+
   // Feedback
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+
+  const handleRecover = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg('');
+    if (!/\S+@\S+\.\S+/.test(recoverEmail)) {
+      setErrorMsg('Ingresa un correo electrónico válido.');
+      return;
+    }
+    if (BACKEND_ENABLED) {
+      try {
+        await apiRequestReset(recoverEmail.trim());
+      } catch {
+        /* respondemos igual por seguridad */
+      }
+    }
+    setRecoverSent(true);
+  };
+
+  const openRecover = () => {
+    setRecoverMode(true);
+    setRecoverSent(false);
+    setRecoverEmail(loginEmail);
+    setErrorMsg('');
+  };
 
   const finishSuccess = (msg: string) => {
     setSuccessMsg(msg);
@@ -215,6 +244,7 @@ export default function AuthModal({
                     type="button"
                     onClick={() => {
                       setAuthTab('login');
+                      setRecoverMode(false);
                       setErrorMsg('');
                     }}
                     className={`flex-1 py-4.5 text-[11px] uppercase tracking-[0.18em] font-bold transition-all relative ${
@@ -233,6 +263,7 @@ export default function AuthModal({
                     type="button"
                     onClick={() => {
                       setAuthTab('register');
+                      setRecoverMode(false);
                       setErrorMsg('');
                     }}
                     className={`flex-1 py-4.5 text-[11px] uppercase tracking-[0.18em] font-bold transition-all relative border-l border-neutral-200 ${
@@ -265,7 +296,62 @@ export default function AuthModal({
                   )}
 
                   {/* Form fields */}
-                  {authTab === 'login' ? (
+                  {recoverMode ? (
+                    recoverSent ? (
+                      <div className="space-y-5 text-center py-2">
+                        <div className="w-14 h-14 bg-neutral-100 rounded-full flex items-center justify-center mx-auto border border-neutral-200">
+                          <ShieldCheck className="w-7 h-7 text-charcoal-900" />
+                        </div>
+                        <div className="space-y-1.5">
+                          <h4 className="font-serif text-lg font-black text-charcoal-950">Revisa tu correo</h4>
+                          <p className="text-xs text-charcoal-600 leading-relaxed font-sans">
+                            Si <span className="font-semibold">{recoverEmail}</span> está registrado, te enviamos
+                            instrucciones para restablecer tu contraseña. Revisa también la carpeta de spam.
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => { setRecoverMode(false); setRecoverSent(false); setErrorMsg(''); }}
+                          className="w-full py-3.5 bg-black text-white rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-neutral-850 transition mt-2"
+                        >
+                          Volver a Acceder
+                        </button>
+                      </div>
+                    ) : (
+                      <form onSubmit={handleRecover} className="space-y-5">
+                        <div className="space-y-1.5 text-left">
+                          <label className="text-xs font-semibold text-charcoal-800 font-sans">
+                            Correo de tu cuenta
+                          </label>
+                          <input
+                            id="modal-recover-email"
+                            type="email"
+                            required
+                            value={recoverEmail}
+                            onChange={(e) => setRecoverEmail(e.target.value)}
+                            placeholder="tucorreo@ejemplo.com"
+                            className="w-full bg-[#fff] border border-neutral-300 rounded-full py-3 px-5 text-sm font-medium focus:outline-none focus:border-charcoal-900 transition-all font-sans"
+                          />
+                        </div>
+                        <p className="text-xs text-charcoal-600 leading-relaxed text-left font-sans">
+                          Te enviaremos a este correo las instrucciones para restablecer tu contraseña.
+                        </p>
+                        <button
+                          type="submit"
+                          className="w-full py-3.5 bg-black text-white rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-neutral-850 transition mt-2 shadow-md"
+                        >
+                          Enviar instrucciones
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => { setRecoverMode(false); setErrorMsg(''); }}
+                          className="w-full text-xs text-charcoal-600 hover:text-charcoal-900 font-sans"
+                        >
+                          ← Volver a Acceder
+                        </button>
+                      </form>
+                    )
+                  ) : authTab === 'login' ? (
                     <form onSubmit={handleLogin} className="space-y-5">
                       <div className="space-y-1.5 text-left">
                         <label className="text-xs font-semibold text-charcoal-800 font-sans">
@@ -319,7 +405,7 @@ export default function AuthModal({
                         </label>
                         <button
                           type="button"
-                          onClick={() => alert('Se ha enviado una solicitud de recuperación a su correo electrónico.')}
+                          onClick={openRecover}
                           className="hover:underline text-charcoal-600 focus:outline-none"
                         >
                           ¿Olvidaste tu contraseña?

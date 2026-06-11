@@ -55,6 +55,7 @@ Ahora ese usuario puede consultar todos los pedidos (`/api/admin_orders.php`).
 | `login.php` | Iniciar sesión (email, password) |
 | `logout.php` | Cerrar sesión |
 | `me.php` | Devuelve el usuario de la sesión actual |
+| `request_reset.php` | Recuperación: envía una contraseña temporal al correo (usa el correo de Hostinger) |
 | `create_order.php` | Guarda un pedido (con o sin sesión) |
 | `my_orders.php` | Pedidos del usuario autenticado |
 | `admin_orders.php` | Todos los pedidos (solo admin) |

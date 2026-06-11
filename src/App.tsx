@@ -15,6 +15,7 @@ import CheckoutFlow from './components/CheckoutFlow';
 import MundoPrime from './components/MundoPrime';
 import AuthModal from './components/AuthModal';
 import { BACKEND_ENABLED, apiMe, apiLogout } from './lib/api';
+import { TERMS_CONTENT, PRIVACY_CONTENT, REFUND_CONTENT, WARRANTY_CONTENT } from './data/policies';
 
 import {
   Search,
@@ -719,12 +720,12 @@ export default function App() {
                   isOpen: true,
                   title: link.label,
                   content: link.key === 'terminos'
-                    ? 'Al realizar una compra en Prime Drop Elite aceptás nuestros términos y condiciones. Todos los precios están expresados en pesos colombianos (COP). Nos reservamos el derecho de cancelar pedidos en caso de error de precio o disponibilidad de stock.'
+                    ? TERMS_CONTENT
                     : link.key === 'privacidad'
-                    ? 'Tu información personal es tratada con total confidencialidad. No compartimos tus datos con terceros. La información recopilada es usada únicamente para procesar tu pedido y mejorar tu experiencia de compra.'
+                    ? PRIVACY_CONTENT
                     : link.key === 'devoluciones'
-                    ? 'Aceptamos cambios dentro de los 15 días calendario desde la fecha de entrega. El producto debe estar en perfectas condiciones, sin uso y con su empaque original. Los gastos de envío por cambio corren por cuenta del cliente.'
-                    : 'Todos los productos comercializados por Prime Drop Elite son 100% originales, importados directamente de distribuidores autorizados. Cada prenda cuenta con certificado de autenticidad y está respaldada por nuestra garantía de marca.'
+                    ? REFUND_CONTENT
+                    : WARRANTY_CONTENT
                 })}
                 className="font-serif text-[10px] sm:text-[11px] uppercase tracking-[0.15em] text-charcoal-500 hover:text-charcoal-900 transition-colors duration-200"
               >
@@ -850,9 +851,9 @@ export default function App() {
                 <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-950">{policyModal.title}</h3>
               </div>
               
-              <p className="text-sm font-light text-charcoal-600 leading-relaxed pt-2">
+              <div className="text-sm font-light text-charcoal-600 leading-relaxed pt-2 whitespace-pre-line max-h-[60vh] overflow-y-auto pr-2">
                 {policyModal.content}
-              </p>
+              </div>
               
               <div className="pt-4 text-right">
                 <button
