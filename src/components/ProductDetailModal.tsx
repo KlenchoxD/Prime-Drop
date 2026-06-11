@@ -121,8 +121,8 @@ export default function ProductDetailModal({
                 className="w-full max-h-[560px] object-contain"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 border border-neutral-200 rounded-full flex items-center justify-center text-charcoal-500 shadow-sm">
-                <ZoomIn className="w-5 h-5" />
+              <div className="absolute top-3 right-3 w-9 h-9 bg-white/90 border border-neutral-200 rounded-full flex items-center justify-center text-charcoal-500 shadow-sm">
+                <ZoomIn className="w-4 h-4" />
               </div>
               {product.isNew && (
                 <span className="absolute top-4 left-4 bg-charcoal-900 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">

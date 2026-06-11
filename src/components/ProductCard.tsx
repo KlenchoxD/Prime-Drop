@@ -121,8 +121,8 @@ export default function ProductCard({
             </div>
           </div>
 
-        {/* Action Button: shown only on hover */}
-        <div className={`pt-1 transition-all duration-300 ${hovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+        {/* Action Button: always visible so the card looks complete */}
+        <div className="pt-1">
           <button
             id={`quick-add-${product.id}`}
             onClick={handleDirectAdd}
