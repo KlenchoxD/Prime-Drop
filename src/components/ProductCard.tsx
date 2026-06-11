@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Heart } from 'lucide-react';
 import { BagProduct, ProductColor } from '../types';
 import { motion } from 'motion/react';
 import { formatCOP } from '../utils';
@@ -77,6 +77,16 @@ export default function ProductCard({
 
         {/* Quick View Tint Gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+        {/* Favorite (wishlist) toggle */}
+        <button
+          id={`favorite-toggle-${product.id}`}
+          onClick={(e) => onToggleFavorite(product.id, e)}
+          aria-label={isFavorite ? 'Quitar de favoritos' : 'Guardar en favoritos'}
+          className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-sm hover:bg-white transition-colors"
+        >
+          <Heart className={`w-4.5 h-4.5 transition-colors ${isFavorite ? 'fill-charcoal-900 text-charcoal-900' : 'text-charcoal-500'}`} />
+        </button>
       </div>
 
       {/* Details Area */}

@@ -14,6 +14,7 @@ import CartDrawer from './components/CartDrawer';
 import CheckoutFlow from './components/CheckoutFlow';
 import MundoPrime from './components/MundoPrime';
 import AuthModal from './components/AuthModal';
+import FavoritesModal from './components/FavoritesModal';
 import { BACKEND_ENABLED, apiMe, apiLogout } from './lib/api';
 import { TERMS_CONTENT, PRIVACY_CONTENT, REFUND_CONTENT, WARRANTY_CONTENT } from './data/policies';
 
@@ -36,7 +37,11 @@ export default function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [isPrimeMember, setIsPrimeMember] = useState(false);
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem('prime_favorites') || '[]'); }
+    catch { return []; }
+  });
+  const [favoritesOpen, setFavoritesOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [currentUserEmail, setCurrentUserEmail] = useState('');
   const [currentUsername, setCurrentUsername] = useState('Socio Elite');
@@ -58,6 +63,11 @@ export default function App() {
   useEffect(() => {
     return () => { if (carouselRef.current) clearInterval(carouselRef.current); };
   }, []);
+
+  // Persistir favoritos
+  useEffect(() => {
+    localStorage.setItem('prime_favorites', JSON.stringify(favorites));
+  }, [favorites]);
 
   const handleCarouselPrev = () => {
     setCarouselIndex(prev => Math.max(0, prev - 1));
@@ -347,8 +357,19 @@ export default function App() {
         isPrimeMember={isPrimeMember}
         onOpenVipModal={handleNavbarOpenVip}
         onOpenAuth={() => setAuthOpen(true)}
+        onOpenFavorites={() => setFavoritesOpen(true)}
         favoriteCount={favorites.length}
         currentUserEmail={currentUserEmail}
+      />
+
+      {/* Favoritos */}
+      <FavoritesModal
+        isOpen={favoritesOpen}
+        onClose={() => setFavoritesOpen(false)}
+        products={BAG_PRODUCTS.filter((p) => favorites.includes(p.id))}
+        onSelectProduct={handleSelectProduct}
+        onAddToCart={handleAddToCartDirect}
+        onRemoveFavorite={handleToggleFavorite}
       />
 
       {/* Main Sections */}
@@ -452,54 +473,54 @@ export default function App() {
                 <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900">Nuestros Socios Comerciales</h3>
               </div>
               <div className="flex flex-wrap items-center justify-center w-full max-w-5xl mx-auto gap-6 sm:gap-10">
-                {/* Nequi */}
+                {/* Nequi — gris, revela su color al pasar el mouse */}
                 <div className="flex items-center justify-center shrink-0 group">
-                  <svg viewBox="0 0 120 40" className="h-8 sm:h-10 w-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="0" y="32" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="34" fill="#1a1a1a">nequi</text>
+                  <svg viewBox="0 0 120 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="32" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="34" className="transition-all duration-300 group-hover:fill-[#9B1FC1]" fill="#bbb">nequi</text>
                   </svg>
                 </div>
-                {/* Bancolombia */}
+                {/* Bancolombia — revela amarillo al pasar el mouse */}
                 <div className="flex items-center justify-center shrink-0 group">
-                  <svg viewBox="0 0 220 40" className="h-8 sm:h-10 w-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="4" width="32" height="32" rx="4" fill="#1a1a1a"/>
-                    <text x="38" y="30" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="22" fill="#1a1a1a">Bancolombia</text>
+                  <svg viewBox="0 0 220 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="4" width="32" height="32" rx="4" className="transition-all duration-300 group-hover:fill-[#FDDA24]" fill="#ccc"/>
+                    <text x="38" y="30" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="22" className="transition-all duration-300 group-hover:fill-[#1A1A1A]" fill="#bbb">Bancolombia</text>
                   </svg>
                 </div>
-                {/* PSE */}
+                {/* PSE — revela azul al pasar el mouse */}
                 <div className="flex items-center justify-center shrink-0 group">
-                  <svg viewBox="0 0 80 40" className="h-8 sm:h-10 w-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="4" width="80" height="32" rx="6" fill="#1a1a1a"/>
-                    <text x="40" y="27" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="18" fill="white">PSE</text>
+                  <svg viewBox="0 0 80 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="4" width="80" height="32" rx="6" className="transition-all duration-300 group-hover:fill-[#003DA5]" fill="#ccc"/>
+                    <text x="40" y="27" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="18" className="transition-all duration-300 group-hover:fill-white" fill="#888">PSE</text>
                   </svg>
                 </div>
-                {/* Wompi */}
+                {/* Wompi — gris, revela color al pasar el mouse */}
                 <div className="flex items-center justify-center shrink-0">
                   <img
                     src="/images/socio_wompi.png"
                     alt="Wompi"
                     loading="lazy"
                     decoding="async"
-                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale"
+                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
                   />
                 </div>
-                {/* Addi */}
+                {/* Addi — gris, revela color al pasar el mouse */}
                 <div className="flex items-center justify-center shrink-0">
                   <img
                     src="/images/socio_addi.png"
                     alt="Addi"
                     loading="lazy"
                     decoding="async"
-                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale"
+                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
                   />
                 </div>
-                {/* Mercado Pago */}
+                {/* Mercado Pago — gris, revela color al pasar el mouse */}
                 <div className="flex items-center justify-center shrink-0">
                   <img
                     src="/images/socio_mercadopago.png"
                     alt="Mercado Pago"
                     loading="lazy"
                     decoding="async"
-                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale"
+                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
                   />
                 </div>
               </div>

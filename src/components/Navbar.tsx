@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { ShoppingBag, Menu, X, Shield, Crown, User, Search, Instagram, Facebook } from 'lucide-react';
+import { ShoppingBag, Menu, X, Shield, Crown, User, Search, Instagram, Facebook, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const ROTATING_TEXTS = [
@@ -243,6 +243,22 @@ export default function Navbar({
                 title="Buscar"
               >
                 <Search className="w-5 h-5 stroke-[1.5]" />
+              </button>
+
+              {/* Favoritos */}
+              <button
+                id="navbar-favorites-trigger"
+                onClick={onOpenFavorites}
+                className="relative text-neutral-500 hover:text-black transition-colors"
+                title="Mis favoritos"
+                aria-label="Mis favoritos"
+              >
+                <Heart className="w-5 h-5 stroke-[1.5]" />
+                {favoriteCount > 0 && (
+                  <span className="absolute -top-2 -right-2 h-4 w-4 bg-black text-white text-[9px] font-bold rounded-full flex items-center justify-center">
+                    {favoriteCount}
+                  </span>
+                )}
               </button>
 
               {/* VIP Auth / Session button - Simple silhouette */}
