@@ -243,9 +243,16 @@ export default function Navbar({
             {/* Right side: Symmetrical container holding Cart & VIP login */}
             <div className="flex items-center justify-end space-x-4 w-48">
               
-              {/* Lupa (Search) Icon */}
+              {/* Lupa (Search) Icon — va al catálogo y enfoca el buscador */}
               <button
-                onClick={() => handleNavClick('bolsos')}
+                onClick={() => {
+                  handleNavClick('bolsos');
+                  setTimeout(() => {
+                    const input = document.getElementById('catalog-search-textbox') as HTMLInputElement | null;
+                    input?.focus();
+                    input?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }, 120);
+                }}
                 className="text-neutral-500 hover:text-black transition-colors"
                 title="Buscar"
               >

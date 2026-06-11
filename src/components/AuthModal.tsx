@@ -16,6 +16,7 @@ interface AuthModalProps {
   isPrimeMember: boolean;
   currentUserEmail: string;
   currentUsername: string;
+  onOpenPrivacy?: () => void;
 }
 
 export default function AuthModal({
@@ -25,7 +26,8 @@ export default function AuthModal({
   onLogout,
   isPrimeMember,
   currentUserEmail,
-  currentUsername
+  currentUsername,
+  onOpenPrivacy
 }: AuthModalProps) {
   const [authTab, setAuthTab] = useState<'login' | 'register'>('login');
   
@@ -475,7 +477,7 @@ export default function AuthModal({
                       </button>
 
                       <p className="text-xs leading-relaxed text-left text-neutral-500 font-sans pt-1 border-t border-neutral-100">
-                        Tus datos personales se usarán para gestionar tu cuenta y otros propósitos descritos en nuestra <a href="#privacy" className="underline hover:text-charcoal-950 font-medium">política de privacidad</a>.
+                        Tus datos personales se usarán para gestionar tu cuenta y otros propósitos descritos en nuestra <button type="button" onClick={onOpenPrivacy} className="underline hover:text-charcoal-950 font-medium">política de privacidad</button>.
                       </p>
                     </form>
                   )}

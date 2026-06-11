@@ -807,6 +807,7 @@ export default function App() {
         isPrimeMember={isPrimeMember}
         currentUserEmail={currentUserEmail}
         currentUsername={currentUsername}
+        onOpenPrivacy={() => setPolicyModal({ isOpen: true, title: 'Política de privacidad', content: PRIVACY_CONTENT })}
       />
 
       {/* Dynamic interactive Policies details popup dialog */}
