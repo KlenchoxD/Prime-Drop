@@ -1,6 +1,0 @@
-{
-  "name": "PRIME DROP",
-  "description": "Plataforma e-commerce premium de bolsos de lujo y alta costura. Incluye catálogo interactivo, el prestigioso club Mundo Prime con personalizador de carteras y pasarela de pago profesional.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
