@@ -186,9 +186,9 @@ export default function AuthModal({
                     <span>Beneficios Activos en PRIME DROP:</span>
                   </div>
                   <ul className="text-[11px] text-charcoal-550 space-y-1.5 ml-6 list-disc font-medium">
-                    <li>15% de Descuento aplicado directamente en checkout.</li>
-                    <li>Acceso al Diseñador de Bolsos 3D Custom.</li>
-                    <li>Envío Express de Guante Blanco bonificado.</li>
+                    <li>Acceso anticipado a los nuevos drops.</li>
+                    <li>Ofertas y novedades exclusivas por correo.</li>
+                    <li>Atención prioritaria por WhatsApp.</li>
                   </ul>
                 </div>
 

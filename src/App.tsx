@@ -147,21 +147,6 @@ export default function App() {
     });
   };
 
-  // 3. Add Custom creation bag directly from builder
-  const handleAddCustomBagFromBuilder = (customBagItem: CartItem) => {
-    setCart((prevCart) => {
-      const match = prevCart.find((item) => item.id === customBagItem.id);
-      if (match) {
-        return prevCart.map((item) =>
-          item.id === customBagItem.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        triggerNotification('¡Tu Bolso Custom exclusivo ha sido añadido a la bolsa!', 'gold');
-        return [...prevCart, customBagItem];
-      }
-    });
-  };
-
   const handleUpdateCartQuantity = (id: string, quantity: number) => {
     setCart((prevCart) =>
       prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
@@ -240,7 +225,7 @@ export default function App() {
     setCart([]);
     setAppliedDiscountPercent(0);
     setPromoCodeUsed('');
-    triggerNotification('¡Compra autorizada! Tu courier ha sido notificado.', 'gold');
+    triggerNotification('¡Gracias por tu compra! Revisa WhatsApp para finalizar tu pedido.', 'gold');
   };
 
   useEffect(() => {
@@ -265,7 +250,7 @@ export default function App() {
     setCurrentUsername(name);
     setCurrentUserEmail(email);
     setIsPrimeMember(true);
-    triggerNotification(`¡Sesión iniciada! Bienvenido ${name}. Descuento del 15% VIP activo.`, 'gold');
+    triggerNotification(`¡Sesión iniciada! Bienvenido ${name}.`, 'gold');
   };
 
   const handleLogout = () => {
@@ -275,15 +260,6 @@ export default function App() {
     setCurrentUserEmail('');
     setIsPrimeMember(false);
     triggerNotification('Sesión VIP finalizada.', 'info');
-  };
-
-  // Join Mundo Prime VIP state trigger
-  const handleJoinPrime = (guestName: string, guestEmail: string) => {
-    if (!guestName) {
-      handleLogout();
-      return;
-    }
-    handleLoginSuccess(guestName, guestEmail);
   };
 
   // Open VIP modal trigger from navbar
@@ -613,12 +589,9 @@ export default function App() {
           </div>
         )}
 
-        {/* TAB 3: MUNDO PRIME (VIP PLATINUM CLUB & CUSTOM CONFIGURATOR) */}
+        {/* TAB 3: MUNDO PRIME (historia de la marca) */}
         {!selectedProduct && activeTab === 'prime' && (
           <MundoPrime
-            isPrimeMember={isPrimeMember}
-            onJoinPrime={handleJoinPrime}
-            onAddCustomBagToCart={handleAddCustomBagFromBuilder}
             onOpenAuth={() => setAuthOpen(true)}
           />
         )}
@@ -856,7 +829,7 @@ export default function App() {
               </button>
               
               <div className="space-y-2">
-                <span className="text-[10px] tracking-[0.3em] uppercase font-extrabold text-gold-600 block">Prime Drop Elite • Maison</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase font-extrabold text-gold-600 block">Prime Drop Elite • Colombia</span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-950">{policyModal.title}</h3>
               </div>
               

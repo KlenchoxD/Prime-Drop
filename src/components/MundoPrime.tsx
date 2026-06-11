@@ -8,9 +8,6 @@ import { Crown, ShieldCheck, Sparkles, Truck, Gem, Globe2 } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface MundoPrimeProps {
-  isPrimeMember: boolean;
-  onJoinPrime: (guestName: string, guestEmail: string) => void;
-  onAddCustomBagToCart: (customBagItem: any) => void;
   onOpenAuth: () => void;
 }
 
