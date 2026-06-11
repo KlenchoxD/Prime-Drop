@@ -383,8 +383,8 @@ export default function App() {
 
         {/* TAB 1: INICIO (HOME PAGE) */}
         {!selectedProduct && activeTab === 'inicio' && (
-          <div className="space-y-12 sm:space-y-16">
-            
+          <div className="space-y-0">
+
             {/* Elegant Parallax introduction Hero */}
             <Hero
               onExploreProducts={() => setActiveTab('bolsos')}
@@ -417,7 +417,7 @@ export default function App() {
               </div>
             </section>
             {/* Tendencias - Manual Carousel */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-neutral-200">
               <div className="flex items-center justify-center gap-6 mb-10">
                 <button
                   id="carousel-prev-btn"
@@ -462,9 +462,9 @@ export default function App() {
             </section>
 
             {/* Socios Comerciales — logos reales */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="text-center mb-8">
-                <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900 mt-1">Nuestros Socios Comerciales</h3>
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-neutral-200">
+              <div className="text-center mb-6">
+                <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900">Nuestros Socios Comerciales</h3>
               </div>
               <div className="flex flex-wrap items-center justify-center w-full max-w-5xl mx-auto gap-6 sm:gap-10">
                 {/* Nequi — color rosa/morado original */}
