@@ -408,6 +408,7 @@ export default function App() {
                       className="absolute top-0 left-0 w-full border-none"
                       style={{ height: 'calc(100% + 46px)' }}
                       scrolling="no"
+                      loading="lazy"
                       allowTransparency={true}
                       title={`Instagram Post ${i + 1}`}
                     />
@@ -491,6 +492,8 @@ export default function App() {
                   <img
                     src="/images/socio_wompi.png"
                     alt="Wompi"
+                    loading="lazy"
+                    decoding="async"
                     className="h-8 sm:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
                   />
                 </div>
@@ -499,6 +502,8 @@ export default function App() {
                   <img
                     src="/images/socio_addi.png"
                     alt="Addi"
+                    loading="lazy"
+                    decoding="async"
                     className="h-8 sm:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
                   />
                 </div>
@@ -507,6 +512,8 @@ export default function App() {
                   <img
                     src="/images/socio_mercadopago.png"
                     alt="Mercado Pago"
+                    loading="lazy"
+                    decoding="async"
                     className="h-8 sm:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
                   />
                 </div>

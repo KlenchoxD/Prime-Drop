@@ -106,7 +106,7 @@ export default function ProductDetailModal({
                       selectedImage === img ? 'border-charcoal-900' : 'border-neutral-200 hover:border-neutral-400'
                     }`}
                   >
-                    <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                    <img src={img} alt={`Vista ${idx + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   </button>
                 ))}
               </div>
@@ -117,6 +117,7 @@ export default function ProductDetailModal({
               <img
                 src={selectedImage}
                 alt={product.name}
+                decoding="async"
                 className="w-full max-h-[560px] object-contain"
                 referrerPolicy="no-referrer"
               />
@@ -244,6 +245,8 @@ export default function ProductDetailModal({
                     <img
                       src={rel.primaryImage}
                       alt={rel.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       referrerPolicy="no-referrer"
                     />

@@ -54,6 +54,8 @@ export default function ProductCard({
           <img
             src={product.primaryImage}
             alt={`${product.name} primario`}
+            loading="lazy"
+            decoding="async"
             className={`w-full h-full object-cover object-center transition-all duration-700 transform scale-100 group-hover:scale-105 ${
               hovered && product.secondaryImage ? 'opacity-0 scale-95' : 'opacity-100'
             }`}
@@ -63,6 +65,8 @@ export default function ProductCard({
             <img
               src={product.secondaryImage}
               alt={`${product.name} secundario`}
+              loading="lazy"
+              decoding="async"
               className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 transform ${
                 hovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
               }`}

@@ -264,7 +264,7 @@ export default function CheckoutFlow({
                   <div key={item.id} className="flex items-center justify-between text-xs font-sans">
                     <div className="flex items-center space-x-2.5">
                       <div className="w-8 h-10 bg-charcoal-900 rounded overflow-hidden flex-shrink-0">
-                        <img src={item.product.primaryImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                        <img src={item.product.primaryImage} loading="lazy" decoding="async" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                       </div>
                       <div>
                         <p className="font-serif font-bold text-white max-w-[120px] truncate">{item.product.name}</p>

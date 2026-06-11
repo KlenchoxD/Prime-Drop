@@ -23,10 +23,12 @@ export default function Hero({ onExploreProducts, onJoinPrime }: HeroProps) {
         {/* ── Video de fondo ── */}
         <video
           src="/hero-video.mp4"
+          poster="/images/videoframe_8350.png"
           autoPlay
           loop
           muted
           playsInline
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover object-center select-none"
         />
 
@@ -115,6 +117,8 @@ export default function Hero({ onExploreProducts, onJoinPrime }: HeroProps) {
                 <img
                   src="/images/STEVEMADDEN_HANDBAGS_BPREPPY_BROWN_01.webp"
                   alt="Bolso Steve Madden Preppy Brown"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-auto object-cover block"
                 />
               </div>
