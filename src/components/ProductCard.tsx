@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 import { ArrowRight, Heart } from 'lucide-react';
 import { BagProduct, ProductColor } from '../types';
 import { motion } from 'motion/react';
-import { formatCOP } from '../utils';
 
 interface ProductCardProps {
   key?: string;
@@ -106,20 +105,6 @@ export default function ProductCard({
             {product.description}
           </p>
         </div>
-
-          <div className="flex items-center justify-between pt-2 border-t border-neutral-100">
-            <span className="text-[10px] tracking-wider text-charcoal-400 font-semibold uppercase">Precio</span>
-            <div className="flex items-baseline space-x-2">
-              {product.originalPrice && (
-                <span className="text-xs line-through text-charcoal-400">
-                  {formatCOP(product.originalPrice)}
-                </span>
-              )}
-              <span className="font-serif font-normal text-charcoal-900 text-sm sm:text-base">
-                {formatCOP(product.price)}
-              </span>
-            </div>
-          </div>
 
         {/* Action Button: always visible so the card looks complete */}
         <div className="pt-1">
