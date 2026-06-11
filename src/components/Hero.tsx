@@ -89,52 +89,49 @@ export default function Hero({ onExploreProducts, onJoinPrime }: HeroProps) {
       </section>
 
       {/* ===== VISION / ABOUT SECTION ===== */}
-      <section className="bg-white py-16 sm:py-24">
+      <section className="bg-white py-14 sm:py-20">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-center">
-            
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+
             {/* Left Column */}
-            <div className="space-y-12 lg:space-y-16 flex flex-col justify-center h-full">
-              <p className="font-serif text-[17px] sm:text-[19px] leading-[1.5] text-charcoal-800 tracking-tight">
-                Prime Drop Elite nace con una visión clara:<br className="hidden lg:block" />
-                Acercar las mejores marcas del mundo a quienes<br className="hidden lg:block" />
-                realmente saben de estilo. Nos especializamos en<br className="hidden lg:block" />
-                traer prendas 100% originales. Sin<br className="hidden lg:block" />
-                intermediarios, sin sobreprecios. Solo moda<br className="hidden lg:block" />
+            <div className="flex flex-col items-center gap-8">
+              <p className="text-[17px] sm:text-[18px] leading-[1.6] text-charcoal-800 tracking-tight text-center md:text-left">
+                Prime Drop Elite nace con una visión clara:
+                Acercar las mejores marcas del mundo a quienes
+                realmente saben de estilo. Nos especializamos en
+                traer prendas 100% originales, sin
+                intermediarios, sin sobreprecios. Solo moda
                 auténtica, exclusiva y al mejor precio.
               </p>
-              
-              {/* Logo Recreated in HTML */}
-              <div className="flex justify-center md:justify-center pt-4">
-                <div className="text-center font-serif text-[75px] sm:text-[90px] leading-[0.8] font-bold text-black tracking-tighter select-none">
+
+              {/* Logo HTML */}
+              <div className="text-center select-none">
+                <div className="text-[72px] sm:text-[88px] leading-[0.85] font-black text-black tracking-tighter">
                   <div>PRIME</div>
-                  <div className="h-[4px] bg-black w-full my-1.5"></div>
+                  <div className="h-[4px] bg-black w-full my-2" />
                   <div>DROP</div>
                 </div>
               </div>
             </div>
 
             {/* Right Column */}
-            <div className="space-y-10 flex flex-col justify-center h-full">
-              {/* Bag Image Container */}
-              <div className="rounded-[24px] overflow-hidden shadow-sm max-w-[320px] w-full mx-auto">
-                <img 
-                  src="/images/STEVEMADDEN_HANDBAGS_BPREPPY_BROWN_01.webp" 
-                  alt="Colección Prime Drop" 
+            <div className="flex flex-col items-center gap-8">
+              {/* Bag Image */}
+              <div className="rounded-[20px] overflow-hidden shadow-md w-full max-w-[300px]">
+                <img
+                  src="/images/STEVEMADDEN_HANDBAGS_BPREPPY_BROWN_01.webp"
+                  alt="Bolso Steve Madden Preppy Brown"
                   className="w-full h-auto object-cover block"
                 />
               </div>
 
               {/* Bottom Texts */}
-              <div className="space-y-6 font-serif text-[16px] sm:text-[18px] leading-[1.5] text-charcoal-800 tracking-tight">
+              <div className="space-y-4 text-[16px] sm:text-[17px] leading-[1.6] text-charcoal-800 tracking-tight text-center md:text-left">
                 <p>
-                  No somos solo una tienda de ropa, somos el<br className="hidden lg:block" />
-                  puente entre el lujo internacional y tu clóset.
+                  No somos solo una tienda de bolsos, somos el puente entre el lujo internacional y tu clóset.
                 </p>
                 <p>
-                  En Prime Drop Elite creemos que vestir bien no<br className="hidden lg:block" />
-                  debe ser un privilegio, sino una posibilidad real<br className="hidden lg:block" />
-                  para quienes quieren destacar.
+                  En Prime Drop Elite creemos que vestir bien no debe ser un privilegio, sino una posibilidad real para quienes quieren destacar.
                 </p>
               </div>
             </div>
