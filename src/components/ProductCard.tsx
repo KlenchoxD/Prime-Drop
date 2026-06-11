@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Star, Shield, ArrowRight, Sparkles, Heart } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { BagProduct, ProductColor } from '../types';
 import { motion } from 'motion/react';
 import { formatCOP } from '../utils';

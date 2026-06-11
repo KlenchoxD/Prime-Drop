@@ -17,19 +17,10 @@ import AuthModal from './components/AuthModal';
 
 import {
   Search,
-  SlidersHorizontal,
   ArrowUpDown,
-  ShieldCheck,
   Sparkles,
-  Check,
-  Heart,
   X,
   Mail,
-  Phone,
-  MapPin,
-  MessageCircle,
-  Clock,
-  ExternalLink,
   Instagram,
   ChevronLeft,
   ChevronRight
