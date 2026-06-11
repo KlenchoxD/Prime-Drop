@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { X, ShieldCheck, LogOut, AlertCircle, Sparkles, Eye, EyeOff } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { BACKEND_ENABLED, apiLogin, apiRegister } from '../lib/api';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -34,14 +35,24 @@ export default function AuthModal({
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   
-  // Register inputs – only email is required as per the official design screenshot!
+  // Register inputs
+  const [regName, setRegName] = useState('');
   const [regEmail, setRegEmail] = useState('');
-  
+  const [regPassword, setRegPassword] = useState('');
+
   // Feedback
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
-  const handleLogin = (e: React.FormEvent) => {
+  const finishSuccess = (msg: string) => {
+    setSuccessMsg(msg);
+    setTimeout(() => {
+      onClose();
+      setSuccessMsg('');
+    }, 1500);
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     setSuccessMsg('');
@@ -51,7 +62,20 @@ export default function AuthModal({
       return;
     }
 
-    // Checking client-side accounts inside localStorage
+    if (BACKEND_ENABLED) {
+      try {
+        const { user } = await apiLogin(loginEmail.trim(), loginPassword);
+        localStorage.setItem('prime_user_name', user.name);
+        localStorage.setItem('prime_user_email', user.email);
+        onLoginSuccess(user.name, user.email);
+        finishSuccess(`¡Bienvenido de vuelta, ${user.name}!`);
+      } catch (err: any) {
+        setErrorMsg(err.message || 'No se pudo iniciar sesión.');
+      }
+      return;
+    }
+
+    // Fallback sin backend: cuentas guardadas en el navegador
     const accounts = JSON.parse(localStorage.getItem('premium_prime_accounts') || '[]');
     const matched = accounts.find(
       (acc: any) => acc.email.toLowerCase() === loginEmail.toLowerCase() && acc.password === loginPassword
@@ -61,60 +85,56 @@ export default function AuthModal({
       localStorage.setItem('prime_user_name', matched.name);
       localStorage.setItem('prime_user_email', matched.email);
       onLoginSuccess(matched.name, matched.email);
-      setSuccessMsg(`¡Bienvenido de vuelta, ${matched.name}!`);
-      setTimeout(() => {
-        onClose();
-        setSuccessMsg('');
-      }, 1500);
+      finishSuccess(`¡Bienvenido de vuelta, ${matched.name}!`);
     } else {
       setErrorMsg('Correo o contraseña incorrectos.');
     }
   };
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     setSuccessMsg('');
 
-    if (!regEmail) {
-      setErrorMsg('Por favor ingrese su dirección de correo electrónico.');
+    if (!regName.trim() || !regEmail.trim() || !regPassword) {
+      setErrorMsg('Completa nombre, correo y contraseña.');
+      return;
+    }
+    if (regPassword.length < 6) {
+      setErrorMsg('La contraseña debe tener al menos 6 caracteres.');
       return;
     }
 
-    // Extracting user name from email before the @ sign
-    const generatedName = regEmail.split('@')[0];
-    const cleanName = generatedName.charAt(0).toUpperCase() + generatedName.slice(1);
+    if (BACKEND_ENABLED) {
+      try {
+        const { user } = await apiRegister(regName.trim(), regEmail.trim(), regPassword);
+        localStorage.setItem('prime_user_name', user.name);
+        localStorage.setItem('prime_user_email', user.email);
+        onLoginSuccess(user.name, user.email);
+        setRegName(''); setRegEmail(''); setRegPassword('');
+        finishSuccess('¡Cuenta creada con éxito!');
+      } catch (err: any) {
+        setErrorMsg(err.message || 'No se pudo crear la cuenta.');
+      }
+      return;
+    }
 
+    // Fallback sin backend: cuentas guardadas en el navegador
     const accounts = JSON.parse(localStorage.getItem('premium_prime_accounts') || '[]');
     const emailExists = accounts.some((acc: any) => acc.email.toLowerCase() === regEmail.toLowerCase());
-
     if (emailExists) {
       setErrorMsg('Esta dirección de correo ya tiene una cuenta registrada.');
       return;
     }
 
-    const newAcc = {
-      name: cleanName,
-      email: regEmail,
-      password: 'mypassword123' // Fallback preset password
-    };
-
-    accounts.push(newAcc);
+    accounts.push({ name: regName.trim(), email: regEmail.trim(), password: regPassword });
     localStorage.setItem('premium_prime_accounts', JSON.stringify(accounts));
-    
-    localStorage.setItem('prime_user_name', cleanName);
-    localStorage.setItem('prime_user_email', regEmail);
-    
-    onLoginSuccess(cleanName, regEmail);
-    setSuccessMsg('¡Enlace virtual generado y membresía activa!');
-    
-    // Clear registration inputs
-    setRegEmail('');
+    localStorage.setItem('prime_user_name', regName.trim());
+    localStorage.setItem('prime_user_email', regEmail.trim());
 
-    setTimeout(() => {
-      onClose();
-      setSuccessMsg('');
-    }, 1500);
+    onLoginSuccess(regName.trim(), regEmail.trim());
+    setRegName(''); setRegEmail(''); setRegPassword('');
+    finishSuccess('¡Cuenta creada con éxito!');
   };
 
 
@@ -319,22 +339,46 @@ export default function AuthModal({
                     <form onSubmit={handleRegister} className="space-y-5">
                       <div className="space-y-1.5 text-left">
                         <label className="text-xs font-semibold text-charcoal-800 font-sans">
+                          Nombre completo
+                        </label>
+                        <input
+                          id="modal-reg-name"
+                          type="text"
+                          required
+                          value={regName}
+                          onChange={(e) => setRegName(e.target.value)}
+                          className="w-full bg-[#fff] border border-neutral-300 rounded-full py-3 px-5 text-sm font-medium focus:outline-none focus:border-charcoal-900 transition-all font-sans"
+                        />
+                      </div>
+
+                      <div className="space-y-1.5 text-left">
+                        <label className="text-xs font-semibold text-charcoal-800 font-sans">
                           Correo electrónico
                         </label>
                         <input
                           id="modal-reg-email"
                           type="email"
                           required
-                          placeholder=""
                           value={regEmail}
                           onChange={(e) => setRegEmail(e.target.value)}
                           className="w-full bg-[#fff] border border-neutral-300 rounded-full py-3 px-5 text-sm font-medium focus:outline-none focus:border-charcoal-900 transition-all font-sans"
                         />
                       </div>
 
-                      <p className="text-xs text-charcoal-600 leading-relaxed text-left font-sans">
-                        Te enviaremos un enlace para crear tu contraseña.
-                      </p>
+                      <div className="space-y-1.5 text-left">
+                        <label className="text-xs font-semibold text-charcoal-800 font-sans">
+                          Contraseña
+                        </label>
+                        <input
+                          id="modal-reg-password"
+                          type="password"
+                          required
+                          value={regPassword}
+                          onChange={(e) => setRegPassword(e.target.value)}
+                          placeholder="Mínimo 6 caracteres"
+                          className="w-full bg-[#fff] border border-neutral-300 rounded-full py-3 px-5 text-sm font-medium focus:outline-none focus:border-charcoal-900 transition-all font-sans"
+                        />
+                      </div>
 
                       <button
                         id="modal-register-submit"

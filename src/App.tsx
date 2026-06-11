@@ -14,6 +14,7 @@ import CartDrawer from './components/CartDrawer';
 import CheckoutFlow from './components/CheckoutFlow';
 import MundoPrime from './components/MundoPrime';
 import AuthModal from './components/AuthModal';
+import { BACKEND_ENABLED, apiMe, apiLogout } from './lib/api';
 
 import {
   Search,
@@ -229,12 +230,25 @@ export default function App() {
   };
 
   useEffect(() => {
-    const savedName = localStorage.getItem('prime_user_name');
-    const savedEmail = localStorage.getItem('prime_user_email');
-    if (savedName && savedEmail) {
-      setCurrentUsername(savedName);
-      setCurrentUserEmail(savedEmail);
-      setIsPrimeMember(true);
+    if (BACKEND_ENABLED) {
+      // Restaurar sesión real desde el backend
+      apiMe()
+        .then(({ user }) => {
+          if (user) {
+            setCurrentUsername(user.name);
+            setCurrentUserEmail(user.email);
+            setIsPrimeMember(true);
+          }
+        })
+        .catch(() => { /* sin sesión */ });
+    } else {
+      const savedName = localStorage.getItem('prime_user_name');
+      const savedEmail = localStorage.getItem('prime_user_email');
+      if (savedName && savedEmail) {
+        setCurrentUsername(savedName);
+        setCurrentUserEmail(savedEmail);
+        setIsPrimeMember(true);
+      }
     }
 
     // Listen for category selection from Navbar dropdown
@@ -254,12 +268,15 @@ export default function App() {
   };
 
   const handleLogout = () => {
+    if (BACKEND_ENABLED) {
+      apiLogout().catch(() => { /* ignorar */ });
+    }
     localStorage.removeItem('prime_user_name');
     localStorage.removeItem('prime_user_email');
     setCurrentUsername('Socio Elite');
     setCurrentUserEmail('');
     setIsPrimeMember(false);
-    triggerNotification('Sesión VIP finalizada.', 'info');
+    triggerNotification('Sesión finalizada.', 'info');
   };
 
   // Open VIP modal trigger from navbar

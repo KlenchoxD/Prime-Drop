@@ -9,6 +9,7 @@ import { CartItem, CustomerInfo, ShippingMethod, PaymentMethodKey } from '../typ
 import { SHIPPING_METHODS } from '../data/products';
 import { COLOMBIA_DEPARTMENTS, COLOMBIA_LOCATIONS } from '../data/colombia';
 import { PAYMENT_METHODS, PAYMENT_CONFIG, PSE_BANKS } from '../data/payment';
+import { BACKEND_ENABLED, apiCreateOrder } from '../lib/api';
 import { motion, AnimatePresence } from 'motion/react';
 import { formatCOP } from '../utils';
 
@@ -67,10 +68,12 @@ export default function CheckoutFlow({
   const deliveryCost = selectedShipping.price;
   const total = Math.max(0, subtotal - discountAmount + deliveryCost);
 
-  const generatedOrderId = useMemo(
+  const localOrderId = useMemo(
     () => `PRIME-CO-2026-${Math.floor(100000 + Math.random() * 900000)}`,
     []
   );
+  // Código de pedido mostrado (lo reemplaza el backend si está activo)
+  const [generatedOrderId, setGeneratedOrderId] = useState(localOrderId);
 
   // Handlers: Info inputs
   const handleInfoChange = (
@@ -156,7 +159,41 @@ export default function CheckoutFlow({
     window.open(url, '_blank', 'noopener');
   };
 
-  const handleProcessPayment = () => {
+  // Guarda el pedido en el backend (si está activo). No bloquea la venta si falla.
+  const saveOrderToBackend = async () => {
+    if (!BACKEND_ENABLED) return;
+    try {
+      const { orderCode } = await apiCreateOrder({
+        customer: {
+          fullName: customerInfo.fullName,
+          email: customerInfo.email,
+          phone: customerInfo.phone,
+          address: customerInfo.address,
+          department: customerInfo.department,
+          city: customerInfo.city,
+          notes: customerInfo.notes,
+        },
+        items: cartItems.map((it) => ({
+          productId: it.product.id,
+          productName: it.product.name,
+          color: it.selectedColor?.name,
+          unitPrice: it.product.price,
+          quantity: it.quantity,
+        })),
+        shippingMethod: selectedShipping.name,
+        paymentMethod: paymentMethod + (paymentMethod === 'PSE' && pseBank ? ` (${pseBank})` : ''),
+        subtotal,
+        discount: discountAmount,
+        shippingCost: deliveryCost,
+        total,
+      });
+      if (orderCode) setGeneratedOrderId(orderCode);
+    } catch {
+      /* Si el backend falla, seguimos con el código local y el flujo de pago. */
+    }
+  };
+
+  const handleProcessPayment = async () => {
     if (!validatePaymentStep()) return;
 
     setProcessing(true);
@@ -169,6 +206,9 @@ export default function CheckoutFlow({
       // Wompi & PSE are both handled by the Wompi gateway
       redirectUrl = PAYMENT_CONFIG.wompiLink;
     }
+
+    // Guardar el pedido antes de redirigir/confirmar
+    await saveOrderToBackend();
 
     setTimeout(() => {
       setProcessing(false);
