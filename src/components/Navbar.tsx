@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { ShoppingBag, Menu, X, Shield, Crown, User, Search, Instagram, Facebook, Heart } from 'lucide-react';
+import { ShoppingBag, Menu, X, Shield, Crown, User, Search, Instagram, Facebook, Heart, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const ROTATING_TEXTS = [
@@ -62,10 +62,17 @@ export default function Navbar({
     >
       {/* Top Bar - Black background with white text */}
       <div className="bg-black text-white py-2.5 px-4 sm:px-6 lg:px-8 text-[11px] font-serif flex items-center justify-between">
-        <div className="hidden md:block w-1/3 text-left">
-          {currentUserEmail && (
-            <span className="text-neutral-300 font-semibold">{currentUserEmail}</span>
-          )}
+        <div className="hidden md:flex w-1/3 items-center">
+          <a
+            href="mailto:primedropelite@gmail.com"
+            className="group inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
+            title="Escríbenos"
+          >
+            <span className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white/50 transition-colors">
+              <Mail className="w-3 h-3" strokeWidth={1.8} />
+            </span>
+            <span className="font-medium tracking-wide text-[11px]">primedropelite@gmail.com</span>
+          </a>
         </div>
         
         <div className="w-full md:w-1/3 text-center relative h-4 overflow-hidden flex items-center justify-center">
