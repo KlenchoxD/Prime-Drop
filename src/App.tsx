@@ -472,57 +472,25 @@ export default function App() {
               <div className="text-center mb-6">
                 <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900">Nuestros Socios Comerciales</h3>
               </div>
-              <div className="flex flex-wrap items-center justify-center w-full max-w-5xl mx-auto gap-6 sm:gap-10">
-                {/* Nequi — gris, revela su color al pasar el mouse */}
-                <div className="flex items-center justify-center shrink-0 group">
-                  <svg viewBox="0 0 120 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="0" y="32" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="34" className="transition-all duration-300 group-hover:fill-[#9B1FC1]" fill="#bbb">nequi</text>
-                  </svg>
-                </div>
-                {/* Bancolombia — revela amarillo al pasar el mouse */}
-                <div className="flex items-center justify-center shrink-0 group">
-                  <svg viewBox="0 0 220 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="4" width="32" height="32" rx="4" className="transition-all duration-300 group-hover:fill-[#FDDA24]" fill="#ccc"/>
-                    <text x="38" y="30" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="22" className="transition-all duration-300 group-hover:fill-[#1A1A1A]" fill="#bbb">Bancolombia</text>
-                  </svg>
-                </div>
-                {/* PSE — revela azul al pasar el mouse */}
-                <div className="flex items-center justify-center shrink-0 group">
-                  <svg viewBox="0 0 80 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="4" width="80" height="32" rx="6" className="transition-all duration-300 group-hover:fill-[#003DA5]" fill="#ccc"/>
-                    <text x="40" y="27" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="18" className="transition-all duration-300 group-hover:fill-white" fill="#888">PSE</text>
-                  </svg>
-                </div>
-                {/* Wompi — gris, revela color al pasar el mouse */}
-                <div className="flex items-center justify-center shrink-0">
-                  <img
-                    src="/images/socio_wompi.png"
-                    alt="Wompi"
-                    loading="lazy"
-                    decoding="async"
-                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
-                  />
-                </div>
-                {/* Addi — gris, revela color al pasar el mouse */}
-                <div className="flex items-center justify-center shrink-0">
-                  <img
-                    src="/images/socio_addi.png"
-                    alt="Addi"
-                    loading="lazy"
-                    decoding="async"
-                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
-                  />
-                </div>
-                {/* Mercado Pago — gris, revela color al pasar el mouse */}
-                <div className="flex items-center justify-center shrink-0">
-                  <img
-                    src="/images/socio_mercadopago.png"
-                    alt="Mercado Pago"
-                    loading="lazy"
-                    decoding="async"
-                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
-                  />
-                </div>
+              <div className="flex flex-wrap items-center justify-center w-full max-w-5xl mx-auto gap-x-10 gap-y-8 sm:gap-x-14">
+                {[
+                  { src: '/images/socio_nequi.png', alt: 'Nequi' },
+                  { src: '/images/socio_bancolombia.png', alt: 'Bancolombia' },
+                  { src: '/images/socio_davivienda.png', alt: 'Davivienda' },
+                  { src: '/images/socio_pse.png', alt: 'PSE' },
+                  { src: '/images/socio_wompi.png', alt: 'Wompi' },
+                  { src: '/images/socio_addi.png', alt: 'Addi' },
+                ].map((logo) => (
+                  <div key={logo.alt} className="flex items-center justify-center h-12 w-[130px] sm:w-[150px] shrink-0">
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="max-h-full max-w-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                    />
+                  </div>
+                ))}
               </div>
             </section>
 
