@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { ShoppingBag, Menu, X, Shield, Crown, User, Search, Instagram, Facebook } from 'lucide-react';
+import { ShoppingBag, Menu, X, Shield, Crown, User, Search, Instagram, Facebook, Heart, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const ROTATING_TEXTS = [
@@ -60,12 +60,19 @@ export default function Navbar({
       id="main-navbar"
       className="absolute top-0 left-0 right-0 z-50 bg-white border-b border-[#ecebe6] shadow-xs"
     >
-      {/* Top Bar - Identical to reference (White background, dark text) */}
-      <div className="bg-white border-b border-[#ecebe6] text-charcoal-800 py-2.5 px-4 sm:px-6 lg:px-8 text-[11px] font-serif flex items-center justify-between">
-        <div className="hidden md:block w-1/3 text-left">
-          {currentUserEmail && (
-            <span className="text-charcoal-500 font-semibold">{currentUserEmail}</span>
-          )}
+      {/* Top Bar - Black background with white text */}
+      <div className="bg-black text-white py-2.5 px-4 sm:px-6 lg:px-8 text-[11px] font-serif flex items-center justify-between">
+        <div className="hidden md:flex w-1/3 items-center">
+          <a
+            href="mailto:primedropelite@gmail.com"
+            className="group inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
+            title="Escríbenos"
+          >
+            <span className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white/50 transition-colors">
+              <Mail className="w-3 h-3" strokeWidth={1.8} />
+            </span>
+            <span className="font-medium tracking-wide text-[11px]">primedropelite@gmail.com</span>
+          </a>
         </div>
         
         <div className="w-full md:w-1/3 text-center relative h-4 overflow-hidden flex items-center justify-center">
@@ -83,19 +90,21 @@ export default function Navbar({
           </AnimatePresence>
         </div>
 
-        <div className="hidden md:flex w-1/3 justify-end items-center space-x-2">
-          <span className="text-charcoal-500 mr-2 lowercase tracking-widest text-[9px]">síguenos</span>
-          <a href="https://facebook.com/primedrop_elite" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-[#f4f4f4] hover:bg-[#1877F2] flex items-center justify-center text-charcoal-800 hover:text-white transition-all duration-300">
-            <Facebook className="w-[14px] h-[14px]" />
-          </a>
-          <a href="https://tiktok.com/@primedrop_elite" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-[#f4f4f4] hover:bg-black flex items-center justify-center text-charcoal-800 hover:text-white transition-all duration-300">
-            <svg className="w-[14px] h-[14px] fill-current" viewBox="0 0 24 24">
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .8.11v-3.5a6.39 6.39 0 0 0-3.32-.23c-3.1.64-5.32 3.53-5.32 6.87A6.38 6.38 0 0 0 8 22c3.5 0 6.38-2.88 6.38-6.38V7.78a8.31 8.31 0 0 0 5.21 1.74V6.69z" />
-            </svg>
-          </a>
-          <a href="https://instagram.com/primedrop_elite" target="_blank" rel="noreferrer" className="w-7 h-7 rounded-full bg-[#f4f4f4] hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] flex items-center justify-center text-charcoal-800 hover:text-white transition-all duration-300">
-            <Instagram className="w-[14px] h-[14px]" />
-          </a>
+        <div className="hidden md:flex w-1/3 justify-end items-center gap-3.5">
+          <span className="text-neutral-400 uppercase tracking-[0.2em] text-[10px] font-semibold">Síguenos</span>
+          <div className="flex items-center gap-1">
+            <a href="https://facebook.com/primedrop_elite" target="_blank" rel="noreferrer" aria-label="Facebook" className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-300 hover:text-white hover:bg-white/10 transition-colors duration-200">
+              <Facebook className="w-[17px] h-[17px]" strokeWidth={1.6} />
+            </a>
+            <a href="https://tiktok.com/@primedrop_elite" target="_blank" rel="noreferrer" aria-label="TikTok" className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-300 hover:text-white hover:bg-white/10 transition-colors duration-200">
+              <svg className="w-[16px] h-[16px] fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .8.11v-3.5a6.39 6.39 0 0 0-3.32-.23c-3.1.64-5.32 3.53-5.32 6.87A6.38 6.38 0 0 0 8 22c3.5 0 6.38-2.88 6.38-6.38V7.78a8.31 8.31 0 0 0 5.21 1.74V6.69z" />
+              </svg>
+            </a>
+            <a href="https://instagram.com/primedrop_elite" target="_blank" rel="noreferrer" aria-label="Instagram" className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-300 hover:text-white hover:bg-white/10 transition-colors duration-200">
+              <Instagram className="w-[17px] h-[17px]" strokeWidth={1.6} />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -207,7 +216,7 @@ export default function Navbar({
                               // Dispatch event so App.tsx can select category (hacky but works since state is in App)
                               window.dispatchEvent(new CustomEvent('selectCategory', { detail: cat }));
                             }}
-                            className="text-left text-xs font-serif text-charcoal-700 hover:text-gold-coulisse hover:bg-neutral-50 px-2 py-1.5 rounded transition-colors uppercase tracking-wider"
+                            className="text-left text-xs font-serif text-charcoal-700 hover:text-black hover:bg-neutral-50 px-2 py-1.5 rounded transition-colors uppercase tracking-wider"
                           >
                             {cat}
                           </button>
@@ -234,13 +243,36 @@ export default function Navbar({
             {/* Right side: Symmetrical container holding Cart & VIP login */}
             <div className="flex items-center justify-end space-x-4 w-48">
               
-              {/* Lupa (Search) Icon */}
+              {/* Lupa (Search) Icon — va al catálogo y enfoca el buscador */}
               <button
-                onClick={() => handleNavClick('bolsos')}
+                onClick={() => {
+                  handleNavClick('bolsos');
+                  setTimeout(() => {
+                    const input = document.getElementById('catalog-search-textbox') as HTMLInputElement | null;
+                    input?.focus();
+                    input?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }, 120);
+                }}
                 className="text-neutral-500 hover:text-black transition-colors"
                 title="Buscar"
               >
                 <Search className="w-5 h-5 stroke-[1.5]" />
+              </button>
+
+              {/* Favoritos */}
+              <button
+                id="navbar-favorites-trigger"
+                onClick={onOpenFavorites}
+                className="relative text-neutral-500 hover:text-black transition-colors"
+                title="Mis favoritos"
+                aria-label="Mis favoritos"
+              >
+                <Heart className="w-5 h-5 stroke-[1.5]" />
+                {favoriteCount > 0 && (
+                  <span className="absolute -top-2 -right-2 h-4 w-4 bg-black text-white text-[9px] font-bold rounded-full flex items-center justify-center">
+                    {favoriteCount}
+                  </span>
+                )}
               </button>
 
               {/* VIP Auth / Session button - Simple silhouette */}

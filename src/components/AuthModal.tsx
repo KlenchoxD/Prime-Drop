@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { X, ShieldCheck, LogOut, AlertCircle, Sparkles, Eye, EyeOff } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { BACKEND_ENABLED, apiLogin, apiRegister, apiRequestReset } from '../lib/api';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -15,6 +16,7 @@ interface AuthModalProps {
   isPrimeMember: boolean;
   currentUserEmail: string;
   currentUsername: string;
+  onOpenPrivacy?: () => void;
 }
 
 export default function AuthModal({
@@ -24,7 +26,8 @@ export default function AuthModal({
   onLogout,
   isPrimeMember,
   currentUserEmail,
-  currentUsername
+  currentUsername,
+  onOpenPrivacy
 }: AuthModalProps) {
   const [authTab, setAuthTab] = useState<'login' | 'register'>('login');
   
@@ -34,14 +37,53 @@ export default function AuthModal({
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   
-  // Register inputs – only email is required as per the official design screenshot!
+  // Register inputs
+  const [regName, setRegName] = useState('');
   const [regEmail, setRegEmail] = useState('');
-  
+  const [regPassword, setRegPassword] = useState('');
+
+  // Recuperación de contraseña
+  const [recoverMode, setRecoverMode] = useState(false);
+  const [recoverEmail, setRecoverEmail] = useState('');
+  const [recoverSent, setRecoverSent] = useState(false);
+
   // Feedback
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleRecover = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg('');
+    if (!/\S+@\S+\.\S+/.test(recoverEmail)) {
+      setErrorMsg('Ingresa un correo electrónico válido.');
+      return;
+    }
+    if (BACKEND_ENABLED) {
+      try {
+        await apiRequestReset(recoverEmail.trim());
+      } catch {
+        /* respondemos igual por seguridad */
+      }
+    }
+    setRecoverSent(true);
+  };
+
+  const openRecover = () => {
+    setRecoverMode(true);
+    setRecoverSent(false);
+    setRecoverEmail(loginEmail);
+    setErrorMsg('');
+  };
+
+  const finishSuccess = (msg: string) => {
+    setSuccessMsg(msg);
+    setTimeout(() => {
+      onClose();
+      setSuccessMsg('');
+    }, 1500);
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     setSuccessMsg('');
@@ -51,21 +93,20 @@ export default function AuthModal({
       return;
     }
 
-    // Default demo account checking
-    if (loginEmail.toLowerCase() === 'vip@primedrop.com' && loginPassword === '123456') {
-      const demoName = 'Cliente Coleccionista';
-      localStorage.setItem('prime_user_name', demoName);
-      localStorage.setItem('prime_user_email', loginEmail);
-      onLoginSuccess(demoName, loginEmail);
-      setSuccessMsg('¡Acceso autorizado de inmediato!');
-      setTimeout(() => {
-        onClose();
-        setSuccessMsg('');
-      }, 1500);
+    if (BACKEND_ENABLED) {
+      try {
+        const { user } = await apiLogin(loginEmail.trim(), loginPassword);
+        localStorage.setItem('prime_user_name', user.name);
+        localStorage.setItem('prime_user_email', user.email);
+        onLoginSuccess(user.name, user.email);
+        finishSuccess(`¡Bienvenido de vuelta, ${user.name}!`);
+      } catch (err: any) {
+        setErrorMsg(err.message || 'No se pudo iniciar sesión.');
+      }
       return;
     }
 
-    // Checking client-side accounts inside localStorage
+    // Fallback sin backend: cuentas guardadas en el navegador
     const accounts = JSON.parse(localStorage.getItem('premium_prime_accounts') || '[]');
     const matched = accounts.find(
       (acc: any) => acc.email.toLowerCase() === loginEmail.toLowerCase() && acc.password === loginPassword
@@ -75,67 +116,58 @@ export default function AuthModal({
       localStorage.setItem('prime_user_name', matched.name);
       localStorage.setItem('prime_user_email', matched.email);
       onLoginSuccess(matched.name, matched.email);
-      setSuccessMsg(`¡Bienvenido de vuelta, ${matched.name}!`);
-      setTimeout(() => {
-        onClose();
-        setSuccessMsg('');
-      }, 1500);
+      finishSuccess(`¡Bienvenido de vuelta, ${matched.name}!`);
     } else {
-      setErrorMsg('Credenciales incorrectas. Ingresa "vip@primedrop.com" con contraseña "123456" para demo.');
+      setErrorMsg('Correo o contraseña incorrectos.');
     }
   };
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     setSuccessMsg('');
 
-    if (!regEmail) {
-      setErrorMsg('Por favor ingrese su dirección de correo electrónico.');
+    if (!regName.trim() || !regEmail.trim() || !regPassword) {
+      setErrorMsg('Completa nombre, correo y contraseña.');
+      return;
+    }
+    if (regPassword.length < 6) {
+      setErrorMsg('La contraseña debe tener al menos 6 caracteres.');
       return;
     }
 
-    // Extracting user name from email before the @ sign
-    const generatedName = regEmail.split('@')[0];
-    const cleanName = generatedName.charAt(0).toUpperCase() + generatedName.slice(1);
+    if (BACKEND_ENABLED) {
+      try {
+        const { user } = await apiRegister(regName.trim(), regEmail.trim(), regPassword);
+        localStorage.setItem('prime_user_name', user.name);
+        localStorage.setItem('prime_user_email', user.email);
+        onLoginSuccess(user.name, user.email);
+        setRegName(''); setRegEmail(''); setRegPassword('');
+        finishSuccess('¡Cuenta creada con éxito!');
+      } catch (err: any) {
+        setErrorMsg(err.message || 'No se pudo crear la cuenta.');
+      }
+      return;
+    }
 
+    // Fallback sin backend: cuentas guardadas en el navegador
     const accounts = JSON.parse(localStorage.getItem('premium_prime_accounts') || '[]');
     const emailExists = accounts.some((acc: any) => acc.email.toLowerCase() === regEmail.toLowerCase());
-
-    if (emailExists || regEmail.toLowerCase() === 'vip@primedrop.com') {
-      setErrorMsg('Esta dirección de correo ya tiene membresía activa.');
+    if (emailExists) {
+      setErrorMsg('Esta dirección de correo ya tiene una cuenta registrada.');
       return;
     }
 
-    const newAcc = {
-      name: cleanName,
-      email: regEmail,
-      password: 'mypassword123' // Fallback preset password
-    };
-
-    accounts.push(newAcc);
+    accounts.push({ name: regName.trim(), email: regEmail.trim(), password: regPassword });
     localStorage.setItem('premium_prime_accounts', JSON.stringify(accounts));
-    
-    localStorage.setItem('prime_user_name', cleanName);
-    localStorage.setItem('prime_user_email', regEmail);
-    
-    onLoginSuccess(cleanName, regEmail);
-    setSuccessMsg('¡Enlace virtual generado y membresía activa!');
-    
-    // Clear registration inputs
-    setRegEmail('');
+    localStorage.setItem('prime_user_name', regName.trim());
+    localStorage.setItem('prime_user_email', regEmail.trim());
 
-    setTimeout(() => {
-      onClose();
-      setSuccessMsg('');
-    }, 1500);
+    onLoginSuccess(regName.trim(), regEmail.trim());
+    setRegName(''); setRegEmail(''); setRegPassword('');
+    finishSuccess('¡Cuenta creada con éxito!');
   };
 
-  const handleAutoFillDemo = () => {
-    setLoginEmail('vip@primedrop.com');
-    setLoginPassword('123456');
-    setErrorMsg('');
-  };
 
   return (
     <AnimatePresence>
@@ -186,9 +218,9 @@ export default function AuthModal({
                     <span>Beneficios Activos en PRIME DROP:</span>
                   </div>
                   <ul className="text-[11px] text-charcoal-550 space-y-1.5 ml-6 list-disc font-medium">
-                    <li>15% de Descuento aplicado directamente en checkout.</li>
-                    <li>Acceso al Diseñador de Bolsos 3D Custom.</li>
-                    <li>Envío Express de Guante Blanco bonificado.</li>
+                    <li>Acceso anticipado a los nuevos drops.</li>
+                    <li>Ofertas y novedades exclusivas por correo.</li>
+                    <li>Atención prioritaria por WhatsApp.</li>
                   </ul>
                 </div>
 
@@ -198,7 +230,7 @@ export default function AuthModal({
                     onLogout();
                     onClose();
                   }}
-                  className="w-full py-3 bg-red-50 hover:bg-red-100 border border-red-200 text-red-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center justify-center space-x-2 transition duration-200"
+                  className="w-full py-3 bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 text-charcoal-900 rounded-full text-xs font-bold uppercase tracking-widest flex items-center justify-center space-x-2 transition duration-200"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Cerrar Sesión</span>
@@ -214,6 +246,7 @@ export default function AuthModal({
                     type="button"
                     onClick={() => {
                       setAuthTab('login');
+                      setRecoverMode(false);
                       setErrorMsg('');
                     }}
                     className={`flex-1 py-4.5 text-[11px] uppercase tracking-[0.18em] font-bold transition-all relative ${
@@ -232,6 +265,7 @@ export default function AuthModal({
                     type="button"
                     onClick={() => {
                       setAuthTab('register');
+                      setRecoverMode(false);
                       setErrorMsg('');
                     }}
                     className={`flex-1 py-4.5 text-[11px] uppercase tracking-[0.18em] font-bold transition-all relative border-l border-neutral-200 ${
@@ -251,24 +285,79 @@ export default function AuthModal({
                 <div className="p-7 sm:p-9 space-y-6">
                   {/* Notifications info */}
                   {errorMsg && (
-                    <div className="p-3 bg-red-50 border border-red-100 rounded-xl text-red-600 text-xs flex items-start space-x-2.5">
-                      <AlertCircle className="w-4 h-4 shrink-0 text-red-500 mt-0.5" />
+                    <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-xl text-charcoal-900 text-xs flex items-start space-x-2.5">
+                      <AlertCircle className="w-4 h-4 shrink-0 text-charcoal-800 mt-0.5" />
                       <span className="font-medium">{errorMsg}</span>
                     </div>
                   )}
                   {successMsg && (
-                    <div className="p-3 bg-green-50 border border-green-100 rounded-xl text-green-700 text-xs flex items-start space-x-2.5">
-                      <ShieldCheck className="w-4 h-4 shrink-0 text-green-600 mt-0.5" />
+                    <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-xl text-charcoal-900 text-xs flex items-start space-x-2.5">
+                      <ShieldCheck className="w-4 h-4 shrink-0 text-charcoal-900 mt-0.5" />
                       <span className="font-semibold">{successMsg}</span>
                     </div>
                   )}
 
                   {/* Form fields */}
-                  {authTab === 'login' ? (
+                  {recoverMode ? (
+                    recoverSent ? (
+                      <div className="space-y-5 text-center py-2">
+                        <div className="w-14 h-14 bg-neutral-100 rounded-full flex items-center justify-center mx-auto border border-neutral-200">
+                          <ShieldCheck className="w-7 h-7 text-charcoal-900" />
+                        </div>
+                        <div className="space-y-1.5">
+                          <h4 className="font-serif text-lg font-black text-charcoal-950">Revisa tu correo</h4>
+                          <p className="text-xs text-charcoal-600 leading-relaxed font-sans">
+                            Si <span className="font-semibold">{recoverEmail}</span> está registrado, te enviamos
+                            instrucciones para restablecer tu contraseña. Revisa también la carpeta de spam.
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => { setRecoverMode(false); setRecoverSent(false); setErrorMsg(''); }}
+                          className="w-full py-3.5 bg-black text-white rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-neutral-850 transition mt-2"
+                        >
+                          Volver a Acceder
+                        </button>
+                      </div>
+                    ) : (
+                      <form onSubmit={handleRecover} className="space-y-5">
+                        <div className="space-y-1.5 text-left">
+                          <label className="text-xs font-semibold text-charcoal-800 font-sans">
+                            Correo de tu cuenta
+                          </label>
+                          <input
+                            id="modal-recover-email"
+                            type="email"
+                            required
+                            value={recoverEmail}
+                            onChange={(e) => setRecoverEmail(e.target.value)}
+                            placeholder="tucorreo@ejemplo.com"
+                            className="w-full bg-[#fff] border border-neutral-300 rounded-full py-3 px-5 text-sm font-medium focus:outline-none focus:border-charcoal-900 transition-all font-sans"
+                          />
+                        </div>
+                        <p className="text-xs text-charcoal-600 leading-relaxed text-left font-sans">
+                          Te enviaremos a este correo las instrucciones para restablecer tu contraseña.
+                        </p>
+                        <button
+                          type="submit"
+                          className="w-full py-3.5 bg-black text-white rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-neutral-850 transition mt-2 shadow-md"
+                        >
+                          Enviar instrucciones
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => { setRecoverMode(false); setErrorMsg(''); }}
+                          className="w-full text-xs text-charcoal-600 hover:text-charcoal-900 font-sans"
+                        >
+                          ← Volver a Acceder
+                        </button>
+                      </form>
+                    )
+                  ) : authTab === 'login' ? (
                     <form onSubmit={handleLogin} className="space-y-5">
                       <div className="space-y-1.5 text-left">
                         <label className="text-xs font-semibold text-charcoal-800 font-sans">
-                          Correo electrónico o usuario
+                          Correo electrónico
                         </label>
                         <input
                           id="modal-login-email-input"
@@ -318,7 +407,7 @@ export default function AuthModal({
                         </label>
                         <button
                           type="button"
-                          onClick={() => alert('Se ha enviado una solicitud de recuperación a su correo electrónico.')}
+                          onClick={openRecover}
                           className="hover:underline text-charcoal-600 focus:outline-none"
                         >
                           ¿Olvidaste tu contraseña?
@@ -330,12 +419,26 @@ export default function AuthModal({
                         type="submit"
                         className="w-full py-3.5 bg-black text-white rounded-full text-xs font-bold uppercase tracking-[0.15em] hover:bg-neutral-850 active:scale-98 transition duration-200 mt-2 shadow-md leading-none"
                       >
-                        Iniciar Sesión
+                        Acceder
                       </button>
                     </form>
                   ) : (
                     /* Elegant register design as depicted in the 2nd screenshot */
                     <form onSubmit={handleRegister} className="space-y-5">
+                      <div className="space-y-1.5 text-left">
+                        <label className="text-xs font-semibold text-charcoal-800 font-sans">
+                          Nombre completo
+                        </label>
+                        <input
+                          id="modal-reg-name"
+                          type="text"
+                          required
+                          value={regName}
+                          onChange={(e) => setRegName(e.target.value)}
+                          className="w-full bg-[#fff] border border-neutral-300 rounded-full py-3 px-5 text-sm font-medium focus:outline-none focus:border-charcoal-900 transition-all font-sans"
+                        />
+                      </div>
+
                       <div className="space-y-1.5 text-left">
                         <label className="text-xs font-semibold text-charcoal-800 font-sans">
                           Correo electrónico
@@ -344,16 +447,26 @@ export default function AuthModal({
                           id="modal-reg-email"
                           type="email"
                           required
-                          placeholder=""
                           value={regEmail}
                           onChange={(e) => setRegEmail(e.target.value)}
                           className="w-full bg-[#fff] border border-neutral-300 rounded-full py-3 px-5 text-sm font-medium focus:outline-none focus:border-charcoal-900 transition-all font-sans"
                         />
                       </div>
 
-                      <p className="text-xs text-charcoal-600 leading-relaxed text-left font-sans">
-                        Te enviaremos un enlace para crear tu contraseña.
-                      </p>
+                      <div className="space-y-1.5 text-left">
+                        <label className="text-xs font-semibold text-charcoal-800 font-sans">
+                          Contraseña
+                        </label>
+                        <input
+                          id="modal-reg-password"
+                          type="password"
+                          required
+                          value={regPassword}
+                          onChange={(e) => setRegPassword(e.target.value)}
+                          placeholder="Mínimo 6 caracteres"
+                          className="w-full bg-[#fff] border border-neutral-300 rounded-full py-3 px-5 text-sm font-medium focus:outline-none focus:border-charcoal-900 transition-all font-sans"
+                        />
+                      </div>
 
                       <button
                         id="modal-register-submit"
@@ -364,7 +477,7 @@ export default function AuthModal({
                       </button>
 
                       <p className="text-xs leading-relaxed text-left text-neutral-500 font-sans pt-1 border-t border-neutral-100">
-                        Tus datos personales se usarán para gestionar tu cuenta y otros propósitos descritos en nuestra <a href="#privacy" className="underline hover:text-charcoal-950 font-medium">política de privacidad</a>.
+                        Tus datos personales se usarán para gestionar tu cuenta y otros propósitos descritos en nuestra <button type="button" onClick={onOpenPrivacy} className="underline hover:text-charcoal-950 font-medium">política de privacidad</button>.
                       </p>
                     </form>
                   )}

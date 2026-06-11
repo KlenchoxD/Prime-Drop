@@ -3,10 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
-import { X, ShoppingBag, Trash2, ArrowRight, ShieldCheck, Ticket, Check, Sparkles } from 'lucide-react';
-import { CartItem, PromoCode } from '../types';
-import { PROMO_CODES } from '../data/products';
+import React from 'react';
+import { X, ShoppingBag, Trash2, ArrowRight, ShieldCheck } from 'lucide-react';
+import { CartItem } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { formatCOP } from '../utils';
 
@@ -27,36 +26,8 @@ export default function CartDrawer({
   onRemoveItem,
   onStartCheckout
 }: CartDrawerProps) {
-  const [promoInput, setPromoInput] = useState('');
-  const [appliedPromo, setAppliedPromo] = useState<PromoCode | null>(null);
-  const [promoError, setPromoError] = useState('');
-
   const subtotal = cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  const discountAmount = appliedPromo ? (subtotal * appliedPromo.discountPercent) / 100 : 0;
-  const total = Math.max(0, subtotal - discountAmount);
-
-  // Goal amount for Free White-glove express shipping!
-  const freeShippingThreshold = 1000000;
-  const shippingPercent = Math.min(100, (subtotal / freeShippingThreshold) * 100);
-  const missingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
-
-  const handleApplyPromo = () => {
-    setPromoError('');
-    const matched = PROMO_CODES.find(
-      (p) => p.code.toLowerCase() === promoInput.trim().toLowerCase()
-    );
-
-    if (matched) {
-      setAppliedPromo(matched);
-      setPromoInput('');
-    } else {
-      setPromoError('Cupón inválido. Pruebe: PRIMEDROP o BIENVENIDOVIP');
-    }
-  };
-
-  const handleRemovePromo = () => {
-    setAppliedPromo(null);
-  };
+  const total = subtotal;
 
   return (
     <AnimatePresence>
@@ -138,6 +109,8 @@ export default function CartDrawer({
                         <img
                           src={item.product.primaryImage}
                           alt={item.product.name}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-cover object-center"
                           referrerPolicy="no-referrer"
                         />
@@ -153,27 +126,16 @@ export default function CartDrawer({
                             <button
                               id={`delete-item-${item.id}`}
                               onClick={() => onRemoveItem(item.id)}
-                              className="text-neutral-400 hover:text-red-500 p-0.5 transition-colors"
+                              className="text-neutral-400 hover:text-charcoal-800 p-0.5 transition-colors"
                               aria-label="Quitar de la bolsa"
                             >
                               <Trash2 className="w-4 h-4" />
                             </button>
                           </div>
 
-                          {/* Attributes chosen */}
-                          <div className="text-[10px] space-y-0.5 mt-1 text-charcoal-500 font-medium tracking-wide">
-                            <p className="flex items-center">
-                              Piel: <span className="ml-1 text-charcoal-800 font-bold">{item.selectedColor.name}</span>
-                              <span className="w-1.5 h-1.5 rounded-full ml-1" style={{ backgroundColor: item.selectedColor.hex }} />
-                            </p>
-                            <p>
-                              Herrajes: <span className="text-charcoal-800 font-bold">{item.selectedHardware}</span>
-                            </p>
-                            {item.customEngraving && (
-                              <p className="inline-flex items-center bg-gold-100/50 text-gold-800 border border-gold-300/30 px-1.5 py-0.2 rounded mt-0.5 uppercase text-[9px] font-bold">
-                                Grabado: "{item.customEngraving}"
-                              </p>
-                            )}
+                          {/* Category label */}
+                          <div className="text-[10px] mt-1 text-charcoal-500 font-medium tracking-wide uppercase">
+                            {item.product.category}
                           </div>
                         </div>
 
@@ -225,14 +187,8 @@ export default function CartDrawer({
                     <span>Subtotal:</span>
                     <span className="font-semibold text-charcoal-900">{formatCOP(subtotal)}</span>
                   </div>
-                  {appliedPromo && (
-                    <div className="flex justify-between text-red-600 font-semibold">
-                      <span>Descuento ({appliedPromo.discountPercent}%):</span>
-                      <span>-{formatCOP(discountAmount)}</span>
-                    </div>
-                  )}
                   <div className="flex justify-between text-base font-serif font-black pt-2 border-t border-neutral-200 text-charcoal-950">
-                    <span>Precio Estimado Total:</span>
+                    <span>Total estimado:</span>
                     <span className="text-lg">{formatCOP(total)}</span>
                   </div>
                 </div>
@@ -240,7 +196,7 @@ export default function CartDrawer({
                 {/* Action button payments */}
                 <button
                   id="checkout-drawer-trigger"
-                  onClick={() => onStartCheckout(appliedPromo?.discountPercent || 0, appliedPromo?.code || '')}
+                  onClick={() => onStartCheckout(0, '')}
                   disabled={cartItems.length === 0}
                   className={`w-full py-4 rounded-full text-xs font-semibold tracking-widest uppercase flex items-center justify-center space-x-2 transition-all duration-300 shadow-lg ${
                     cartItems.length === 0

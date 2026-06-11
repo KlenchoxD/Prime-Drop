@@ -40,19 +40,14 @@ export interface CartItem {
   selectedHardware: 'Gold' | 'Silver' | 'Obsidian';
 }
 
-export interface PromoCode {
-  code: string;
-  discountPercent: number;
-  description: string;
-}
-
 export interface CustomerInfo {
   fullName: string;
   email: string;
   phone: string;
   address: string;
+  department: string;
   city: string;
-  postalCode: string;
+  notes: string;
   country: string;
 }
 
@@ -64,12 +59,11 @@ export interface ShippingMethod {
   estimatedDays: string;
 }
 
+export type PaymentMethodKey = 'Wompi' | 'PSE' | 'MercadoPago';
+
 export interface PaymentDetails {
-  method: 'Card' | 'PayPal' | 'ApplePay' | 'Crypto';
-  cardName?: string;
-  cardNumber?: string;
-  cardExpiry?: string;
-  cardCvv?: string;
+  method: PaymentMethodKey;
+  bank?: string; // For PSE
 }
 
 export interface Order {

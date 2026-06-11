@@ -14,22 +14,16 @@ import CartDrawer from './components/CartDrawer';
 import CheckoutFlow from './components/CheckoutFlow';
 import MundoPrime from './components/MundoPrime';
 import AuthModal from './components/AuthModal';
+import FavoritesModal from './components/FavoritesModal';
+import { BACKEND_ENABLED, apiMe, apiLogout } from './lib/api';
+import { TERMS_CONTENT, PRIVACY_CONTENT, REFUND_CONTENT, WARRANTY_CONTENT } from './data/policies';
 
 import {
   Search,
-  SlidersHorizontal,
   ArrowUpDown,
-  ShieldCheck,
   Sparkles,
-  Check,
-  Heart,
   X,
   Mail,
-  Phone,
-  MapPin,
-  MessageCircle,
-  Clock,
-  ExternalLink,
   Instagram,
   ChevronLeft,
   ChevronRight
@@ -43,7 +37,11 @@ export default function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [isPrimeMember, setIsPrimeMember] = useState(false);
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem('prime_favorites') || '[]'); }
+    catch { return []; }
+  });
+  const [favoritesOpen, setFavoritesOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [currentUserEmail, setCurrentUserEmail] = useState('');
   const [currentUsername, setCurrentUsername] = useState('Socio Elite');
@@ -65,6 +63,11 @@ export default function App() {
   useEffect(() => {
     return () => { if (carouselRef.current) clearInterval(carouselRef.current); };
   }, []);
+
+  // Persistir favoritos
+  useEffect(() => {
+    localStorage.setItem('prime_favorites', JSON.stringify(favorites));
+  }, [favorites]);
 
   const handleCarouselPrev = () => {
     setCarouselIndex(prev => Math.max(0, prev - 1));
@@ -156,21 +159,6 @@ export default function App() {
     });
   };
 
-  // 3. Add Custom creation bag directly from builder
-  const handleAddCustomBagFromBuilder = (customBagItem: CartItem) => {
-    setCart((prevCart) => {
-      const match = prevCart.find((item) => item.id === customBagItem.id);
-      if (match) {
-        return prevCart.map((item) =>
-          item.id === customBagItem.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        triggerNotification('¡Tu Bolso Custom exclusivo ha sido añadido a la bolsa!', 'gold');
-        return [...prevCart, customBagItem];
-      }
-    });
-  };
-
   const handleUpdateCartQuantity = (id: string, quantity: number) => {
     setCart((prevCart) =>
       prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
@@ -201,6 +189,41 @@ export default function App() {
     });
   };
 
+  // Open a product page (scrolls to top, professional product view instead of modal)
+  const handleSelectProduct = (product: BagProduct) => {
+    setSelectedProduct(product);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCloseProductPage = () => {
+    setSelectedProduct(null);
+  };
+
+  // Add to cart from the product page (default config: first color, no engraving, gold hardware)
+  const handleAddFromPage = (product: BagProduct, quantity: number) => {
+    handleAddToCartCustom(product, quantity, product.colors[0], '', 'Gold');
+  };
+
+  // Buy now from the product page → add then open cart
+  const handleBuyNowFromPage = (product: BagProduct, quantity: number) => {
+    handleAddToCartCustom(product, quantity, product.colors[0], '', 'Gold');
+    setSelectedProduct(null);
+    setCartOpen(true);
+  };
+
+  // Related products: same category first, then fill with others, excluding current
+  const relatedProducts = selectedProduct
+    ? (() => {
+        const sameCategory = BAG_PRODUCTS.filter(
+          (p) => p.id !== selectedProduct.id && p.category === selectedProduct.category
+        );
+        const others = BAG_PRODUCTS.filter(
+          (p) => p.id !== selectedProduct.id && p.category !== selectedProduct.category
+        );
+        return [...sameCategory, ...others].slice(0, 4);
+      })()
+    : [];
+
   // Switch to checkout state
   const handleStartCheckout = (discountPercent: number, promoCodeUsed: string) => {
     setAppliedDiscountPercent(discountPercent);
@@ -214,16 +237,29 @@ export default function App() {
     setCart([]);
     setAppliedDiscountPercent(0);
     setPromoCodeUsed('');
-    triggerNotification('¡Compra autorizada! Tu courier ha sido notificado.', 'gold');
+    triggerNotification('¡Gracias por tu compra! Revisa WhatsApp para finalizar tu pedido.', 'gold');
   };
 
   useEffect(() => {
-    const savedName = localStorage.getItem('prime_user_name');
-    const savedEmail = localStorage.getItem('prime_user_email');
-    if (savedName && savedEmail) {
-      setCurrentUsername(savedName);
-      setCurrentUserEmail(savedEmail);
-      setIsPrimeMember(true);
+    if (BACKEND_ENABLED) {
+      // Restaurar sesión real desde el backend
+      apiMe()
+        .then(({ user }) => {
+          if (user) {
+            setCurrentUsername(user.name);
+            setCurrentUserEmail(user.email);
+            setIsPrimeMember(true);
+          }
+        })
+        .catch(() => { /* sin sesión */ });
+    } else {
+      const savedName = localStorage.getItem('prime_user_name');
+      const savedEmail = localStorage.getItem('prime_user_email');
+      if (savedName && savedEmail) {
+        setCurrentUsername(savedName);
+        setCurrentUserEmail(savedEmail);
+        setIsPrimeMember(true);
+      }
     }
 
     // Listen for category selection from Navbar dropdown
@@ -239,25 +275,19 @@ export default function App() {
     setCurrentUsername(name);
     setCurrentUserEmail(email);
     setIsPrimeMember(true);
-    triggerNotification(`¡Sesión iniciada! Bienvenido ${name}. Descuento del 15% VIP activo.`, 'gold');
+    triggerNotification(`¡Sesión iniciada! Bienvenido ${name}.`, 'gold');
   };
 
   const handleLogout = () => {
+    if (BACKEND_ENABLED) {
+      apiLogout().catch(() => { /* ignorar */ });
+    }
     localStorage.removeItem('prime_user_name');
     localStorage.removeItem('prime_user_email');
     setCurrentUsername('Socio Elite');
     setCurrentUserEmail('');
     setIsPrimeMember(false);
-    triggerNotification('Sesión VIP finalizada.', 'info');
-  };
-
-  // Join Mundo Prime VIP state trigger
-  const handleJoinPrime = (guestName: string, guestEmail: string) => {
-    if (!guestName) {
-      handleLogout();
-      return;
-    }
-    handleLoginSuccess(guestName, guestEmail);
+    triggerNotification('Sesión finalizada.', 'info');
   };
 
   // Open VIP modal trigger from navbar
@@ -309,7 +339,7 @@ export default function App() {
                   : 'bg-white border-neutral-200 text-charcoal-900'
               }`}
             >
-              <div className="p-1 rounded-full bg-gold-400/15 text-gold-coulisse shrink-0">
+              <div className="p-1 rounded-full bg-black/10 shrink-0">
                 <Sparkles className="w-4 h-4" />
               </div>
               <p className="text-xs font-semibold tracking-wide leading-normal">{notif.message}</p>
@@ -321,23 +351,46 @@ export default function App() {
       {/* Main Header navigation link bar */}
       <Navbar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={(tab) => { setSelectedProduct(null); setActiveTab(tab); }}
         cartCount={cartItemsCount}
         onOpenCart={() => setCartOpen(true)}
         isPrimeMember={isPrimeMember}
         onOpenVipModal={handleNavbarOpenVip}
         onOpenAuth={() => setAuthOpen(true)}
+        onOpenFavorites={() => setFavoritesOpen(true)}
         favoriteCount={favorites.length}
         currentUserEmail={currentUserEmail}
       />
 
+      {/* Favoritos */}
+      <FavoritesModal
+        isOpen={favoritesOpen}
+        onClose={() => setFavoritesOpen(false)}
+        products={BAG_PRODUCTS.filter((p) => favorites.includes(p.id))}
+        onSelectProduct={handleSelectProduct}
+        onAddToCart={handleAddToCartDirect}
+        onRemoveFavorite={handleToggleFavorite}
+      />
+
       {/* Main Sections */}
       <main className="flex-grow pt-[156px] md:pt-[172px]">
-        
+
+        {/* PRODUCT PAGE — replaces tab content when a product is selected */}
+        {selectedProduct && (
+          <ProductDetailModal
+            product={selectedProduct}
+            onClose={handleCloseProductPage}
+            onAddToCart={handleAddFromPage}
+            onBuyNow={handleBuyNowFromPage}
+            relatedProducts={relatedProducts}
+            onSelectProduct={handleSelectProduct}
+          />
+        )}
+
         {/* TAB 1: INICIO (HOME PAGE) */}
-        {activeTab === 'inicio' && (
-          <div className="space-y-12 sm:space-y-16">
-            
+        {!selectedProduct && activeTab === 'inicio' && (
+          <div className="space-y-0">
+
             {/* Elegant Parallax introduction Hero */}
             <Hero
               onExploreProducts={() => setActiveTab('bolsos')}
@@ -361,6 +414,7 @@ export default function App() {
                       className="absolute top-0 left-0 w-full border-none"
                       style={{ height: 'calc(100% + 46px)' }}
                       scrolling="no"
+                      loading="lazy"
                       allowTransparency={true}
                       title={`Instagram Post ${i + 1}`}
                     />
@@ -369,7 +423,7 @@ export default function App() {
               </div>
             </section>
             {/* Tendencias - Manual Carousel */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-neutral-200">
               <div className="flex items-center justify-center gap-6 mb-10">
                 <button
                   id="carousel-prev-btn"
@@ -403,7 +457,7 @@ export default function App() {
                     <ProductCard
                       key={bag.id}
                       product={bag}
-                      onSelectProduct={setSelectedProduct}
+                      onSelectProduct={handleSelectProduct}
                       onAddToCartDirect={handleAddToCartDirect}
                       isFavorite={favorites.includes(bag.id)}
                       onToggleFavorite={handleToggleFavorite}
@@ -414,21 +468,26 @@ export default function App() {
             </section>
 
             {/* Socios Comerciales — logos reales */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-              <div className="text-center mb-10">
-                <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900 mt-1">Nuestros Socios Comerciales</h3>
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-neutral-200">
+              <div className="text-center mb-6">
+                <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900">Nuestros Socios Comerciales</h3>
               </div>
-              <div className="flex flex-col sm:flex-row items-center justify-center w-full max-w-4xl mx-auto gap-8 sm:gap-16">
+              <div className="flex flex-wrap items-center justify-center w-full max-w-5xl mx-auto gap-x-10 gap-y-8 sm:gap-x-14">
                 {[
+                  { src: '/images/socio_nequi.png', alt: 'Nequi' },
+                  { src: '/images/socio_bancolombia.png', alt: 'Bancolombia' },
+                  { src: '/images/socio_davivienda.png', alt: 'Davivienda' },
+                  { src: '/images/socio_pse.png', alt: 'PSE' },
                   { src: '/images/socio_wompi.png', alt: 'Wompi' },
                   { src: '/images/socio_addi.png', alt: 'Addi' },
-                  { src: '/images/socio_mercadopago.png', alt: 'Mercado Pago' },
                 ].map((logo) => (
-                  <div key={logo.alt} className="flex items-center justify-center shrink-0">
+                  <div key={logo.alt} className="flex items-center justify-center h-12 w-[130px] sm:w-[150px] shrink-0">
                     <img
                       src={logo.src}
                       alt={logo.alt}
-                      className="h-20 sm:h-28 md:h-36 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                      loading="lazy"
+                      decoding="async"
+                      className="max-h-full max-w-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                     />
                   </div>
                 ))}
@@ -440,69 +499,58 @@ export default function App() {
         )}
 
         {/* TAB 2: BOLSOS (CATALOG SHOP PAGE) */}
-        {activeTab === 'bolsos' && (
+        {!selectedProduct && activeTab === 'bolsos' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-            {/* Filter and control panel bar */}
-            <div className="bg-white p-4 rounded-3xl border border-[#ecebe6] shadow-xs flex flex-col gap-4">
-              
-              {/* Category filters pills */}
-              <div className="flex flex-wrap gap-2">
-                {['Todos', 'KARL LAGERFELD', 'MICHAEL KORS', 'STEVE MADDEN', 'TOMMY HILFIGER'].map((cat) => (
-                  <button
-                    id={`filter-pill-${cat}`}
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs tracking-wider uppercase font-semibold transition-all ${
-                      selectedCategory === cat
-                        ? 'bg-charcoal-900 text-white shadow-sm'
-                        : 'bg-neutral-100 text-charcoal-600 hover:bg-neutral-200/50'
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
+            {/* Catalog header */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
+              <div>
+                <h2 className="font-serif text-3xl sm:text-4xl font-black text-charcoal-950 tracking-tight">
+                  {selectedCategory === 'Todos' ? 'Todos los bolsos' : selectedCategory}
+                </h2>
+                <p className="text-xs text-charcoal-500 mt-1 tracking-wide">
+                  {filteredProducts.length} {filteredProducts.length === 1 ? 'producto disponible' : 'productos disponibles'}
+                </p>
               </div>
 
-              {/* Keyboard Keyword search and sorting selector */}
-              {/* Search left + Sort right row */}
-              <div className="flex items-center gap-3 w-full">
-                
-                {/* Search query box */}
-                <div className="relative flex-1">
-                  <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#999]" />
+              {/* Search + Sort controls */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+                {/* Search box */}
+                <div className="relative flex-1 sm:w-72">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
                   <input
                     id="catalog-search-textbox"
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Buscar bolso, material..."
-                    className="pl-10 pr-4 py-2.5 rounded-full border border-neutral-200 text-xs text-charcoal-700 bg-[#fdfdfd] placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-gold-coulisse focus:bg-white w-full tracking-wide font-serif"
+                    placeholder="Buscar bolso, material…"
+                    className="w-full pl-11 pr-10 py-3 rounded-full border border-neutral-200 bg-white text-sm text-charcoal-800 placeholder-neutral-400 focus:outline-none focus:border-charcoal-900 focus:ring-2 focus:ring-charcoal-900/5 transition-all"
                   />
                   {searchTerm && (
                     <button
                       id="clear-search-btn"
                       onClick={() => setSearchTerm('')}
-                      className="absolute right-3.5 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-charcoal-900"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-charcoal-900"
                     >
-                      <X className="w-3.5 h-3.5" />
+                      <X className="w-4 h-4" />
                     </button>
                   )}
                 </div>
 
-                {/* Sort Option dropdown - elegant, right-aligned */}
-                <div className="relative flex items-center border border-neutral-200 rounded-full py-2 px-4 bg-[#fdfdfd] shrink-0 hover:border-neutral-400 transition-colors">
-                  <ArrowUpDown className="w-3 h-3 text-[#9c9c9c] mr-2 shrink-0" />
+                {/* Sort dropdown */}
+                <div className="relative shrink-0">
+                  <ArrowUpDown className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-400 pointer-events-none" />
                   <select
                     id="catalog-sort-dropdown"
                     value={sortOption}
                     onChange={(e: any) => setSortOption(e.target.value)}
-                    className="text-[11px] bg-transparent focus:outline-none text-charcoal-600 font-serif cursor-pointer tracking-wider appearance-none pr-2"
+                    className="appearance-none pl-10 pr-10 py-3 rounded-full border border-neutral-200 bg-white text-sm text-charcoal-700 font-medium focus:outline-none focus:border-charcoal-900 focus:ring-2 focus:ring-charcoal-900/5 cursor-pointer transition-all"
                   >
-                    <option value="default">Relevancia</option>
-                    <option value="price-asc">Precio: Bajo a Alto</option>
-                    <option value="price-desc">Precio: Alto a Bajo</option>
-                    <option value="popular">Popularidad</option>
+                    <option value="default">Ordenar por</option>
+                    <option value="price-asc">Precio: menor a mayor</option>
+                    <option value="price-desc">Precio: mayor a menor</option>
+                    <option value="popular">Más populares</option>
                   </select>
+                  <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 rotate-90 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -537,7 +585,7 @@ export default function App() {
                   <ProductCard
                     key={bag.id}
                     product={bag}
-                    onSelectProduct={setSelectedProduct}
+                    onSelectProduct={handleSelectProduct}
                     onAddToCartDirect={handleAddToCartDirect}
                     isFavorite={favorites.includes(bag.id)}
                     onToggleFavorite={handleToggleFavorite}
@@ -548,23 +596,17 @@ export default function App() {
           </div>
         )}
 
-        {/* TAB 3: MUNDO PRIME (VIP PLATINUM CLUB & CUSTOM CONFIGURATOR) */}
-        {activeTab === 'prime' && (
+        {/* TAB 3: MUNDO PRIME (historia de la marca) */}
+        {!selectedProduct && activeTab === 'prime' && (
           <MundoPrime
-            isPrimeMember={isPrimeMember}
-            onJoinPrime={handleJoinPrime}
-            onAddCustomBagToCart={handleAddCustomBagFromBuilder}
             onOpenAuth={() => setAuthOpen(true)}
           />
         )}
       </main>
 
       {/* Elegant Editorial Footer block (Vogue aesthetic) */}
-      <footer id="editorial-footer" className="bg-[#121212] border-t border-charcoal-800 text-white py-12 mt-16 font-serif">
-        
-
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 font-sans text-xs">
+      <footer id="editorial-footer" className="bg-[#121212] border-t border-charcoal-800 text-white py-10 mt-8 font-serif">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-8 font-sans text-xs">
           {/* Column 1: PRIME DROP */}
           <div className="md:col-span-5 space-y-4 text-left">
             <span className="font-serif text-2xl font-black tracking-[0.25em] text-white">PRIME DROP</span>
@@ -579,7 +621,7 @@ export default function App() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="mailto:primedropelite@gmail.com"
-                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-[#ffea79] hover:text-charcoal-950 hover:border-[#ffea79] transition-all"
+                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-black hover:border-white transition-all"
                 title="Email"
               >
                 <Mail className="w-4 h-4" />
@@ -588,7 +630,7 @@ export default function App() {
                 href="https://instagram.com/primedrop_elite"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-[#ffea79] hover:text-charcoal-950 hover:border-[#ffea79] transition-all"
+                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-black hover:border-white transition-all"
                 title="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -597,7 +639,7 @@ export default function App() {
                 href="https://tiktok.com/@primedrop_elite"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-[#ffea79] hover:text-charcoal-950 hover:border-[#ffea79] transition-all"
+                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-black hover:border-white transition-all"
                 title="TikTok"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -608,7 +650,7 @@ export default function App() {
                 href="https://facebook.com/primedrop_elite"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all"
+                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-black hover:border-white transition-all"
                 title="Facebook"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -641,7 +683,7 @@ export default function App() {
                     triggerNotification('Por favor, ingresa un correo electrónico válido.', 'info');
                   }
                 }}
-                className="w-full bg-[#ffea79] hover:bg-white text-charcoal-950 font-extrabold uppercase tracking-widest text-[10px] py-3 rounded-xl transition-all shadow-md"
+                className="w-full bg-white hover:bg-neutral-200 text-black font-extrabold uppercase tracking-widest text-[10px] py-3 rounded-xl transition-all shadow-md"
               >
                 REGISTRARSE
               </button>
@@ -667,12 +709,12 @@ export default function App() {
                   isOpen: true,
                   title: link.label,
                   content: link.key === 'terminos'
-                    ? 'Al realizar una compra en Prime Drop Elite aceptás nuestros términos y condiciones. Todos los precios están expresados en pesos colombianos (COP). Nos reservamos el derecho de cancelar pedidos en caso de error de precio o disponibilidad de stock.'
+                    ? TERMS_CONTENT
                     : link.key === 'privacidad'
-                    ? 'Tu información personal es tratada con total confidencialidad. No compartimos tus datos con terceros. La información recopilada es usada únicamente para procesar tu pedido y mejorar tu experiencia de compra.'
+                    ? PRIVACY_CONTENT
                     : link.key === 'devoluciones'
-                    ? 'Aceptamos cambios dentro de los 15 días calendario desde la fecha de entrega. El producto debe estar en perfectas condiciones, sin uso y con su empaque original. Los gastos de envío por cambio corren por cuenta del cliente.'
-                    : 'Todos los productos comercializados por Prime Drop Elite son 100% originales, importados directamente de distribuidores autorizados. Cada prenda cuenta con certificado de autenticidad y está respaldada por nuestra garantía de marca.'
+                    ? REFUND_CONTENT
+                    : WARRANTY_CONTENT
                 })}
                 className="font-serif text-[10px] sm:text-[11px] uppercase tracking-[0.15em] text-charcoal-500 hover:text-charcoal-900 transition-colors duration-200"
               >
@@ -738,7 +780,7 @@ export default function App() {
         href="https://wa.me/573160685555"
         target="_blank"
         rel="noreferrer"
-        className="fixed bottom-6 right-6 z-[55] w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-transform duration-300"
+        className="fixed bottom-6 right-6 z-[55] w-14 h-14 rounded-full bg-black flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-transform duration-300"
         title="WhatsApp"
       >
         <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -756,13 +798,6 @@ export default function App() {
         onOrderCompleted={handleOrderCompleted}
       />
 
-      {/* Product Detail Modal pop-up window */}
-      <ProductDetailModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-        onAddToCart={handleAddToCartCustom}
-      />
-
       {/* Elegant login/register portal modal */}
       <AuthModal
         isOpen={authOpen}
@@ -772,6 +807,7 @@ export default function App() {
         isPrimeMember={isPrimeMember}
         currentUserEmail={currentUserEmail}
         currentUsername={currentUsername}
+        onOpenPrivacy={() => setPolicyModal({ isOpen: true, title: 'Política de privacidad', content: PRIVACY_CONTENT })}
       />
 
       {/* Dynamic interactive Policies details popup dialog */}
@@ -801,13 +837,13 @@ export default function App() {
               </button>
               
               <div className="space-y-2">
-                <span className="text-[10px] tracking-[0.3em] uppercase font-extrabold text-gold-600 block">Prime Drop Elite • Maison</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase font-extrabold text-gold-600 block">Prime Drop Elite • Colombia</span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-950">{policyModal.title}</h3>
               </div>
               
-              <p className="text-sm font-light text-charcoal-600 leading-relaxed pt-2">
+              <div className="text-sm font-light text-charcoal-600 leading-relaxed pt-2 whitespace-pre-line max-h-[60vh] overflow-y-auto pr-2">
                 {policyModal.content}
-              </p>
+              </div>
               
               <div className="pt-4 text-right">
                 <button

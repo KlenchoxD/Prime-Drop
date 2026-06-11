@@ -4,10 +4,9 @@
  */
 
 import React, { useState } from 'react';
-import { Star, Shield, ArrowRight, Sparkles, Heart } from 'lucide-react';
+import { ArrowRight, Heart } from 'lucide-react';
 import { BagProduct, ProductColor } from '../types';
 import { motion } from 'motion/react';
-import { formatCOP } from '../utils';
 
 interface ProductCardProps {
   key?: string;
@@ -54,6 +53,8 @@ export default function ProductCard({
           <img
             src={product.primaryImage}
             alt={`${product.name} primario`}
+            loading="lazy"
+            decoding="async"
             className={`w-full h-full object-cover object-center transition-all duration-700 transform scale-100 group-hover:scale-105 ${
               hovered && product.secondaryImage ? 'opacity-0 scale-95' : 'opacity-100'
             }`}
@@ -63,6 +64,8 @@ export default function ProductCard({
             <img
               src={product.secondaryImage}
               alt={`${product.name} secundario`}
+              loading="lazy"
+              decoding="async"
               className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 transform ${
                 hovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
               }`}
@@ -73,6 +76,16 @@ export default function ProductCard({
 
         {/* Quick View Tint Gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+        {/* Favorite (wishlist) toggle */}
+        <button
+          id={`favorite-toggle-${product.id}`}
+          onClick={(e) => onToggleFavorite(product.id, e)}
+          aria-label={isFavorite ? 'Quitar de favoritos' : 'Guardar en favoritos'}
+          className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-sm hover:bg-white transition-colors"
+        >
+          <Heart className={`w-4.5 h-4.5 transition-colors ${isFavorite ? 'fill-charcoal-900 text-charcoal-900' : 'text-charcoal-500'}`} />
+        </button>
       </div>
 
       {/* Details Area */}
@@ -93,22 +106,8 @@ export default function ProductCard({
           </p>
         </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-neutral-100">
-            <span className="text-[10px] tracking-wider text-charcoal-400 font-semibold uppercase">Precio</span>
-            <div className="flex items-baseline space-x-2">
-              {product.originalPrice && (
-                <span className="text-xs line-through text-charcoal-400">
-                  {formatCOP(product.originalPrice)}
-                </span>
-              )}
-              <span className="font-serif font-normal text-charcoal-900 text-sm sm:text-base">
-                {formatCOP(product.price)}
-              </span>
-            </div>
-          </div>
-
-        {/* Action Button: shown only on hover */}
-        <div className={`pt-1 transition-all duration-300 ${hovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+        {/* Action Button: always visible so the card looks complete */}
+        <div className="pt-1">
           <button
             id={`quick-add-${product.id}`}
             onClick={handleDirectAdd}

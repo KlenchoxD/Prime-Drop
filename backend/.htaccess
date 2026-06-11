@@ -1,0 +1,5 @@
+# Bloquear acceso web directo a archivos sensibles del backend.
+# Los endpoints .php sí son accesibles; estos archivos solo se usan internamente.
+<FilesMatch "(config\.php|config\.example\.php|bootstrap\.php|schema\.sql|README\.md)$">
+  Require all denied
+</FilesMatch>
