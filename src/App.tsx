@@ -201,6 +201,41 @@ export default function App() {
     });
   };
 
+  // Open a product page (scrolls to top, professional product view instead of modal)
+  const handleSelectProduct = (product: BagProduct) => {
+    setSelectedProduct(product);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCloseProductPage = () => {
+    setSelectedProduct(null);
+  };
+
+  // Add to cart from the product page (default config: first color, no engraving, gold hardware)
+  const handleAddFromPage = (product: BagProduct, quantity: number) => {
+    handleAddToCartCustom(product, quantity, product.colors[0], '', 'Gold');
+  };
+
+  // Buy now from the product page → add then open cart
+  const handleBuyNowFromPage = (product: BagProduct, quantity: number) => {
+    handleAddToCartCustom(product, quantity, product.colors[0], '', 'Gold');
+    setSelectedProduct(null);
+    setCartOpen(true);
+  };
+
+  // Related products: same category first, then fill with others, excluding current
+  const relatedProducts = selectedProduct
+    ? (() => {
+        const sameCategory = BAG_PRODUCTS.filter(
+          (p) => p.id !== selectedProduct.id && p.category === selectedProduct.category
+        );
+        const others = BAG_PRODUCTS.filter(
+          (p) => p.id !== selectedProduct.id && p.category !== selectedProduct.category
+        );
+        return [...sameCategory, ...others].slice(0, 4);
+      })()
+    : [];
+
   // Switch to checkout state
   const handleStartCheckout = (discountPercent: number, promoCodeUsed: string) => {
     setAppliedDiscountPercent(discountPercent);
@@ -321,7 +356,7 @@ export default function App() {
       {/* Main Header navigation link bar */}
       <Navbar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={(tab) => { setSelectedProduct(null); setActiveTab(tab); }}
         cartCount={cartItemsCount}
         onOpenCart={() => setCartOpen(true)}
         isPrimeMember={isPrimeMember}
@@ -333,9 +368,21 @@ export default function App() {
 
       {/* Main Sections */}
       <main className="flex-grow pt-[156px] md:pt-[172px]">
-        
+
+        {/* PRODUCT PAGE — replaces tab content when a product is selected */}
+        {selectedProduct && (
+          <ProductDetailModal
+            product={selectedProduct}
+            onClose={handleCloseProductPage}
+            onAddToCart={handleAddFromPage}
+            onBuyNow={handleBuyNowFromPage}
+            relatedProducts={relatedProducts}
+            onSelectProduct={handleSelectProduct}
+          />
+        )}
+
         {/* TAB 1: INICIO (HOME PAGE) */}
-        {activeTab === 'inicio' && (
+        {!selectedProduct && activeTab === 'inicio' && (
           <div className="space-y-12 sm:space-y-16">
             
             {/* Elegant Parallax introduction Hero */}
@@ -403,7 +450,7 @@ export default function App() {
                     <ProductCard
                       key={bag.id}
                       product={bag}
-                      onSelectProduct={setSelectedProduct}
+                      onSelectProduct={handleSelectProduct}
                       onAddToCartDirect={handleAddToCartDirect}
                       isFavorite={favorites.includes(bag.id)}
                       onToggleFavorite={handleToggleFavorite}
@@ -471,69 +518,58 @@ export default function App() {
         )}
 
         {/* TAB 2: BOLSOS (CATALOG SHOP PAGE) */}
-        {activeTab === 'bolsos' && (
+        {!selectedProduct && activeTab === 'bolsos' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-            {/* Filter and control panel bar */}
-            <div className="bg-white p-4 rounded-3xl border border-[#ecebe6] shadow-xs flex flex-col gap-4">
-              
-              {/* Category filters pills */}
-              <div className="flex flex-wrap gap-2">
-                {['Todos', 'KARL LAGERFELD', 'MICHAEL KORS', 'STEVE MADDEN', 'TOMMY HILFIGER'].map((cat) => (
-                  <button
-                    id={`filter-pill-${cat}`}
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs tracking-wider uppercase font-semibold transition-all ${
-                      selectedCategory === cat
-                        ? 'bg-charcoal-900 text-white shadow-sm'
-                        : 'bg-neutral-100 text-charcoal-600 hover:bg-neutral-200/50'
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
+            {/* Catalog header */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
+              <div>
+                <h2 className="font-serif text-3xl sm:text-4xl font-black text-charcoal-950 tracking-tight">
+                  {selectedCategory === 'Todos' ? 'Todos los bolsos' : selectedCategory}
+                </h2>
+                <p className="text-xs text-charcoal-500 mt-1 tracking-wide">
+                  {filteredProducts.length} {filteredProducts.length === 1 ? 'producto disponible' : 'productos disponibles'}
+                </p>
               </div>
 
-              {/* Keyboard Keyword search and sorting selector */}
-              {/* Search left + Sort right row */}
-              <div className="flex items-center gap-3 w-full">
-                
-                {/* Search query box */}
-                <div className="relative flex-1">
-                  <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#999]" />
+              {/* Search + Sort controls */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+                {/* Search box */}
+                <div className="relative flex-1 sm:w-72">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
                   <input
                     id="catalog-search-textbox"
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Buscar bolso, material..."
-                    className="pl-10 pr-4 py-2.5 rounded-full border border-neutral-200 text-xs text-charcoal-700 bg-[#fdfdfd] placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-gold-coulisse focus:bg-white w-full tracking-wide font-serif"
+                    placeholder="Buscar bolso, material…"
+                    className="w-full pl-11 pr-10 py-3 rounded-full border border-neutral-200 bg-white text-sm text-charcoal-800 placeholder-neutral-400 focus:outline-none focus:border-charcoal-900 focus:ring-2 focus:ring-charcoal-900/5 transition-all"
                   />
                   {searchTerm && (
                     <button
                       id="clear-search-btn"
                       onClick={() => setSearchTerm('')}
-                      className="absolute right-3.5 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-charcoal-900"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-charcoal-900"
                     >
-                      <X className="w-3.5 h-3.5" />
+                      <X className="w-4 h-4" />
                     </button>
                   )}
                 </div>
 
-                {/* Sort Option dropdown - elegant, right-aligned */}
-                <div className="relative flex items-center border border-neutral-200 rounded-full py-2 px-4 bg-[#fdfdfd] shrink-0 hover:border-neutral-400 transition-colors">
-                  <ArrowUpDown className="w-3 h-3 text-[#9c9c9c] mr-2 shrink-0" />
+                {/* Sort dropdown */}
+                <div className="relative shrink-0">
+                  <ArrowUpDown className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-400 pointer-events-none" />
                   <select
                     id="catalog-sort-dropdown"
                     value={sortOption}
                     onChange={(e: any) => setSortOption(e.target.value)}
-                    className="text-[11px] bg-transparent focus:outline-none text-charcoal-600 font-serif cursor-pointer tracking-wider appearance-none pr-2"
+                    className="appearance-none pl-10 pr-10 py-3 rounded-full border border-neutral-200 bg-white text-sm text-charcoal-700 font-medium focus:outline-none focus:border-charcoal-900 focus:ring-2 focus:ring-charcoal-900/5 cursor-pointer transition-all"
                   >
-                    <option value="default">Relevancia</option>
-                    <option value="price-asc">Precio: Bajo a Alto</option>
-                    <option value="price-desc">Precio: Alto a Bajo</option>
-                    <option value="popular">Popularidad</option>
+                    <option value="default">Ordenar por</option>
+                    <option value="price-asc">Precio: menor a mayor</option>
+                    <option value="price-desc">Precio: mayor a menor</option>
+                    <option value="popular">Más populares</option>
                   </select>
+                  <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 rotate-90 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -568,7 +604,7 @@ export default function App() {
                   <ProductCard
                     key={bag.id}
                     product={bag}
-                    onSelectProduct={setSelectedProduct}
+                    onSelectProduct={handleSelectProduct}
                     onAddToCartDirect={handleAddToCartDirect}
                     isFavorite={favorites.includes(bag.id)}
                     onToggleFavorite={handleToggleFavorite}
@@ -580,7 +616,7 @@ export default function App() {
         )}
 
         {/* TAB 3: MUNDO PRIME (VIP PLATINUM CLUB & CUSTOM CONFIGURATOR) */}
-        {activeTab === 'prime' && (
+        {!selectedProduct && activeTab === 'prime' && (
           <MundoPrime
             isPrimeMember={isPrimeMember}
             onJoinPrime={handleJoinPrime}
@@ -782,13 +818,6 @@ export default function App() {
         appliedDiscountPercent={appliedDiscountPercent}
         promoCodeUsed={promoCodeUsed}
         onOrderCompleted={handleOrderCompleted}
-      />
-
-      {/* Product Detail Modal pop-up window */}
-      <ProductDetailModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-        onAddToCart={handleAddToCartCustom}
       />
 
       {/* Elegant login/register portal modal */}

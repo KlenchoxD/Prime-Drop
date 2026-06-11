@@ -35,11 +35,6 @@ export default function CartDrawer({
   const discountAmount = appliedPromo ? (subtotal * appliedPromo.discountPercent) / 100 : 0;
   const total = Math.max(0, subtotal - discountAmount);
 
-  // Goal amount for Free White-glove express shipping!
-  const freeShippingThreshold = 1000000;
-  const shippingPercent = Math.min(100, (subtotal / freeShippingThreshold) * 100);
-  const missingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
-
   const handleApplyPromo = () => {
     setPromoError('');
     const matched = PROMO_CODES.find(
@@ -160,20 +155,9 @@ export default function CartDrawer({
                             </button>
                           </div>
 
-                          {/* Attributes chosen */}
-                          <div className="text-[10px] space-y-0.5 mt-1 text-charcoal-500 font-medium tracking-wide">
-                            <p className="flex items-center">
-                              Piel: <span className="ml-1 text-charcoal-800 font-bold">{item.selectedColor.name}</span>
-                              <span className="w-1.5 h-1.5 rounded-full ml-1" style={{ backgroundColor: item.selectedColor.hex }} />
-                            </p>
-                            <p>
-                              Herrajes: <span className="text-charcoal-800 font-bold">{item.selectedHardware}</span>
-                            </p>
-                            {item.customEngraving && (
-                              <p className="inline-flex items-center bg-gold-100/50 text-gold-800 border border-gold-300/30 px-1.5 py-0.2 rounded mt-0.5 uppercase text-[9px] font-bold">
-                                Grabado: "{item.customEngraving}"
-                              </p>
-                            )}
+                          {/* Category label */}
+                          <div className="text-[10px] mt-1 text-charcoal-500 font-medium tracking-wide uppercase">
+                            {item.product.category}
                           </div>
                         </div>
 
