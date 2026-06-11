@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Roboto Serif", Georgia, serif;
+  --font-sans: "Outfit", "Inter", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Custom luxury warm gold color and dark palette */
+  --color-gold-50: #fbf8eb;
+  --color-gold-100: #f4ecce;
+  --color-gold-200: #e8d79e;
+  --color-gold-300: #dab96d;
+  --color-gold-400: #cd9b44;
+  --color-gold-500: #c1802b;
+  --color-gold-600: #a76521;
+  --color-gold-700: #874e1c;
+  --color-gold-800: #6d3e1b;
+  --color-gold-900: #5b3319;
+  --color-gold-coulisse: #D4AF37;
+
+  --color-charcoal-50: #f6f6f6;
+  --color-charcoal-100: #ececec;
+  --color-charcoal-200: #d4d4d4;
+  --color-charcoal-300: #adadad;
+  --color-charcoal-400: #7c7c7c;
+  --color-charcoal-500: #595959;
+  --color-charcoal-600: #444444;
+  --color-charcoal-700: #1a1a1a;
+  --color-charcoal-800: #121212;
+  --color-charcoal-900: #0a0a0a;
+}
+
+body {
+  font-family: var(--font-serif);
+  background-color: #fcfbfa; /* Luxury milk-white off-white */
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+button, a, [role='button'] {
+  cursor: pointer !important;
+}
