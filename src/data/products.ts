@@ -438,24 +438,24 @@ export const BAG_PRODUCTS: BagProduct[] = [
 export const SHIPPING_METHODS: ShippingMethod[] = [
   {
     id: 'standard',
-    name: 'Envío Privado Estándar',
-    description: 'Entrega segura en tu domicilio en caja premium acolchada reciclable.',
-    price: 0,
-    estimatedDays: '3-5 días hábiles'
+    name: 'Envío Nacional Estándar',
+    description: 'Entrega a domicilio a toda Colombia con transportadora certificada (Servientrega / Coordinadora). Incluye guía de rastreo.',
+    price: 12000,
+    estimatedDays: '3 a 5 días hábiles'
   },
   {
     id: 'express',
-    name: 'Envío Express de Guante Blanco',
-    description: 'Entrega prioritaria asegurada. Empaque de piel de madera y bolsa guardapolvos de lino belga.',
-    price: 20000,
-    estimatedDays: '1-2 días hábiles'
+    name: 'Envío Express',
+    description: 'Entrega prioritaria asegurada para ciudades principales. Empaque protegido y seguimiento en tiempo real.',
+    price: 22000,
+    estimatedDays: '1 a 2 días hábiles'
   },
   {
-    id: 'prime-exclusive',
-    name: 'Envío Prime Courier Privado (Solo VIP)',
-    description: 'Un mensajero privado en traje entrega tu bolso en mano y bandeja de terciopelo.',
-    price: 50000,
-    estimatedDays: 'Mismo día a Agenda Abierta'
+    id: 'same-day',
+    name: 'Entrega el Mismo Día',
+    description: 'Disponible solo en Bogotá, Medellín, Cali y Barranquilla para pedidos confirmados antes de las 12:00 m.',
+    price: 35000,
+    estimatedDays: 'Mismo día (capitales)'
   }
 ];
 
