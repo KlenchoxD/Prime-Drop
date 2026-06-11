@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BagProduct, ShippingMethod, PromoCode } from '../types';
+import { BagProduct, ShippingMethod } from '../types';
 
 export const BAG_PRODUCTS: BagProduct[] = [
   {
@@ -457,10 +457,4 @@ export const SHIPPING_METHODS: ShippingMethod[] = [
     price: 35000,
     estimatedDays: 'Mismo día (capitales)'
   }
-];
-
-export const PROMO_CODES: PromoCode[] = [
-  { code: 'PRIMEDROP', discountPercent: 10, description: '10% de descuento en tu primer bolso Prime.' },
-  { code: 'BIENVENIDOVIP', discountPercent: 15, description: '15% de descuento exclusivo para aspirantes al Mundo Prime.' },
-  { code: 'LUJOAMBICIOSO', discountPercent: 20, description: 'Un increíble 20% en bolsos seleccionados de la colección.' }
 ];

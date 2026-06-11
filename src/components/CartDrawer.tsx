@@ -3,10 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
-import { X, ShoppingBag, Trash2, ArrowRight, ShieldCheck, Ticket, Check, Sparkles } from 'lucide-react';
-import { CartItem, PromoCode } from '../types';
-import { PROMO_CODES } from '../data/products';
+import React from 'react';
+import { X, ShoppingBag, Trash2, ArrowRight, ShieldCheck } from 'lucide-react';
+import { CartItem } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { formatCOP } from '../utils';
 
@@ -27,31 +26,8 @@ export default function CartDrawer({
   onRemoveItem,
   onStartCheckout
 }: CartDrawerProps) {
-  const [promoInput, setPromoInput] = useState('');
-  const [appliedPromo, setAppliedPromo] = useState<PromoCode | null>(null);
-  const [promoError, setPromoError] = useState('');
-
   const subtotal = cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  const discountAmount = appliedPromo ? (subtotal * appliedPromo.discountPercent) / 100 : 0;
-  const total = Math.max(0, subtotal - discountAmount);
-
-  const handleApplyPromo = () => {
-    setPromoError('');
-    const matched = PROMO_CODES.find(
-      (p) => p.code.toLowerCase() === promoInput.trim().toLowerCase()
-    );
-
-    if (matched) {
-      setAppliedPromo(matched);
-      setPromoInput('');
-    } else {
-      setPromoError('Cupón inválido. Pruebe: PRIMEDROP o BIENVENIDOVIP');
-    }
-  };
-
-  const handleRemovePromo = () => {
-    setAppliedPromo(null);
-  };
+  const total = subtotal;
 
   return (
     <AnimatePresence>
@@ -211,14 +187,8 @@ export default function CartDrawer({
                     <span>Subtotal:</span>
                     <span className="font-semibold text-charcoal-900">{formatCOP(subtotal)}</span>
                   </div>
-                  {appliedPromo && (
-                    <div className="flex justify-between text-red-600 font-semibold">
-                      <span>Descuento ({appliedPromo.discountPercent}%):</span>
-                      <span>-{formatCOP(discountAmount)}</span>
-                    </div>
-                  )}
                   <div className="flex justify-between text-base font-serif font-black pt-2 border-t border-neutral-200 text-charcoal-950">
-                    <span>Precio Estimado Total:</span>
+                    <span>Total estimado:</span>
                     <span className="text-lg">{formatCOP(total)}</span>
                   </div>
                 </div>
@@ -226,7 +196,7 @@ export default function CartDrawer({
                 {/* Action button payments */}
                 <button
                   id="checkout-drawer-trigger"
-                  onClick={() => onStartCheckout(appliedPromo?.discountPercent || 0, appliedPromo?.code || '')}
+                  onClick={() => onStartCheckout(0, '')}
                   disabled={cartItems.length === 0}
                   className={`w-full py-4 rounded-full text-xs font-semibold tracking-widest uppercase flex items-center justify-center space-x-2 transition-all duration-300 shadow-lg ${
                     cartItems.length === 0

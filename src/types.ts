@@ -40,12 +40,6 @@ export interface CartItem {
   selectedHardware: 'Gold' | 'Silver' | 'Obsidian';
 }
 
-export interface PromoCode {
-  code: string;
-  discountPercent: number;
-  description: string;
-}
-
 export interface CustomerInfo {
   fullName: string;
   email: string;

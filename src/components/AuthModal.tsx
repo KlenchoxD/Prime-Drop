@@ -51,20 +51,6 @@ export default function AuthModal({
       return;
     }
 
-    // Default demo account checking
-    if (loginEmail.toLowerCase() === 'vip@primedrop.com' && loginPassword === '123456') {
-      const demoName = 'Cliente Coleccionista';
-      localStorage.setItem('prime_user_name', demoName);
-      localStorage.setItem('prime_user_email', loginEmail);
-      onLoginSuccess(demoName, loginEmail);
-      setSuccessMsg('¡Acceso autorizado de inmediato!');
-      setTimeout(() => {
-        onClose();
-        setSuccessMsg('');
-      }, 1500);
-      return;
-    }
-
     // Checking client-side accounts inside localStorage
     const accounts = JSON.parse(localStorage.getItem('premium_prime_accounts') || '[]');
     const matched = accounts.find(
@@ -81,7 +67,7 @@ export default function AuthModal({
         setSuccessMsg('');
       }, 1500);
     } else {
-      setErrorMsg('Credenciales incorrectas. Ingresa "vip@primedrop.com" con contraseña "123456" para demo.');
+      setErrorMsg('Correo o contraseña incorrectos.');
     }
   };
 
@@ -102,8 +88,8 @@ export default function AuthModal({
     const accounts = JSON.parse(localStorage.getItem('premium_prime_accounts') || '[]');
     const emailExists = accounts.some((acc: any) => acc.email.toLowerCase() === regEmail.toLowerCase());
 
-    if (emailExists || regEmail.toLowerCase() === 'vip@primedrop.com') {
-      setErrorMsg('Esta dirección de correo ya tiene membresía activa.');
+    if (emailExists) {
+      setErrorMsg('Esta dirección de correo ya tiene una cuenta registrada.');
       return;
     }
 
@@ -131,11 +117,6 @@ export default function AuthModal({
     }, 1500);
   };
 
-  const handleAutoFillDemo = () => {
-    setLoginEmail('vip@primedrop.com');
-    setLoginPassword('123456');
-    setErrorMsg('');
-  };
 
   return (
     <AnimatePresence>
