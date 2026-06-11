@@ -328,7 +328,7 @@ export default function App() {
                   : 'bg-white border-neutral-200 text-charcoal-900'
               }`}
             >
-              <div className="p-1 rounded-full bg-gold-400/15 text-gold-coulisse shrink-0">
+              <div className="p-1 rounded-full bg-black/10 shrink-0">
                 <Sparkles className="w-4 h-4" />
               </div>
               <p className="text-xs font-semibold tracking-wide leading-normal">{notif.message}</p>
@@ -451,24 +451,24 @@ export default function App() {
                 <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900">Nuestros Socios Comerciales</h3>
               </div>
               <div className="flex flex-wrap items-center justify-center w-full max-w-5xl mx-auto gap-6 sm:gap-10">
-                {/* Nequi — color rosa/morado original */}
+                {/* Nequi */}
                 <div className="flex items-center justify-center shrink-0 group">
-                  <svg viewBox="0 0 120 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="0" y="32" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="34" className="transition-all duration-300 group-hover:fill-[#9B1FC1]" fill="#aaa">nequi</text>
+                  <svg viewBox="0 0 120 40" className="h-8 sm:h-10 w-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="32" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="34" fill="#1a1a1a">nequi</text>
                   </svg>
                 </div>
-                {/* Bancolombia — color amarillo original */}
+                {/* Bancolombia */}
                 <div className="flex items-center justify-center shrink-0 group">
-                  <svg viewBox="0 0 220 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="4" width="32" height="32" rx="4" className="transition-all duration-300 group-hover:fill-[#FDDA24]" fill="#ccc"/>
-                    <text x="38" y="30" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="22" className="transition-all duration-300 group-hover:fill-[#1A1A1A]" fill="#aaa">Bancolombia</text>
+                  <svg viewBox="0 0 220 40" className="h-8 sm:h-10 w-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="4" width="32" height="32" rx="4" fill="#1a1a1a"/>
+                    <text x="38" y="30" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="22" fill="#1a1a1a">Bancolombia</text>
                   </svg>
                 </div>
-                {/* PSE — azul institucional */}
+                {/* PSE */}
                 <div className="flex items-center justify-center shrink-0 group">
-                  <svg viewBox="0 0 80 40" className="h-8 sm:h-10 w-auto transition-all duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="4" width="80" height="32" rx="6" className="transition-all duration-300 group-hover:fill-[#003DA5]" fill="#ccc"/>
-                    <text x="40" y="27" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="18" className="transition-all duration-300 group-hover:fill-white" fill="#888">PSE</text>
+                  <svg viewBox="0 0 80 40" className="h-8 sm:h-10 w-auto opacity-60 group-hover:opacity-100 transition-opacity duration-300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="4" width="80" height="32" rx="6" fill="#1a1a1a"/>
+                    <text x="40" y="27" textAnchor="middle" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="18" fill="white">PSE</text>
                   </svg>
                 </div>
                 {/* Wompi */}
@@ -478,7 +478,7 @@ export default function App() {
                     alt="Wompi"
                     loading="lazy"
                     decoding="async"
-                    className="h-8 sm:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale"
                   />
                 </div>
                 {/* Addi */}
@@ -488,7 +488,7 @@ export default function App() {
                     alt="Addi"
                     loading="lazy"
                     decoding="async"
-                    className="h-8 sm:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale"
                   />
                 </div>
                 {/* Mercado Pago */}
@@ -498,7 +498,7 @@ export default function App() {
                     alt="Mercado Pago"
                     loading="lazy"
                     decoding="async"
-                    className="h-8 sm:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                    className="h-8 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale"
                   />
                 </div>
               </div>
@@ -631,7 +631,7 @@ export default function App() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="mailto:primedropelite@gmail.com"
-                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-[#ffea79] hover:text-charcoal-950 hover:border-[#ffea79] transition-all"
+                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-black hover:border-white transition-all"
                 title="Email"
               >
                 <Mail className="w-4 h-4" />
@@ -640,7 +640,7 @@ export default function App() {
                 href="https://instagram.com/primedrop_elite"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-[#ffea79] hover:text-charcoal-950 hover:border-[#ffea79] transition-all"
+                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-black hover:border-white transition-all"
                 title="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -649,7 +649,7 @@ export default function App() {
                 href="https://tiktok.com/@primedrop_elite"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-[#ffea79] hover:text-charcoal-950 hover:border-[#ffea79] transition-all"
+                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-black hover:border-white transition-all"
                 title="TikTok"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -660,7 +660,7 @@ export default function App() {
                 href="https://facebook.com/primedrop_elite"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all"
+                className="w-10 h-10 rounded-full bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-neutral-300 hover:bg-white hover:text-black hover:border-white transition-all"
                 title="Facebook"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -693,7 +693,7 @@ export default function App() {
                     triggerNotification('Por favor, ingresa un correo electrónico válido.', 'info');
                   }
                 }}
-                className="w-full bg-[#ffea79] hover:bg-white text-charcoal-950 font-extrabold uppercase tracking-widest text-[10px] py-3 rounded-xl transition-all shadow-md"
+                className="w-full bg-white hover:bg-neutral-200 text-black font-extrabold uppercase tracking-widest text-[10px] py-3 rounded-xl transition-all shadow-md"
               >
                 REGISTRARSE
               </button>
@@ -790,7 +790,7 @@ export default function App() {
         href="https://wa.me/573160685555"
         target="_blank"
         rel="noreferrer"
-        className="fixed bottom-6 right-6 z-[55] w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-transform duration-300"
+        className="fixed bottom-6 right-6 z-[55] w-14 h-14 rounded-full bg-black flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-transform duration-300"
         title="WhatsApp"
       >
         <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

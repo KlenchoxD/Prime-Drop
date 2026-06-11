@@ -6,18 +6,19 @@
   --font-sans: "Roboto Serif", Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Custom luxury warm gold color and dark palette */
-  --color-gold-50: #fbf8eb;
-  --color-gold-100: #f4ecce;
-  --color-gold-200: #e8d79e;
-  --color-gold-300: #dab96d;
-  --color-gold-400: #cd9b44;
-  --color-gold-500: #c1802b;
-  --color-gold-600: #a76521;
-  --color-gold-700: #874e1c;
-  --color-gold-800: #6d3e1b;
-  --color-gold-900: #5b3319;
-  --color-gold-coulisse: #D4AF37;
+  /* Monocromo: la antigua paleta "gold" ahora es escala de grises (blanco y negro) */
+  --color-gold-50: #f6f6f6;
+  --color-gold-100: #ececec;
+  --color-gold-200: #d4d4d4;
+  --color-gold-300: #adadad;
+  --color-gold-400: #7c7c7c;
+  --color-gold-500: #595959;
+  --color-gold-600: #1a1a1a;
+  --color-gold-700: #121212;
+  --color-gold-800: #0a0a0a;
+  --color-gold-900: #000000;
+  /* Acento principal -> blanco (en botones oscuros produce inversión a blanco/negro) */
+  --color-gold-coulisse: #ffffff;
 
   --color-charcoal-50: #f6f6f6;
   --color-charcoal-100: #ececec;

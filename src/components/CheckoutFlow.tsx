@@ -270,7 +270,7 @@ export default function CheckoutFlow({
                         step === s.n
                           ? 'bg-gold-coulisse text-charcoal-950 ring-4 ring-gold-coulisse/20 scale-110'
                           : step > s.n
-                          ? 'bg-green-600 text-white'
+                          ? 'bg-charcoal-900 text-white'
                           : 'bg-charcoal-800 text-charcoal-400'
                       }`}
                     >
@@ -325,7 +325,7 @@ export default function CheckoutFlow({
               <span>{formatCOP(subtotal)}</span>
             </div>
             {appliedDiscountPercent > 0 && (
-              <div className="flex justify-between text-xs text-green-400 font-semibold font-sans">
+              <div className="flex justify-between text-xs text-charcoal-600 font-semibold font-sans">
                 <span>Descuento ({appliedDiscountPercent}%{promoCodeUsed ? ` · ${promoCodeUsed}` : ''}):</span>
                 <span>-{formatCOP(discountAmount)}</span>
               </div>
@@ -370,11 +370,11 @@ export default function CheckoutFlow({
                         value={customerInfo.fullName}
                         onChange={handleInfoChange}
                         className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse ${
-                          infoErrors.fullName ? 'border-red-500 bg-red-50/20' : 'border-neutral-250 bg-neutral-50/50'
+                          infoErrors.fullName ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250 bg-neutral-50/50'
                         }`}
                         placeholder="Ej. Valentina Restrepo"
                       />
-                      {infoErrors.fullName && <p className="text-[10px] text-red-500">{infoErrors.fullName}</p>}
+                      {infoErrors.fullName && <p className="text-[10px] text-charcoal-800">{infoErrors.fullName}</p>}
                     </div>
 
                     <div className="space-y-1">
@@ -385,11 +385,11 @@ export default function CheckoutFlow({
                         value={customerInfo.email}
                         onChange={handleInfoChange}
                         className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse ${
-                          infoErrors.email ? 'border-red-500 bg-red-50/20' : 'border-neutral-250 bg-neutral-50/50'
+                          infoErrors.email ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250 bg-neutral-50/50'
                         }`}
                         placeholder="valentina@gmail.com"
                       />
-                      {infoErrors.email && <p className="text-[10px] text-red-500">{infoErrors.email}</p>}
+                      {infoErrors.email && <p className="text-[10px] text-charcoal-800">{infoErrors.email}</p>}
                     </div>
                   </div>
 
@@ -401,11 +401,11 @@ export default function CheckoutFlow({
                       value={customerInfo.phone}
                       onChange={handleInfoChange}
                       className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse ${
-                        infoErrors.phone ? 'border-red-500 bg-red-50/20' : 'border-neutral-250 bg-neutral-50/50'
+                        infoErrors.phone ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250 bg-neutral-50/50'
                       }`}
                       placeholder="300 123 4567"
                     />
-                    {infoErrors.phone && <p className="text-[10px] text-red-500">{infoErrors.phone}</p>}
+                    {infoErrors.phone && <p className="text-[10px] text-charcoal-800">{infoErrors.phone}</p>}
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -416,7 +416,7 @@ export default function CheckoutFlow({
                         value={customerInfo.department}
                         onChange={handleInfoChange}
                         className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse bg-neutral-50/50 ${
-                          infoErrors.department ? 'border-red-500 bg-red-50/20' : 'border-neutral-250'
+                          infoErrors.department ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250'
                         }`}
                       >
                         <option value="">Selecciona…</option>
@@ -424,7 +424,7 @@ export default function CheckoutFlow({
                           <option key={dep} value={dep}>{dep}</option>
                         ))}
                       </select>
-                      {infoErrors.department && <p className="text-[10px] text-red-500">{infoErrors.department}</p>}
+                      {infoErrors.department && <p className="text-[10px] text-charcoal-800">{infoErrors.department}</p>}
                     </div>
 
                     <div className="space-y-1">
@@ -435,7 +435,7 @@ export default function CheckoutFlow({
                         onChange={handleInfoChange}
                         disabled={!customerInfo.department}
                         className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse bg-neutral-50/50 disabled:opacity-50 disabled:cursor-not-allowed ${
-                          infoErrors.city ? 'border-red-500 bg-red-50/20' : 'border-neutral-250'
+                          infoErrors.city ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250'
                         }`}
                       >
                         <option value="">{customerInfo.department ? 'Selecciona…' : 'Elige departamento primero'}</option>
@@ -443,7 +443,7 @@ export default function CheckoutFlow({
                           <option key={c} value={c}>{c}</option>
                         ))}
                       </select>
-                      {infoErrors.city && <p className="text-[10px] text-red-500">{infoErrors.city}</p>}
+                      {infoErrors.city && <p className="text-[10px] text-charcoal-800">{infoErrors.city}</p>}
                     </div>
                   </div>
 
@@ -457,12 +457,12 @@ export default function CheckoutFlow({
                         value={customerInfo.address}
                         onChange={handleInfoChange}
                         className={`w-full text-xs py-3 pl-10 pr-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse ${
-                          infoErrors.address ? 'border-red-500 bg-red-50/20' : 'border-neutral-250 bg-neutral-50/50'
+                          infoErrors.address ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250 bg-neutral-50/50'
                         }`}
                         placeholder="Ej. Cra 43A # 18-95, Apto 502, Torre 2"
                       />
                     </div>
-                    {infoErrors.address && <p className="text-[10px] text-red-500">{infoErrors.address}</p>}
+                    {infoErrors.address && <p className="text-[10px] text-charcoal-800">{infoErrors.address}</p>}
                   </div>
 
                   <div className="space-y-1">
@@ -617,7 +617,7 @@ export default function CheckoutFlow({
                           setPaymentErrors((prev) => ({ ...prev, pseBank: '' }));
                         }}
                         className={`w-full text-xs py-3 px-4 border rounded-xl focus:outline-none focus:ring-1 focus:ring-gold-coulisse bg-white ${
-                          paymentErrors.pseBank ? 'border-red-500 bg-red-50/20' : 'border-neutral-250'
+                          paymentErrors.pseBank ? 'border-charcoal-800 bg-neutral-100/20' : 'border-neutral-250'
                         }`}
                       >
                         <option value="">Selecciona tu banco…</option>
@@ -625,7 +625,7 @@ export default function CheckoutFlow({
                           <option key={b} value={b}>{b}</option>
                         ))}
                       </select>
-                      {paymentErrors.pseBank && <p className="text-[10px] text-red-500">{paymentErrors.pseBank}</p>}
+                      {paymentErrors.pseBank && <p className="text-[10px] text-charcoal-800">{paymentErrors.pseBank}</p>}
                     </div>
                   )}
 
@@ -640,8 +640,8 @@ export default function CheckoutFlow({
                 </div>
 
                 {/* Security badge */}
-                <div className="bg-green-50/40 p-4 rounded-xl border border-green-200/50 text-xs flex items-start space-x-3 text-charcoal-700 font-sans leading-relaxed">
-                  <ShieldCheck className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <div className="bg-neutral-100/40 p-4 rounded-xl border border-neutral-300/50 text-xs flex items-start space-x-3 text-charcoal-700 font-sans leading-relaxed">
+                  <ShieldCheck className="w-5 h-5 text-charcoal-900 flex-shrink-0 mt-0.5" />
                   <div>
                     <strong>Pago 100% seguro.</strong> No almacenamos datos de tu tarjeta ni de tus cuentas bancarias. El cobro lo realiza directamente la pasarela autorizada.
                   </div>

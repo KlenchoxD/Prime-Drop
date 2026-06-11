@@ -126,7 +126,7 @@ export default function CartDrawer({
                             <button
                               id={`delete-item-${item.id}`}
                               onClick={() => onRemoveItem(item.id)}
-                              className="text-neutral-400 hover:text-red-500 p-0.5 transition-colors"
+                              className="text-neutral-400 hover:text-charcoal-800 p-0.5 transition-colors"
                               aria-label="Quitar de la bolsa"
                             >
                               <Trash2 className="w-4 h-4" />

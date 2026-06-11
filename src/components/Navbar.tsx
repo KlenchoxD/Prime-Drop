@@ -209,7 +209,7 @@ export default function Navbar({
                               // Dispatch event so App.tsx can select category (hacky but works since state is in App)
                               window.dispatchEvent(new CustomEvent('selectCategory', { detail: cat }));
                             }}
-                            className="text-left text-xs font-serif text-charcoal-700 hover:text-gold-coulisse hover:bg-neutral-50 px-2 py-1.5 rounded transition-colors uppercase tracking-wider"
+                            className="text-left text-xs font-serif text-charcoal-700 hover:text-black hover:bg-neutral-50 px-2 py-1.5 rounded transition-colors uppercase tracking-wider"
                           >
                             {cat}
                           </button>

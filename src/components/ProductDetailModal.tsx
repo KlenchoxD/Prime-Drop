@@ -36,7 +36,7 @@ function RatingBlock({ rating, reviewsCount }: { rating: number; reviewsCount: n
             <Star
               key={i}
               className={`w-4 h-4 ${
-                filled ? 'fill-gold-coulisse text-gold-coulisse' : 'text-neutral-300'
+                filled ? 'fill-charcoal-900 text-charcoal-900' : 'text-neutral-300'
               }`}
             />
           );

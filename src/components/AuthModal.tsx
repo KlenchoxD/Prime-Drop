@@ -199,7 +199,7 @@ export default function AuthModal({
                     onLogout();
                     onClose();
                   }}
-                  className="w-full py-3 bg-red-50 hover:bg-red-100 border border-red-200 text-red-600 rounded-full text-xs font-bold uppercase tracking-widest flex items-center justify-center space-x-2 transition duration-200"
+                  className="w-full py-3 bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 text-charcoal-900 rounded-full text-xs font-bold uppercase tracking-widest flex items-center justify-center space-x-2 transition duration-200"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Cerrar Sesión</span>
@@ -252,14 +252,14 @@ export default function AuthModal({
                 <div className="p-7 sm:p-9 space-y-6">
                   {/* Notifications info */}
                   {errorMsg && (
-                    <div className="p-3 bg-red-50 border border-red-100 rounded-xl text-red-600 text-xs flex items-start space-x-2.5">
-                      <AlertCircle className="w-4 h-4 shrink-0 text-red-500 mt-0.5" />
+                    <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-xl text-charcoal-900 text-xs flex items-start space-x-2.5">
+                      <AlertCircle className="w-4 h-4 shrink-0 text-charcoal-800 mt-0.5" />
                       <span className="font-medium">{errorMsg}</span>
                     </div>
                   )}
                   {successMsg && (
-                    <div className="p-3 bg-green-50 border border-green-100 rounded-xl text-green-700 text-xs flex items-start space-x-2.5">
-                      <ShieldCheck className="w-4 h-4 shrink-0 text-green-600 mt-0.5" />
+                    <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-xl text-charcoal-900 text-xs flex items-start space-x-2.5">
+                      <ShieldCheck className="w-4 h-4 shrink-0 text-charcoal-900 mt-0.5" />
                       <span className="font-semibold">{successMsg}</span>
                     </div>
                   )}
