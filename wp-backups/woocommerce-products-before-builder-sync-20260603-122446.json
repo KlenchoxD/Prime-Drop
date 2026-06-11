@@ -1,0 +1,3754 @@
+[
+  {
+    "id": 638,
+    "name": "Jet Set MD Signature Logo Pouchette",
+    "slug": "jet-set-md-signature-logo-pouchette",
+    "permalink": "https://primedropelite.com/product/jet-set-md-signature-logo-pouchette/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:34",
+    "date_modified_gmt": "2026-05-31T18:49:34",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-015",
+    "price": "469000",
+    "regular_price": "469000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 773,
+        "date_created": "2026-06-01T13:10:13",
+        "date_created_gmt": "2026-06-01T23:10:13",
+        "date_modified": "2026-06-01T13:10:13",
+        "date_modified_gmt": "2026-06-01T23:10:13",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-scaled.webp",
+        "name": "Jet Set MD Signature Logo Pouchette",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-scaled.webp 1773w, https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-208x300.webp 208w, https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-709x1024.webp 709w, https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-768x1109.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-1064x1536.webp 1064w, https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-1419x2048.webp 1419w, https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-300x433.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-600x866.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-64x92.webp 64w",
+        "sizes": "(max-width: 1773px) 100vw, 1773px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/d3d9e71f-57ff-42a0-8ab3-0a401709423b-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>469.000</bdi></span>",
+    "related_ids": [
+      626,
+      631,
+      633,
+      614,
+      616
+    ],
+    "meta_data": [
+      {
+        "id": 2581,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/d3d9e71f-57ff-42a0-8ab3-0a401709423b.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/638",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 637,
+    "name": "Greenwich SM Color-Block Signature Logo",
+    "slug": "greenwich-sm-color-block-signature-logo",
+    "permalink": "https://primedropelite.com/product/greenwich-sm-color-block-signature-logo/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-014",
+    "price": "579000",
+    "regular_price": "579000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 770,
+        "date_created": "2026-06-01T13:10:08",
+        "date_created_gmt": "2026-06-01T23:10:08",
+        "date_modified": "2026-06-01T13:10:08",
+        "date_modified_gmt": "2026-06-01T23:10:08",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93.jpg",
+        "name": "Greenwich SM Color-Block Signature Logo",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93.jpg 1300w, https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93-761x1024.jpg 761w, https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93-1141x1536.jpg 1141w, https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93-64x86.jpg 64w",
+        "sizes": "(max-width: 1300px) 100vw, 1300px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/ff222bf6-b538-42bb-b77c-a4e48deccf93-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>579.000</bdi></span>",
+    "related_ids": [
+      612,
+      636,
+      613,
+      619,
+      635
+    ],
+    "meta_data": [
+      {
+        "id": 2569,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/ff222bf6-b538-42bb-b77c-a4e48deccf93.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/637",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 636,
+    "name": "Jet Set SM Signature Logo Chain Pouchette - V2",
+    "slug": "jet-set-sm-signature-logo-chain-pouchette-v2",
+    "permalink": "https://primedropelite.com/product/jet-set-sm-signature-logo-chain-pouchette-v2/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-013",
+    "price": "479000",
+    "regular_price": "479000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 775,
+        "date_created": "2026-06-01T13:10:17",
+        "date_created_gmt": "2026-06-01T23:10:17",
+        "date_modified": "2026-06-01T13:10:17",
+        "date_modified_gmt": "2026-06-01T23:10:17",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/139616be-8391-46ca-a509-db18d7d37cbe.jpg",
+        "name": "Jet Set SM Signature Logo Chain Pouchette &#8211; V2",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/139616be-8391-46ca-a509-db18d7d37cbe.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/139616be-8391-46ca-a509-db18d7d37cbe-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/139616be-8391-46ca-a509-db18d7d37cbe-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/139616be-8391-46ca-a509-db18d7d37cbe-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/139616be-8391-46ca-a509-db18d7d37cbe-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/139616be-8391-46ca-a509-db18d7d37cbe-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/139616be-8391-46ca-a509-db18d7d37cbe-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/139616be-8391-46ca-a509-db18d7d37cbe-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>479.000</bdi></span>",
+    "related_ids": [
+      626,
+      620,
+      614,
+      630,
+      637
+    ],
+    "meta_data": [
+      {
+        "id": 2589,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/139616be-8391-46ca-a509-db18d7d37cbe.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/636",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 635,
+    "name": "Jet Set SM Signature Logo Chain Pouchette",
+    "slug": "jet-set-sm-signature-logo-chain-pouchette",
+    "permalink": "https://primedropelite.com/product/jet-set-sm-signature-logo-chain-pouchette/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-012",
+    "price": "479000",
+    "regular_price": "479000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 774,
+        "date_created": "2026-06-01T13:10:16",
+        "date_created_gmt": "2026-06-01T23:10:16",
+        "date_modified": "2026-06-01T13:10:16",
+        "date_modified_gmt": "2026-06-01T23:10:16",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/3b8d9242-e826-42fa-a993-9b25d82419a9.jpg",
+        "name": "Jet Set SM Signature Logo Chain Pouchette",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/3b8d9242-e826-42fa-a993-9b25d82419a9.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/3b8d9242-e826-42fa-a993-9b25d82419a9-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/3b8d9242-e826-42fa-a993-9b25d82419a9-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/3b8d9242-e826-42fa-a993-9b25d82419a9-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/3b8d9242-e826-42fa-a993-9b25d82419a9-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/3b8d9242-e826-42fa-a993-9b25d82419a9-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/3b8d9242-e826-42fa-a993-9b25d82419a9-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/3b8d9242-e826-42fa-a993-9b25d82419a9-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>479.000</bdi></span>",
+    "related_ids": [
+      613,
+      621,
+      625,
+      614,
+      615
+    ],
+    "meta_data": [
+      {
+        "id": 2585,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/3b8d9242-e826-42fa-a993-9b25d82419a9.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/635",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 634,
+    "name": "Shoulder Bag",
+    "slug": "shoulder-bag",
+    "permalink": "https://primedropelite.com/product/shoulder-bag/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-010",
+    "price": "339000",
+    "regular_price": "339000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 786,
+        "date_created": "2026-06-01T13:10:36",
+        "date_created_gmt": "2026-06-01T23:10:36",
+        "date_modified": "2026-06-01T13:10:36",
+        "date_modified_gmt": "2026-06-01T23:10:36",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/efbca155-6cab-47b7-bb31-b2c7182e67ba.png",
+        "name": "Shoulder Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/efbca155-6cab-47b7-bb31-b2c7182e67ba.png 1024w, https://primedropelite.com/wp-content/uploads/2026/05/efbca155-6cab-47b7-bb31-b2c7182e67ba-300x300.png 300w, https://primedropelite.com/wp-content/uploads/2026/05/efbca155-6cab-47b7-bb31-b2c7182e67ba-150x150.png 150w, https://primedropelite.com/wp-content/uploads/2026/05/efbca155-6cab-47b7-bb31-b2c7182e67ba-768x768.png 768w, https://primedropelite.com/wp-content/uploads/2026/05/efbca155-6cab-47b7-bb31-b2c7182e67ba-600x600.png 600w, https://primedropelite.com/wp-content/uploads/2026/05/efbca155-6cab-47b7-bb31-b2c7182e67ba-100x100.png 100w, https://primedropelite.com/wp-content/uploads/2026/05/efbca155-6cab-47b7-bb31-b2c7182e67ba-64x64.png 64w",
+        "sizes": "(max-width: 1024px) 100vw, 1024px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/efbca155-6cab-47b7-bb31-b2c7182e67ba-300x300.png"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>339.000</bdi></span>",
+    "related_ids": [
+      629,
+      628,
+      616,
+      618,
+      613
+    ],
+    "meta_data": [
+      {
+        "id": 2633,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/efbca155-6cab-47b7-bb31-b2c7182e67ba.png"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/634",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 633,
+    "name": "Murphy SM Dome Messenger",
+    "slug": "murphy-sm-dome-messenger",
+    "permalink": "https://primedropelite.com/product/murphy-sm-dome-messenger/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-011",
+    "price": "579000",
+    "regular_price": "579000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 782,
+        "date_created": "2026-06-01T13:10:29",
+        "date_created_gmt": "2026-06-01T23:10:29",
+        "date_modified": "2026-06-01T13:10:29",
+        "date_modified_gmt": "2026-06-01T23:10:29",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/f31834e7-5d6f-426b-b486-6b2d914e53d7.png",
+        "name": "Murphy SM Dome Messenger",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/f31834e7-5d6f-426b-b486-6b2d914e53d7.png 1024w, https://primedropelite.com/wp-content/uploads/2026/05/f31834e7-5d6f-426b-b486-6b2d914e53d7-200x300.png 200w, https://primedropelite.com/wp-content/uploads/2026/05/f31834e7-5d6f-426b-b486-6b2d914e53d7-683x1024.png 683w, https://primedropelite.com/wp-content/uploads/2026/05/f31834e7-5d6f-426b-b486-6b2d914e53d7-768x1152.png 768w, https://primedropelite.com/wp-content/uploads/2026/05/f31834e7-5d6f-426b-b486-6b2d914e53d7-300x450.png 300w, https://primedropelite.com/wp-content/uploads/2026/05/f31834e7-5d6f-426b-b486-6b2d914e53d7-600x900.png 600w, https://primedropelite.com/wp-content/uploads/2026/05/f31834e7-5d6f-426b-b486-6b2d914e53d7-64x96.png 64w",
+        "sizes": "(max-width: 1024px) 100vw, 1024px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/f31834e7-5d6f-426b-b486-6b2d914e53d7-300x300.png"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>579.000</bdi></span>",
+    "related_ids": [
+      627,
+      621,
+      619,
+      629,
+      615
+    ],
+    "meta_data": [
+      {
+        "id": 2617,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/f31834e7-5d6f-426b-b486-6b2d914e53d7.png"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/633",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 632,
+    "name": "Cube Monogram Shopper Bag",
+    "slug": "cube-monogram-shopper-bag",
+    "permalink": "https://primedropelite.com/product/cube-monogram-shopper-bag/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-TH-003",
+    "price": "239000",
+    "regular_price": "239000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 26,
+        "name": "TOMMY HILFIGER",
+        "slug": "tommy-hilfiger"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 768,
+        "date_created": "2026-06-01T13:10:04",
+        "date_created_gmt": "2026-06-01T23:10:04",
+        "date_modified": "2026-06-01T13:10:04",
+        "date_modified_gmt": "2026-06-01T23:10:04",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1.jpg",
+        "name": "Cube Monogram Shopper Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1.jpg 1500w, https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1-232x300.jpg 232w, https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1-792x1024.jpg 792w, https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1-768x993.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1-1188x1536.jpg 1188w, https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1-300x388.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1-600x776.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1-64x83.jpg 64w",
+        "sizes": "(max-width: 1500px) 100vw, 1500px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/e109479b-0a20-4775-9a15-2f2002d00cb1-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>239.000</bdi></span>",
+    "related_ids": [
+      620,
+      621,
+      635,
+      633,
+      627
+    ],
+    "meta_data": [
+      {
+        "id": 2561,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/e109479b-0a20-4775-9a15-2f2002d00cb1.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/632",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 631,
+    "name": "Midnight Tommy Backpack",
+    "slug": "midnight-tommy-backpack",
+    "permalink": "https://primedropelite.com/product/midnight-tommy-backpack/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-TH-002",
+    "price": "239000",
+    "regular_price": "239000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 26,
+        "name": "TOMMY HILFIGER",
+        "slug": "tommy-hilfiger"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 779,
+        "date_created": "2026-06-01T13:10:23",
+        "date_created_gmt": "2026-06-01T23:10:23",
+        "date_modified": "2026-06-01T13:10:23",
+        "date_modified_gmt": "2026-06-01T23:10:23",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c.png",
+        "name": "Midnight Tommy Backpack",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c.png 1024w, https://primedropelite.com/wp-content/uploads/2026/05/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c-200x300.png 200w, https://primedropelite.com/wp-content/uploads/2026/05/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c-683x1024.png 683w, https://primedropelite.com/wp-content/uploads/2026/05/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c-768x1152.png 768w, https://primedropelite.com/wp-content/uploads/2026/05/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c-300x450.png 300w, https://primedropelite.com/wp-content/uploads/2026/05/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c-600x900.png 600w, https://primedropelite.com/wp-content/uploads/2026/05/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c-64x96.png 64w",
+        "sizes": "(max-width: 1024px) 100vw, 1024px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c-300x300.png"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>239.000</bdi></span>",
+    "related_ids": [
+      628,
+      636,
+      633,
+      617,
+      620
+    ],
+    "meta_data": [
+      {
+        "id": 2605,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/05ee2d5a-5adf-4f2b-8563-8e8bbf75aa9c.png"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/631",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 630,
+    "name": "Monogram Jacquard X-Body",
+    "slug": "monogram-jacquard-x-body",
+    "permalink": "https://primedropelite.com/product/monogram-jacquard-x-body/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-TH-001",
+    "price": "189000",
+    "regular_price": "189000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 26,
+        "name": "TOMMY HILFIGER",
+        "slug": "tommy-hilfiger"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 781,
+        "date_created": "2026-06-01T13:10:28",
+        "date_created_gmt": "2026-06-01T23:10:28",
+        "date_modified": "2026-06-01T13:10:28",
+        "date_modified_gmt": "2026-06-01T23:10:28",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/446bddf1-e9a4-4814-974c-ec036a7e8a9f.jpg",
+        "name": "Monogram Jacquard X-Body",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/446bddf1-e9a4-4814-974c-ec036a7e8a9f.jpg 612w, https://primedropelite.com/wp-content/uploads/2026/05/446bddf1-e9a4-4814-974c-ec036a7e8a9f-300x300.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/446bddf1-e9a4-4814-974c-ec036a7e8a9f-150x150.jpg 150w, https://primedropelite.com/wp-content/uploads/2026/05/446bddf1-e9a4-4814-974c-ec036a7e8a9f-600x600.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/446bddf1-e9a4-4814-974c-ec036a7e8a9f-100x100.jpg 100w, https://primedropelite.com/wp-content/uploads/2026/05/446bddf1-e9a4-4814-974c-ec036a7e8a9f-64x64.jpg 64w",
+        "sizes": "(max-width: 612px) 100vw, 612px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/446bddf1-e9a4-4814-974c-ec036a7e8a9f-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>189.000</bdi></span>",
+    "related_ids": [
+      623,
+      615,
+      613,
+      635,
+      624
+    ],
+    "meta_data": [
+      {
+        "id": 2613,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/446bddf1-e9a4-4814-974c-ec036a7e8a9f.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/630",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 629,
+    "name": "Geena Embellished Bag Black",
+    "slug": "geena-embellished-bag-black",
+    "permalink": "https://primedropelite.com/product/geena-embellished-bag-black/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-009",
+    "price": "389000",
+    "regular_price": "389000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 769,
+        "date_created": "2026-06-01T13:10:06",
+        "date_created_gmt": "2026-06-01T23:10:06",
+        "date_modified": "2026-06-01T13:10:06",
+        "date_modified_gmt": "2026-06-01T23:10:06",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/2e14efd0-99fe-409f-802b-c0fa2483e229.webp",
+        "name": "Geena Embellished Bag Black",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/2e14efd0-99fe-409f-802b-c0fa2483e229.webp 853w, https://primedropelite.com/wp-content/uploads/2026/05/2e14efd0-99fe-409f-802b-c0fa2483e229-240x300.webp 240w, https://primedropelite.com/wp-content/uploads/2026/05/2e14efd0-99fe-409f-802b-c0fa2483e229-819x1024.webp 819w, https://primedropelite.com/wp-content/uploads/2026/05/2e14efd0-99fe-409f-802b-c0fa2483e229-768x960.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/2e14efd0-99fe-409f-802b-c0fa2483e229-300x375.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/2e14efd0-99fe-409f-802b-c0fa2483e229-600x750.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/2e14efd0-99fe-409f-802b-c0fa2483e229-64x80.webp 64w",
+        "sizes": "(max-width: 853px) 100vw, 853px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/2e14efd0-99fe-409f-802b-c0fa2483e229-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>389.000</bdi></span>",
+    "related_ids": [
+      628,
+      633,
+      617,
+      621,
+      619
+    ],
+    "meta_data": [
+      {
+        "id": 2565,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/2e14efd0-99fe-409f-802b-c0fa2483e229.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/629",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 628,
+    "name": "Lohan Bag Sand",
+    "slug": "lohan-bag-sand",
+    "permalink": "https://primedropelite.com/product/lohan-bag-sand/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-008",
+    "price": "419000",
+    "regular_price": "419000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 777,
+        "date_created": "2026-06-01T13:10:20",
+        "date_created_gmt": "2026-06-01T23:10:20",
+        "date_modified": "2026-06-01T13:10:20",
+        "date_modified_gmt": "2026-06-01T23:10:20",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/f2a95ca9-5b56-4449-a090-8145f6c80dde.webp",
+        "name": "Lohan Bag Sand",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/f2a95ca9-5b56-4449-a090-8145f6c80dde.webp 853w, https://primedropelite.com/wp-content/uploads/2026/05/f2a95ca9-5b56-4449-a090-8145f6c80dde-240x300.webp 240w, https://primedropelite.com/wp-content/uploads/2026/05/f2a95ca9-5b56-4449-a090-8145f6c80dde-819x1024.webp 819w, https://primedropelite.com/wp-content/uploads/2026/05/f2a95ca9-5b56-4449-a090-8145f6c80dde-768x960.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/f2a95ca9-5b56-4449-a090-8145f6c80dde-300x375.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/f2a95ca9-5b56-4449-a090-8145f6c80dde-600x750.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/f2a95ca9-5b56-4449-a090-8145f6c80dde-64x80.webp 64w",
+        "sizes": "(max-width: 853px) 100vw, 853px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/f2a95ca9-5b56-4449-a090-8145f6c80dde-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>419.000</bdi></span>",
+    "related_ids": [
+      616,
+      631,
+      612,
+      618,
+      615
+    ],
+    "meta_data": [
+      {
+        "id": 2597,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/f2a95ca9-5b56-4449-a090-8145f6c80dde.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/628",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 627,
+    "name": "Cheyann Bag Light Blue",
+    "slug": "cheyann-bag-light-blue",
+    "permalink": "https://primedropelite.com/product/cheyann-bag-light-blue/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-007",
+    "price": "389000",
+    "regular_price": "389000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 766,
+        "date_created": "2026-06-01T13:10:00",
+        "date_created_gmt": "2026-06-01T23:10:00",
+        "date_modified": "2026-06-01T13:10:00",
+        "date_modified_gmt": "2026-06-01T23:10:00",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/149948c6-0706-47be-962f-910d9e7d7d95.webp",
+        "name": "Cheyann Bag Light Blue",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/149948c6-0706-47be-962f-910d9e7d7d95.webp 853w, https://primedropelite.com/wp-content/uploads/2026/05/149948c6-0706-47be-962f-910d9e7d7d95-240x300.webp 240w, https://primedropelite.com/wp-content/uploads/2026/05/149948c6-0706-47be-962f-910d9e7d7d95-819x1024.webp 819w, https://primedropelite.com/wp-content/uploads/2026/05/149948c6-0706-47be-962f-910d9e7d7d95-768x960.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/149948c6-0706-47be-962f-910d9e7d7d95-300x375.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/149948c6-0706-47be-962f-910d9e7d7d95-600x750.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/149948c6-0706-47be-962f-910d9e7d7d95-64x80.webp 64w",
+        "sizes": "(max-width: 853px) 100vw, 853px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/149948c6-0706-47be-962f-910d9e7d7d95-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>389.000</bdi></span>",
+    "related_ids": [
+      631,
+      621,
+      626,
+      622,
+      616
+    ],
+    "meta_data": [
+      {
+        "id": 2553,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/149948c6-0706-47be-962f-910d9e7d7d95.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/627",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 626,
+    "name": "Cheyann Bag Black",
+    "slug": "cheyann-bag-black",
+    "permalink": "https://primedropelite.com/product/cheyann-bag-black/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-006",
+    "price": "389000",
+    "regular_price": "389000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 765,
+        "date_created": "2026-06-01T13:09:59",
+        "date_created_gmt": "2026-06-01T23:09:59",
+        "date_modified": "2026-06-01T13:09:59",
+        "date_modified_gmt": "2026-06-01T23:09:59",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/c279a1c7-545e-4498-9d75-722fe93371bd.webp",
+        "name": "Cheyann Bag Black",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/c279a1c7-545e-4498-9d75-722fe93371bd.webp 853w, https://primedropelite.com/wp-content/uploads/2026/05/c279a1c7-545e-4498-9d75-722fe93371bd-240x300.webp 240w, https://primedropelite.com/wp-content/uploads/2026/05/c279a1c7-545e-4498-9d75-722fe93371bd-819x1024.webp 819w, https://primedropelite.com/wp-content/uploads/2026/05/c279a1c7-545e-4498-9d75-722fe93371bd-768x960.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/c279a1c7-545e-4498-9d75-722fe93371bd-300x375.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/c279a1c7-545e-4498-9d75-722fe93371bd-600x750.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/c279a1c7-545e-4498-9d75-722fe93371bd-64x80.webp 64w",
+        "sizes": "(max-width: 853px) 100vw, 853px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/c279a1c7-545e-4498-9d75-722fe93371bd-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>389.000</bdi></span>",
+    "related_ids": [
+      636,
+      615,
+      631,
+      635,
+      617
+    ],
+    "meta_data": [
+      {
+        "id": 2549,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/c279a1c7-545e-4498-9d75-722fe93371bd.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/626",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 625,
+    "name": "Kody Bag Black",
+    "slug": "kody-bag-black",
+    "permalink": "https://primedropelite.com/product/kody-bag-black/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-005",
+    "price": "389000",
+    "regular_price": "389000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 776,
+        "date_created": "2026-06-01T13:10:18",
+        "date_created_gmt": "2026-06-01T23:10:18",
+        "date_modified": "2026-06-01T13:10:18",
+        "date_modified_gmt": "2026-06-01T23:10:18",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/c5ebde20-e2fe-4c93-aba3-d6b6859894ea.webp",
+        "name": "Kody Bag Black",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/c5ebde20-e2fe-4c93-aba3-d6b6859894ea.webp 853w, https://primedropelite.com/wp-content/uploads/2026/05/c5ebde20-e2fe-4c93-aba3-d6b6859894ea-240x300.webp 240w, https://primedropelite.com/wp-content/uploads/2026/05/c5ebde20-e2fe-4c93-aba3-d6b6859894ea-819x1024.webp 819w, https://primedropelite.com/wp-content/uploads/2026/05/c5ebde20-e2fe-4c93-aba3-d6b6859894ea-768x960.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/c5ebde20-e2fe-4c93-aba3-d6b6859894ea-300x375.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/c5ebde20-e2fe-4c93-aba3-d6b6859894ea-600x750.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/c5ebde20-e2fe-4c93-aba3-d6b6859894ea-64x80.webp 64w",
+        "sizes": "(max-width: 853px) 100vw, 853px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/c5ebde20-e2fe-4c93-aba3-d6b6859894ea-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>389.000</bdi></span>",
+    "related_ids": [
+      621,
+      618,
+      632,
+      630,
+      629
+    ],
+    "meta_data": [
+      {
+        "id": 2593,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/c5ebde20-e2fe-4c93-aba3-d6b6859894ea.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/625",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 624,
+    "name": "Angel Bag Black",
+    "slug": "angel-bag-black",
+    "permalink": "https://primedropelite.com/product/angel-bag-black/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-004",
+    "price": "389000",
+    "regular_price": "389000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 764,
+        "date_created": "2026-06-01T13:09:58",
+        "date_created_gmt": "2026-06-01T23:09:58",
+        "date_modified": "2026-06-01T13:09:58",
+        "date_modified_gmt": "2026-06-01T23:09:58",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1.webp",
+        "name": "Angel Bag Black",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1.webp 853w, https://primedropelite.com/wp-content/uploads/2026/05/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1-240x300.webp 240w, https://primedropelite.com/wp-content/uploads/2026/05/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1-819x1024.webp 819w, https://primedropelite.com/wp-content/uploads/2026/05/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1-768x960.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1-300x375.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1-600x750.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1-64x80.webp 64w",
+        "sizes": "(max-width: 853px) 100vw, 853px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>389.000</bdi></span>",
+    "related_ids": [
+      625,
+      628,
+      622,
+      632,
+      627
+    ],
+    "meta_data": [
+      {
+        "id": 2545,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/da2aa0ca-35ad-4a0a-ba12-b1fd4dfbd4c1.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/624",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 623,
+    "name": "Preppy Bag Brown",
+    "slug": "preppy-bag-brown",
+    "permalink": "https://primedropelite.com/product/preppy-bag-brown/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-003",
+    "price": "389000",
+    "regular_price": "389000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 784,
+        "date_created": "2026-06-01T13:10:32",
+        "date_created_gmt": "2026-06-01T23:10:32",
+        "date_modified": "2026-06-01T13:10:32",
+        "date_modified_gmt": "2026-06-01T23:10:32",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/164c9809-b5d9-45cd-ada2-905f9bf79e22.webp",
+        "name": "Preppy Bag Brown",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/164c9809-b5d9-45cd-ada2-905f9bf79e22.webp 853w, https://primedropelite.com/wp-content/uploads/2026/05/164c9809-b5d9-45cd-ada2-905f9bf79e22-240x300.webp 240w, https://primedropelite.com/wp-content/uploads/2026/05/164c9809-b5d9-45cd-ada2-905f9bf79e22-819x1024.webp 819w, https://primedropelite.com/wp-content/uploads/2026/05/164c9809-b5d9-45cd-ada2-905f9bf79e22-768x960.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/164c9809-b5d9-45cd-ada2-905f9bf79e22-300x375.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/164c9809-b5d9-45cd-ada2-905f9bf79e22-600x750.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/164c9809-b5d9-45cd-ada2-905f9bf79e22-64x80.webp 64w",
+        "sizes": "(max-width: 853px) 100vw, 853px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/164c9809-b5d9-45cd-ada2-905f9bf79e22-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>389.000</bdi></span>",
+    "related_ids": [
+      612,
+      636,
+      611,
+      614,
+      626
+    ],
+    "meta_data": [
+      {
+        "id": 2625,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/164c9809-b5d9-45cd-ada2-905f9bf79e22.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/623",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 622,
+    "name": "Preppy Bag Toffee",
+    "slug": "preppy-bag-toffee",
+    "permalink": "https://primedropelite.com/product/preppy-bag-toffee/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-002",
+    "price": "389000",
+    "regular_price": "389000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 785,
+        "date_created": "2026-06-01T13:10:34",
+        "date_created_gmt": "2026-06-01T23:10:34",
+        "date_modified": "2026-06-01T13:10:34",
+        "date_modified_gmt": "2026-06-01T23:10:34",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/801b103a-bc71-4f3a-81c3-156fac2d661b.webp",
+        "name": "Preppy Bag Toffee",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/801b103a-bc71-4f3a-81c3-156fac2d661b.webp 853w, https://primedropelite.com/wp-content/uploads/2026/05/801b103a-bc71-4f3a-81c3-156fac2d661b-240x300.webp 240w, https://primedropelite.com/wp-content/uploads/2026/05/801b103a-bc71-4f3a-81c3-156fac2d661b-819x1024.webp 819w, https://primedropelite.com/wp-content/uploads/2026/05/801b103a-bc71-4f3a-81c3-156fac2d661b-768x960.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/801b103a-bc71-4f3a-81c3-156fac2d661b-300x375.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/801b103a-bc71-4f3a-81c3-156fac2d661b-600x750.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/801b103a-bc71-4f3a-81c3-156fac2d661b-64x80.webp 64w",
+        "sizes": "(max-width: 853px) 100vw, 853px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/801b103a-bc71-4f3a-81c3-156fac2d661b-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>389.000</bdi></span>",
+    "related_ids": [
+      635,
+      618,
+      634,
+      636,
+      613
+    ],
+    "meta_data": [
+      {
+        "id": 2629,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/801b103a-bc71-4f3a-81c3-156fac2d661b.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/622",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 621,
+    "name": "Clark Bag Light Grey",
+    "slug": "clark-bag-light-grey",
+    "permalink": "https://primedropelite.com/product/clark-bag-light-grey/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-SM-001",
+    "price": "389000",
+    "regular_price": "389000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 25,
+        "name": "STEVE MADDEN",
+        "slug": "steve-madden"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 767,
+        "date_created": "2026-06-01T13:10:02",
+        "date_created_gmt": "2026-06-01T23:10:02",
+        "date_modified": "2026-06-01T13:10:02",
+        "date_modified_gmt": "2026-06-01T23:10:02",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae.webp",
+        "name": "Clark Bag Light Grey",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae.webp 1600w, https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae-240x300.webp 240w, https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae-819x1024.webp 819w, https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae-768x960.webp 768w, https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae-1229x1536.webp 1229w, https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae-300x375.webp 300w, https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae-600x750.webp 600w, https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae-64x80.webp 64w",
+        "sizes": "(max-width: 1600px) 100vw, 1600px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/29581450-441b-4c42-b35d-7dd34c864dae-300x300.webp"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>389.000</bdi></span>",
+    "related_ids": [
+      620,
+      612,
+      631,
+      614,
+      619
+    ],
+    "meta_data": [
+      {
+        "id": 2557,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/29581450-441b-4c42-b35d-7dd34c864dae.webp"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/621",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 620,
+    "name": "Marilyn MD Signature Logo Tote Bag",
+    "slug": "marilyn-md-signature-logo-tote-bag",
+    "permalink": "https://primedropelite.com/product/marilyn-md-signature-logo-tote-bag/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-010",
+    "price": "569000",
+    "regular_price": "569000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 778,
+        "date_created": "2026-06-01T13:10:21",
+        "date_created_gmt": "2026-06-01T23:10:21",
+        "date_modified": "2026-06-01T13:10:21",
+        "date_modified_gmt": "2026-06-01T23:10:21",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/c8b08f75-4492-4055-9f3e-3e1252c3f689.jpg",
+        "name": "Marilyn MD Signature Logo Tote Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/c8b08f75-4492-4055-9f3e-3e1252c3f689.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/c8b08f75-4492-4055-9f3e-3e1252c3f689-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/c8b08f75-4492-4055-9f3e-3e1252c3f689-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/c8b08f75-4492-4055-9f3e-3e1252c3f689-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/c8b08f75-4492-4055-9f3e-3e1252c3f689-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/c8b08f75-4492-4055-9f3e-3e1252c3f689-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/c8b08f75-4492-4055-9f3e-3e1252c3f689-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/c8b08f75-4492-4055-9f3e-3e1252c3f689-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>569.000</bdi></span>",
+    "related_ids": [
+      616,
+      618,
+      614,
+      624,
+      630
+    ],
+    "meta_data": [
+      {
+        "id": 2601,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/c8b08f75-4492-4055-9f3e-3e1252c3f689.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/620",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 619,
+    "name": "Whitney MD Quilted Tote Bag",
+    "slug": "whitney-md-quilted-tote-bag",
+    "permalink": "https://primedropelite.com/product/whitney-md-quilted-tote-bag/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-009",
+    "price": "479000",
+    "regular_price": "479000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 791,
+        "date_created": "2026-06-01T13:10:44",
+        "date_created_gmt": "2026-06-01T23:10:44",
+        "date_modified": "2026-06-01T13:10:44",
+        "date_modified_gmt": "2026-06-01T23:10:44",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/2aea7912-f02f-4ddb-8bac-3fda908b3411.jpg",
+        "name": "Whitney MD Quilted Tote Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/2aea7912-f02f-4ddb-8bac-3fda908b3411.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/2aea7912-f02f-4ddb-8bac-3fda908b3411-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/2aea7912-f02f-4ddb-8bac-3fda908b3411-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/2aea7912-f02f-4ddb-8bac-3fda908b3411-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/2aea7912-f02f-4ddb-8bac-3fda908b3411-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/2aea7912-f02f-4ddb-8bac-3fda908b3411-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/2aea7912-f02f-4ddb-8bac-3fda908b3411-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/2aea7912-f02f-4ddb-8bac-3fda908b3411-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>479.000</bdi></span>",
+    "related_ids": [
+      611,
+      628,
+      620,
+      621,
+      615
+    ],
+    "meta_data": [
+      {
+        "id": 2653,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/2aea7912-f02f-4ddb-8bac-3fda908b3411.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/619",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 618,
+    "name": "Whitney MD Quilted Shoulder Bag",
+    "slug": "whitney-md-quilted-shoulder-bag",
+    "permalink": "https://primedropelite.com/product/whitney-md-quilted-shoulder-bag/",
+    "date_created": "2026-05-31T13:49:33",
+    "date_created_gmt": "2026-05-31T18:49:33",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-008",
+    "price": "479000",
+    "regular_price": "479000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 790,
+        "date_created": "2026-06-01T13:10:42",
+        "date_created_gmt": "2026-06-01T23:10:42",
+        "date_modified": "2026-06-01T13:10:42",
+        "date_modified_gmt": "2026-06-01T23:10:42",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/ea1ecdc3-7811-4059-abc7-5324f8e96b4b.jpg",
+        "name": "Whitney MD Quilted Shoulder Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/ea1ecdc3-7811-4059-abc7-5324f8e96b4b.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/ea1ecdc3-7811-4059-abc7-5324f8e96b4b-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/ea1ecdc3-7811-4059-abc7-5324f8e96b4b-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/ea1ecdc3-7811-4059-abc7-5324f8e96b4b-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/ea1ecdc3-7811-4059-abc7-5324f8e96b4b-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/ea1ecdc3-7811-4059-abc7-5324f8e96b4b-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/ea1ecdc3-7811-4059-abc7-5324f8e96b4b-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/ea1ecdc3-7811-4059-abc7-5324f8e96b4b-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>479.000</bdi></span>",
+    "related_ids": [
+      623,
+      630,
+      614,
+      617,
+      616
+    ],
+    "meta_data": [
+      {
+        "id": 2649,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/ea1ecdc3-7811-4059-abc7-5324f8e96b4b.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/618",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 617,
+    "name": "Nayla MD Pebbled Leather Shoulder Bag",
+    "slug": "nayla-md-pebbled-leather-shoulder-bag",
+    "permalink": "https://primedropelite.com/product/nayla-md-pebbled-leather-shoulder-bag/",
+    "date_created": "2026-05-31T13:49:32",
+    "date_created_gmt": "2026-05-31T18:49:32",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-007",
+    "price": "479000",
+    "regular_price": "479000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 783,
+        "date_created": "2026-06-01T13:10:31",
+        "date_created_gmt": "2026-06-01T23:10:31",
+        "date_modified": "2026-06-01T13:10:31",
+        "date_modified_gmt": "2026-06-01T23:10:31",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/f80d3c99-eb40-4b9e-800f-fcffd246ce57.jpg",
+        "name": "Nayla MD Pebbled Leather Shoulder Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/f80d3c99-eb40-4b9e-800f-fcffd246ce57.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/f80d3c99-eb40-4b9e-800f-fcffd246ce57-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/f80d3c99-eb40-4b9e-800f-fcffd246ce57-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/f80d3c99-eb40-4b9e-800f-fcffd246ce57-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/f80d3c99-eb40-4b9e-800f-fcffd246ce57-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/f80d3c99-eb40-4b9e-800f-fcffd246ce57-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/f80d3c99-eb40-4b9e-800f-fcffd246ce57-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/f80d3c99-eb40-4b9e-800f-fcffd246ce57-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>479.000</bdi></span>",
+    "related_ids": [
+      635,
+      615,
+      611,
+      618,
+      638
+    ],
+    "meta_data": [
+      {
+        "id": 2621,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/f80d3c99-eb40-4b9e-800f-fcffd246ce57.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/617",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 616,
+    "name": "Mirella MD Signature Logo Tote Bag",
+    "slug": "mirella-md-signature-logo-tote-bag",
+    "permalink": "https://primedropelite.com/product/mirella-md-signature-logo-tote-bag/",
+    "date_created": "2026-05-31T13:49:32",
+    "date_created_gmt": "2026-05-31T18:49:32",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-006",
+    "price": "569000",
+    "regular_price": "569000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 780,
+        "date_created": "2026-06-01T13:10:26",
+        "date_created_gmt": "2026-06-01T23:10:26",
+        "date_modified": "2026-06-01T13:10:26",
+        "date_modified_gmt": "2026-06-01T23:10:26",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/fa27eab3-bd46-4772-abf9-93a958ffab09.jpg",
+        "name": "Mirella MD Signature Logo Tote Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/fa27eab3-bd46-4772-abf9-93a958ffab09.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/fa27eab3-bd46-4772-abf9-93a958ffab09-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/fa27eab3-bd46-4772-abf9-93a958ffab09-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/fa27eab3-bd46-4772-abf9-93a958ffab09-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/fa27eab3-bd46-4772-abf9-93a958ffab09-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/fa27eab3-bd46-4772-abf9-93a958ffab09-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/fa27eab3-bd46-4772-abf9-93a958ffab09-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/fa27eab3-bd46-4772-abf9-93a958ffab09-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>569.000</bdi></span>",
+    "related_ids": [
+      633,
+      629,
+      618,
+      631,
+      623
+    ],
+    "meta_data": [
+      {
+        "id": 2609,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/fa27eab3-bd46-4772-abf9-93a958ffab09.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/616",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 615,
+    "name": "Jet Set MD Saffiano Leather Crossbody Bag",
+    "slug": "jet-set-md-saffiano-leather-crossbody-bag",
+    "permalink": "https://primedropelite.com/product/jet-set-md-saffiano-leather-crossbody-bag/",
+    "date_created": "2026-05-31T13:49:32",
+    "date_created_gmt": "2026-05-31T18:49:32",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-005",
+    "price": "519000",
+    "regular_price": "519000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 772,
+        "date_created": "2026-06-01T13:10:11",
+        "date_created_gmt": "2026-06-01T23:10:11",
+        "date_modified": "2026-06-01T13:10:11",
+        "date_modified_gmt": "2026-06-01T23:10:11",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26.jpg",
+        "name": "Jet Set MD Saffiano Leather Crossbody Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>519.000</bdi></span>",
+    "related_ids": [
+      633,
+      635,
+      629,
+      619,
+      631
+    ],
+    "meta_data": [
+      {
+        "id": 2577,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/0b6bb2a3-5def-44f0-ad4d-f1274efb8b26.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/615",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 614,
+    "name": "Soho SM Convertible Crossbody Bag",
+    "slug": "soho-sm-convertible-crossbody-bag",
+    "permalink": "https://primedropelite.com/product/soho-sm-convertible-crossbody-bag/",
+    "date_created": "2026-05-31T13:49:32",
+    "date_created_gmt": "2026-05-31T18:49:32",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-004",
+    "price": "469000",
+    "regular_price": "469000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 787,
+        "date_created": "2026-06-01T13:10:37",
+        "date_created_gmt": "2026-06-01T23:10:37",
+        "date_modified": "2026-06-01T13:10:37",
+        "date_modified_gmt": "2026-06-01T23:10:37",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/3a1159d2-e132-4734-8ac9-830a294e3faf.jpg",
+        "name": "Soho SM Convertible Crossbody Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/3a1159d2-e132-4734-8ac9-830a294e3faf.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/3a1159d2-e132-4734-8ac9-830a294e3faf-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/3a1159d2-e132-4734-8ac9-830a294e3faf-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/3a1159d2-e132-4734-8ac9-830a294e3faf-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/3a1159d2-e132-4734-8ac9-830a294e3faf-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/3a1159d2-e132-4734-8ac9-830a294e3faf-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/3a1159d2-e132-4734-8ac9-830a294e3faf-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/3a1159d2-e132-4734-8ac9-830a294e3faf-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>469.000</bdi></span>",
+    "related_ids": [
+      618,
+      612,
+      631,
+      629,
+      633
+    ],
+    "meta_data": [
+      {
+        "id": 2637,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/3a1159d2-e132-4734-8ac9-830a294e3faf.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/614",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 613,
+    "name": "Soho SM Convertible Shoulder Bag",
+    "slug": "soho-sm-convertible-shoulder-bag",
+    "permalink": "https://primedropelite.com/product/soho-sm-convertible-shoulder-bag/",
+    "date_created": "2026-05-31T13:49:32",
+    "date_created_gmt": "2026-05-31T18:49:32",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-003",
+    "price": "469000",
+    "regular_price": "469000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 788,
+        "date_created": "2026-06-01T13:10:39",
+        "date_created_gmt": "2026-06-01T23:10:39",
+        "date_modified": "2026-06-01T13:10:39",
+        "date_modified_gmt": "2026-06-01T23:10:39",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/d1b876a2-ea46-49ed-8818-e8f749c559d1.jpg",
+        "name": "Soho SM Convertible Shoulder Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/d1b876a2-ea46-49ed-8818-e8f749c559d1.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/d1b876a2-ea46-49ed-8818-e8f749c559d1-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/d1b876a2-ea46-49ed-8818-e8f749c559d1-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/d1b876a2-ea46-49ed-8818-e8f749c559d1-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/d1b876a2-ea46-49ed-8818-e8f749c559d1-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/d1b876a2-ea46-49ed-8818-e8f749c559d1-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/d1b876a2-ea46-49ed-8818-e8f749c559d1-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/d1b876a2-ea46-49ed-8818-e8f749c559d1-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>469.000</bdi></span>",
+    "related_ids": [
+      616,
+      626,
+      633,
+      618,
+      612
+    ],
+    "meta_data": [
+      {
+        "id": 2641,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/d1b876a2-ea46-49ed-8818-e8f749c559d1.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/613",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 612,
+    "name": "Jet Set LG Leather Crossbody Bag",
+    "slug": "jet-set-lg-leather-crossbody-bag",
+    "permalink": "https://primedropelite.com/product/jet-set-lg-leather-crossbody-bag/",
+    "date_created": "2026-05-31T13:49:32",
+    "date_created_gmt": "2026-05-31T18:49:32",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-002",
+    "price": "519000",
+    "regular_price": "519000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 771,
+        "date_created": "2026-06-01T13:10:10",
+        "date_created_gmt": "2026-06-01T23:10:10",
+        "date_modified": "2026-06-01T13:10:10",
+        "date_modified_gmt": "2026-06-01T23:10:10",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/3eac53b4-5de0-4bcd-b809-b9fd616a6f60.jpg",
+        "name": "Jet Set LG Leather Crossbody Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/3eac53b4-5de0-4bcd-b809-b9fd616a6f60.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/3eac53b4-5de0-4bcd-b809-b9fd616a6f60-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/3eac53b4-5de0-4bcd-b809-b9fd616a6f60-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/3eac53b4-5de0-4bcd-b809-b9fd616a6f60-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/3eac53b4-5de0-4bcd-b809-b9fd616a6f60-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/3eac53b4-5de0-4bcd-b809-b9fd616a6f60-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/3eac53b4-5de0-4bcd-b809-b9fd616a6f60-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/3eac53b4-5de0-4bcd-b809-b9fd616a6f60-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>519.000</bdi></span>",
+    "related_ids": [
+      626,
+      622,
+      624,
+      614,
+      623
+    ],
+    "meta_data": [
+      {
+        "id": 2573,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/3eac53b4-5de0-4bcd-b809-b9fd616a6f60.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/612",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  },
+  {
+    "id": 611,
+    "name": "Soho SM Signature Logo Convertible Crossbody Bag",
+    "slug": "soho-sm-signature-logo-convertible-crossbody-bag",
+    "permalink": "https://primedropelite.com/product/soho-sm-signature-logo-convertible-crossbody-bag/",
+    "date_created": "2026-05-31T13:49:32",
+    "date_created_gmt": "2026-05-31T18:49:32",
+    "date_modified": "2026-05-31T13:49:33",
+    "date_modified_gmt": "2026-05-31T18:49:33",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "",
+    "short_description": "",
+    "sku": "PD-MK-001",
+    "price": "469000",
+    "regular_price": "469000",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "1"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 32,
+        "name": "Bolsos",
+        "slug": "bolsos"
+      },
+      {
+        "id": 24,
+        "name": "MICHAEL KORS",
+        "slug": "michael-kors"
+      }
+    ],
+    "brands": [],
+    "tags": [],
+    "images": [
+      {
+        "id": 789,
+        "date_created": "2026-06-01T13:10:40",
+        "date_created_gmt": "2026-06-01T23:10:40",
+        "date_modified": "2026-06-01T13:10:40",
+        "date_modified_gmt": "2026-06-01T23:10:40",
+        "src": "https://primedropelite.com/wp-content/uploads/2026/05/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6.jpg",
+        "name": "Soho SM Signature Logo Convertible Crossbody Bag",
+        "alt": "",
+        "srcset": "https://primedropelite.com/wp-content/uploads/2026/05/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6.jpg 796w, https://primedropelite.com/wp-content/uploads/2026/05/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6-223x300.jpg 223w, https://primedropelite.com/wp-content/uploads/2026/05/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6-760x1024.jpg 760w, https://primedropelite.com/wp-content/uploads/2026/05/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6-768x1034.jpg 768w, https://primedropelite.com/wp-content/uploads/2026/05/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6-300x404.jpg 300w, https://primedropelite.com/wp-content/uploads/2026/05/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6-600x808.jpg 600w, https://primedropelite.com/wp-content/uploads/2026/05/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6-64x86.jpg 64w",
+        "sizes": "(max-width: 796px) 100vw, 796px",
+        "thumbnail": "https://primedropelite.com/wp-content/uploads/2026/05/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6-300x300.jpg"
+      }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>469.000</bdi></span>",
+    "related_ids": [
+      626,
+      630,
+      638,
+      613,
+      617
+    ],
+    "meta_data": [
+      {
+        "id": 2645,
+        "key": "_prime_drop_builder_image_url",
+        "value": "https://cdn.zyrosite.com/cdn-ecommerce/store_01KPHZKWJS00X0E0R0CQ2MGV0G/assets/1a64fdb2-6efc-471b-a72c-2a1512a6a6b6.jpg"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "global_unique_id": "",
+    "_links": {
+      "self": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products/611",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://primedropelite.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  }
+]

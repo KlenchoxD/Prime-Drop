@@ -1,0 +1,3007 @@
+<?php
+/**
+ * Blocksy functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package Blocksy
+ */
+
+if (version_compare(PHP_VERSION, '5.7.0', '<')) {
+	require get_template_directory() . '/inc/php-fallback.php';
+	return;
+}
+
+require get_template_directory() . '/inc/init.php';
+
+/* PRIME_DROP_FOOTER_VIDEO_START */
+remove_action('ct_before_footer', 'primedrop_footer_video');
+if (!function_exists('primedrop_footer_video_optimized_markup')) {
+	function primedrop_footer_video_optimized_markup() {
+		return '<video class="footer-video-bg" autoplay muted loop playsinline preload="auto" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;z-index:0;">
+    <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
+  </video>';
+	}
+}
+if (!function_exists('primedrop_footer_video_optimize_output')) {
+	function primedrop_footer_video_optimize_output($html) {
+		$optimized = primedrop_footer_video_optimized_markup();
+		$pattern = '#<video\s+class="footer-video-bg"[^>]*>\s*<source\s+src="https://videos\.pexels\.com/video-files/3571264/3571264-uhd_2560_1440_30fps\.mp4"[^>]*>\s*</video>#i';
+		return preg_replace($pattern, $optimized, $html);
+	}
+}
+add_action('template_redirect', function() {
+	ob_start('primedrop_footer_video_optimize_output');
+}, 0);
+/* PRIME_DROP_FOOTER_VIDEO_END */
+
+/* PRIME_DROP_CART_DRAWER_START */
+if (!function_exists('pd_cart_drawer_template_path')) {
+	function pd_cart_drawer_template_path() {
+		return trailingslashit(get_stylesheet_directory()) . 'cart-drawer.php';
+	}
+}
+
+if (!function_exists('pd_cart_fragments')) {
+	add_filter('woocommerce_add_to_cart_fragments', 'pd_cart_fragments');
+	function pd_cart_fragments($fragments) {
+		if (!function_exists('WC') || !WC()->cart) {
+			return $fragments;
+		}
+
+		ob_start();
+		?>
+		<div class="pd-cart-count"><?php echo esc_html(WC()->cart->get_cart_contents_count()); ?></div>
+		<?php
+		$fragments['.pd-cart-count'] = ob_get_clean();
+
+		ob_start();
+		$template = pd_cart_drawer_template_path();
+		if (file_exists($template)) {
+			include $template;
+		}
+		$fragments['.pd-cart-drawer'] = ob_get_clean();
+
+		return $fragments;
+	}
+}
+
+if (!function_exists('pd_cart_drawer_scripts')) {
+	add_action('wp_enqueue_scripts', 'pd_cart_drawer_scripts');
+	function pd_cart_drawer_scripts() {
+		if (!function_exists('is_woocommerce')) {
+			return;
+		}
+
+		wp_enqueue_script('wc-cart-fragments');
+		wp_enqueue_script(
+			'pd-cart-drawer',
+			trailingslashit(get_stylesheet_directory_uri()) . 'js/cart-drawer.js',
+			array('jquery', 'wc-cart-fragments'),
+			'1.0.8',
+			true
+		);
+		wp_localize_script(
+			'pd-cart-drawer',
+			'pdCartDrawerParams',
+			array(
+				'ajax_url' => admin_url('admin-ajax.php'),
+				'nonce' => wp_create_nonce('pd_cart_drawer_nonce'),
+			)
+		);
+	}
+}
+
+if (!function_exists('pd_render_cart_drawer')) {
+	add_action('wp_footer', 'pd_render_cart_drawer');
+	function pd_render_cart_drawer() {
+		if (!function_exists('WC') || !WC()->cart) {
+			return;
+		}
+
+		$template = pd_cart_drawer_template_path();
+		if (file_exists($template)) {
+			include $template;
+		}
+		echo '<div id="cart-drawer-overlay" class="pd-cart-overlay cart-drawer-overlay"></div>';
+	}
+}
+
+
+if (!function_exists('pd_update_cart_quantity')) {
+	add_action('wp_ajax_pd_update_cart_quantity', 'pd_update_cart_quantity');
+	add_action('wp_ajax_nopriv_pd_update_cart_quantity', 'pd_update_cart_quantity');
+
+	function pd_update_cart_quantity() {
+		check_ajax_referer('pd_cart_drawer_nonce', 'nonce');
+
+		if (!function_exists('WC') || !WC()->cart) {
+			wp_send_json_error(array('message' => 'Cart unavailable'));
+		}
+
+		$cart_item_key = isset($_POST['cart_item_key']) ? sanitize_text_field(wp_unslash($_POST['cart_item_key'])) : '';
+		$quantity = isset($_POST['quantity']) ? max(0, absint($_POST['quantity'])) : 0;
+
+		if (!$cart_item_key || !isset(WC()->cart->cart_contents[$cart_item_key])) {
+			wp_send_json_error(array('message' => 'Invalid item'));
+		}
+
+		WC()->cart->set_quantity($cart_item_key, $quantity, true);
+		WC()->cart->calculate_totals();
+
+		wp_send_json_success(array(
+			'count' => WC()->cart->get_cart_contents_count(),
+			'subtotal' => WC()->cart->get_cart_subtotal(),
+		));
+	}
+}
+
+/* PRIME_DROP_CART_DRAWER_END */
+
+/* Barra de búsqueda en páginas de tienda */
+add_action('woocommerce_before_shop_loop', function() {
+  echo '<div class="pd-shop-search">
+    <form role="search" method="get" action="' . esc_url(home_url('/')) . '">
+      <input type="search" 
+             placeholder="Buscar bolsos..." 
+             value="' . get_search_query() . '" 
+             name="s" />
+      <input type="hidden" name="post_type" value="product" />
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+    </form>
+  </div>';
+}, 25);
+
+add_action('wp_head', function() {
+    echo '<style>
+    /* ÍCONOS HEADER — cuenta y carrito */
+    .ct-account-item,
+    .ct-cart-item {
+        display: flex !important;
+        align-items: center !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    /* Quitar círculo del ícono cuenta */
+    .ct-account-item,
+    .ct-account-item .ct-icon {
+        background: none !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        width: auto !important;
+        height: auto !important;
+    }
+    /* SVG negro y bold */
+    .ct-account-item svg,
+    .ct-account-item .ct-icon svg,
+    .ct-cart-item svg {
+        width: 22px !important;
+        height: 22px !important;
+        fill: #000000 !important;
+        stroke: #000000 !important;
+        display: block !important;
+    }
+    /* Alinear cuenta y carrito en la misma línea */
+    .header-cart-icons,
+    [data-id="account"],
+    [data-id="cart"] {
+        display: flex !important;
+        align-items: center !important;
+        gap: 16px !important;
+    }
+    /* Hover */
+    .ct-account-item:hover svg,
+    .ct-cart-item:hover svg {
+        opacity: 0.7 !important;
+    }
+    @media (max-width: 999px) {
+        .ct-account-item,
+        .ct-cart-item,
+        .ct-account-item svg,
+        .ct-cart-item svg {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+    }
+    </style>';
+}, 999);
+
+add_action('wp_head', function() {
+	?>
+	<style id="pd-builder-ref-icons">
+/* Header iconos Prime Drop - referencia builder */
+.ct-header-account .ct-account-item,
+.pd-mobile-account-shortcut {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+.ct-header-account .ct-account-item .pd-account-icon-shein,
+.ct-header-account .ct-account-item svg.pd-account-icon-shein,
+.pd-mobile-account-shortcut svg {
+  width: 24px !important;
+  height: 24px !important;
+  fill: none !important;
+  color: #000000 !important;
+  stroke: #000000 !important;
+  display: block !important;
+}
+
+.ct-header-account .ct-account-item .pd-account-icon-shein *,
+.ct-header-account .ct-account-item svg.pd-account-icon-shein *,
+.pd-mobile-account-shortcut svg * {
+  fill: none !important;
+  stroke: #000000 !important;
+}
+
+.ct-header-account .ct-account-item:hover,
+.pd-mobile-account-shortcut:hover {
+  opacity: 0.7 !important;
+  background: transparent !important;
+}
+
+.ct-header-cart .ct-cart-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 26px !important;
+  height: 30px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ct-header-cart .ct-icon-container {
+  width: 24px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+}
+
+.ct-header-cart .ct-icon-container > svg {
+  display: none !important;
+}
+
+.ct-header-cart .ct-icon-container::before {
+  content: '' !important;
+  display: block !important;
+  width: 19px !important;
+  height: 24px !important;
+  background: #000000 !important;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg%20width%3D%2719%27%20height%3D%2724%27%20viewBox%3D%270%200%2019%2024%27%20fill%3D%27none%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20fill-rule%3D%27evenodd%27%20clip-rule%3D%27evenodd%27%20d%3D%27M5.94636%205.35922C6.29451%203.00506%207.9363%201.39824%209.67973%201.39824C11.4232%201.39824%2013.0649%203.00506%2013.4131%205.35922H5.94636ZM4.53847%205.35922C4.90317%202.43147%206.95866%200.000183105%209.67973%200.000183105C12.4008%200.000183105%2014.4563%202.43147%2014.821%205.35922H17.2816H18.6797V6.75728V21.2039C18.6797%2022.7481%2017.4278%2024%2015.8836%2024H3.4758C1.93155%2024%200.679688%2022.7481%200.679688%2021.2039V6.75728V5.35922H2.07775H4.53847ZM2.07775%206.75728H4.52596V9.08752C4.52596%209.47359%204.83893%209.78655%205.22499%209.78655C5.61105%209.78655%205.92402%209.47359%205.92402%209.08752V6.75728H13.5259V9.08752C13.5259%209.47359%2013.8389%209.78655%2014.2249%209.78655C14.611%209.78655%2014.9239%209.47359%2014.9239%209.08752V6.75728H17.2816V21.2039C17.2816%2021.976%2016.6557%2022.6019%2015.8836%2022.6019H3.4758C2.70368%2022.6019%202.07775%2021.976%202.07775%2021.2039V6.75728Z%27%20fill%3D%27black%27%2F%3E%3C%2Fsvg%3E") center / contain no-repeat !important;
+  mask: url("data:image/svg+xml,%3Csvg%20width%3D%2719%27%20height%3D%2724%27%20viewBox%3D%270%200%2019%2024%27%20fill%3D%27none%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20fill-rule%3D%27evenodd%27%20clip-rule%3D%27evenodd%27%20d%3D%27M5.94636%205.35922C6.29451%203.00506%207.9363%201.39824%209.67973%201.39824C11.4232%201.39824%2013.0649%203.00506%2013.4131%205.35922H5.94636ZM4.53847%205.35922C4.90317%202.43147%206.95866%200.000183105%209.67973%200.000183105C12.4008%200.000183105%2014.4563%202.43147%2014.821%205.35922H17.2816H18.6797V6.75728V21.2039C18.6797%2022.7481%2017.4278%2024%2015.8836%2024H3.4758C1.93155%2024%200.679688%2022.7481%200.679688%2021.2039V6.75728V5.35922H2.07775H4.53847ZM2.07775%206.75728H4.52596V9.08752C4.52596%209.47359%204.83893%209.78655%205.22499%209.78655C5.61105%209.78655%205.92402%209.47359%205.92402%209.08752V6.75728H13.5259V9.08752C13.5259%209.47359%2013.8389%209.78655%2014.2249%209.78655C14.611%209.78655%2014.9239%209.47359%2014.9239%209.08752V6.75728H17.2816V21.2039C17.2816%2021.976%2016.6557%2022.6019%2015.8836%2022.6019H3.4758C2.70368%2022.6019%202.07775%2021.976%202.07775%2021.2039V6.75728Z%27%20fill%3D%27black%27%2F%3E%3C%2Fsvg%3E") center / contain no-repeat !important;
+}
+
+.ct-header-account,
+.ct-header-cart {
+  display: flex !important;
+  align-items: center !important;
+}
+
+@media (max-width: 999px) {
+  .ct-header-account {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .ct-header-account .ct-account-item,
+  .pd-mobile-account-shortcut {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Cart drawer estilo referencia builder */
+html body #cart-drawer.pd-cart-drawer.cart-drawer {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: auto !important;
+  height: 100dvh !important;
+  max-height: 100dvh !important;
+  background: #ffffff !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.12) !important;
+  transform: translate3d(100%, 0, 0) !important;
+  transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: transform !important;
+  font-family: 'Roboto Serif', 'Playfair Display', serif !important;
+}
+
+@media (min-width: 769px) {
+  html body #cart-drawer.pd-cart-drawer.cart-drawer {
+    width: 360px !important;
+    max-width: 360px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html body #cart-drawer.pd-cart-drawer.cart-drawer {
+    width: 72vw !important;
+    max-width: 320px !important;
+  }
+}
+
+html body #cart-drawer.pd-cart-drawer.cart-drawer.active,
+html body #cart-drawer.pd-cart-drawer.cart-drawer.open {
+  transform: translate3d(0, 0, 0) !important;
+}
+
+html body #cart-drawer-overlay.pd-cart-overlay.cart-drawer-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(29,30,32,0.2) !important;
+  z-index: 99998 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
+html body #cart-drawer-overlay.pd-cart-overlay.cart-drawer-overlay.active {
+  opacity: 1 !important;
+  pointer-events: all !important;
+}
+
+.pd-cart-drawer-header {
+  flex-shrink: 0 !important;
+  height: 72px !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid #eeeeee !important;
+}
+
+.pd-cart-drawer-header h3 {
+  margin: 0 !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: #111111 !important;
+}
+
+.pd-cart-drawer-close {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+  color: #6b7280 !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+}
+
+.pd-cart-drawer-items {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 18px 20px 0 !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+}
+
+.pd-cart-drawer-items::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+.pd-cart-drawer-items::-webkit-scrollbar-thumb {
+  background: #8a8a8a !important;
+  border-radius: 10px !important;
+}
+
+.pd-cart-item {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 58px minmax(0, 1fr) 18px !important;
+  gap: 14px !important;
+  padding: 8px 0 24px !important;
+  border-bottom: none !important;
+}
+
+.pd-cart-item-thumb,
+.pd-cart-recommendation-thumb {
+  width: 58px !important;
+  height: 58px !important;
+  border: 1px solid #dedede !important;
+  border-radius: 5px !important;
+  overflow: hidden !important;
+  background: #f8f8f8 !important;
+  display: block !important;
+}
+
+.pd-cart-item-thumb img,
+.pd-cart-recommendation-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.pd-cart-item-info {
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+.pd-cart-item-name,
+.pd-cart-recommendation-name {
+  color: #111111 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.25 !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.pd-cart-item-meta {
+  margin: 0 !important;
+  color: #6b7280 !important;
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+}
+
+.pd-cart-item-bottom {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  margin-top: 6px !important;
+}
+
+.pd-cart-qty {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #2563eb !important;
+  font-size: 13px !important;
+}
+
+.pd-cart-qty-btn {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  padding: 0 !important;
+  border: 1px solid #7aa7ff !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  color: #2563eb !important;
+  line-height: 12px !important;
+  font-size: 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+.pd-cart-item-price {
+  color: #111111 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+
+.pd-cart-item-remove {
+  color: #3b82f6 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  padding-top: 2px !important;
+  text-decoration: none !important;
+}
+
+
+
+
+
+
+
+.pd-cart-drawer-footer {
+  flex-shrink: 0 !important;
+  padding: 14px 20px 12px !important;
+  border-top: 1px solid #dedede !important;
+  background: #ffffff !important;
+}
+
+.pd-cart-subtotal {
+  margin: 0 0 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  color: #111111 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.pd-cart-shipping-note {
+  margin: 0 0 12px !important;
+  color: #6b7280 !important;
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+}
+
+.pd-cart-checkout {
+  display: block !important;
+  width: 100% !important;
+  padding: 13px 18px !important;
+  background: #18181b !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+}
+
+.pd-cart-secure {
+  margin-top: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  color: #6b7280 !important;
+  font-size: 12px !important;
+}
+
+.pd-cart-empty {
+  margin: 0 !important;
+  color: #111111 !important;
+  font-size: 14px !important;
+}
+
+.pd-cart-drawer.is-loading::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(255,255,255,0.55) !important;
+  pointer-events: none !important;
+}
+/* END Header iconos Prime Drop - referencia builder */
+	</style>
+	<?php
+}, 1001);
+
+add_action('wp_head', function() {
+	?>
+	<style id="pd-mobile-account-and-cookie-fixes">
+	@media (max-width: 999px) {
+	  .ct-header-account[data-id="account"] {
+	    position: fixed !important;
+	    top: 30px !important;
+	    right: 88px !important;
+	    z-index: 10000 !important;
+	    width: 28px !important;
+	    height: 28px !important;
+	    display: flex !important;
+	    align-items: center !important;
+	    justify-content: center !important;
+	    opacity: 1 !important;
+	    visibility: visible !important;
+	    pointer-events: auto !important;
+	  }
+
+	  .ct-header-account[data-id="account"] .ct-account-item {
+	    width: 28px !important;
+	    height: 28px !important;
+	    display: flex !important;
+	    align-items: center !important;
+	    justify-content: center !important;
+	    opacity: 1 !important;
+	    visibility: visible !important;
+	    pointer-events: auto !important;
+	    background: transparent !important;
+	    border: none !important;
+	    box-shadow: none !important;
+	    padding: 0 !important;
+	  }
+
+	  .ct-header-account[data-id="account"] .ct-label {
+	    display: none !important;
+	  }
+
+	  .ct-header-account[data-id="account"] svg,
+	  .ct-header-account[data-id="account"] svg * {
+	    width: 24px !important;
+	    height: 24px !important;
+	    color: #000000 !important;
+	    stroke: #000000 !important;
+	    fill: none !important;
+	    opacity: 1 !important;
+	    visibility: visible !important;
+	  }
+	}
+
+	body.pd-cart-open .cky-consent-container,
+	body.pd-cart-open .cmplz-cookiebanner,
+	body.pd-cart-open #cookie-notice,
+	body.pd-cart-open .cookie-notice,
+	body.pd-cart-open [class*="cookie"][class*="banner"],
+	body.pd-cart-open [class*="cookie"][class*="consent"] {
+	  display: none !important;
+	  visibility: hidden !important;
+	  pointer-events: none !important;
+	}
+	</style>
+	<?php
+}, 1004);
+
+
+
+
+
+/* PRIME_DROP_COOKIE_SERVER_TRANSLATION_START */
+add_action('template_redirect', function() {
+	if (is_admin() || wp_doing_ajax()) {
+		return;
+	}
+
+	ob_start(function($html) {
+		$replacements = array(
+			'We use cookies to ensure that we give you the best experience on our website.' => 'Usamos cookies para mejorar tu experiencia de compra.',
+			'We use cookies to ensure that we give you the best experience on our website' => 'Usamos cookies para mejorar tu experiencia de compra',
+			'>Accept<' => '>Aceptar<',
+			'>Decline<' => '>Rechazar<',
+		);
+
+		return str_replace(array_keys($replacements), array_values($replacements), $html);
+	});
+}, 0);
+/* PRIME_DROP_COOKIE_SERVER_TRANSLATION_END */
+
+/* PRIME_DROP_SERVER_MOBILE_ACCOUNT_START */
+add_action('wp_head', function() {
+	?>
+	<style id="pd-server-mobile-account-style">
+	@media (max-width: 999px) {
+	  [data-device="mobile"] [data-column="end"] [data-items="primary"] {
+	    display: flex !important;
+	    align-items: center !important;
+	    justify-content: flex-end !important;
+	    gap: 14px !important;
+	  }
+
+	  [data-device="mobile"] .pd-mobile-account-server {
+	    display: inline-flex !important;
+	    align-items: center !important;
+	    justify-content: center !important;
+	    width: 28px !important;
+	    height: 28px !important;
+	    padding: 0 !important;
+	    margin: 0 !important;
+	    color: #000 !important;
+	    text-decoration: none !important;
+	    opacity: 1 !important;
+	    visibility: visible !important;
+	    flex: 0 0 28px !important;
+	  }
+
+	  [data-device="mobile"] .pd-mobile-account-server svg {
+	    width: 26px !important;
+	    height: 26px !important;
+	    display: block !important;
+	    color: #000 !important;
+	    stroke: #000 !important;
+	    fill: none !important;
+	  }
+
+	  .pd-mobile-account-shortcut,
+	  .pd-mobile-cart-shortcut {
+	    display: none !important;
+	  }
+
+	  html.pd-cart-scroll-locked,
+	  body.pd-cart-scroll-locked {
+	    overflow: hidden !important;
+	    overscroll-behavior: none !important;
+	  }
+	}
+
+	@media (min-width: 1000px) {
+	  .pd-mobile-account-server,
+	  .pd-mobile-account-shortcut,
+	  .pd-mobile-cart-shortcut {
+	    display: none !important;
+	  }
+	}
+	</style>
+	<?php
+}, 1030);
+
+add_action('template_redirect', function() {
+	if (is_admin() || wp_doing_ajax()) {
+		return;
+	}
+
+	ob_start(function($html) {
+		if (strpos($html, 'pd-mobile-account-server') !== false && strpos($html, '<a href="#account-modal" class="ct-account-item pd-mobile-account-server"') !== false) {
+			return $html;
+		}
+
+		$account_html = '<a href="#account-modal" class="ct-account-item pd-mobile-account-server" aria-label="ACCEDER" data-label="left"><svg class="ct-icon pd-account-icon-shein" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7.5" r="3.7" stroke="currentColor" stroke-width="1.7"></circle><path d="M4.8 20.2c0.8-4.3 3.7-6.6 7.2-6.6s6.4 2.3 7.2 6.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg></a>';
+
+		$mobile_pos = strpos($html, '<div data-device="mobile">');
+		if ($mobile_pos === false) {
+			return $html;
+		}
+
+		$cart_pos = strpos($html, 'class="ct-header-cart"', $mobile_pos);
+		if ($cart_pos === false) {
+			return $html;
+		}
+
+		$cart_div_start = strrpos(substr($html, 0, $cart_pos), '<div');
+		if ($cart_div_start === false || $cart_div_start < $mobile_pos) {
+			return $html;
+		}
+
+		return substr($html, 0, $cart_div_start) . $account_html . substr($html, $cart_div_start);
+	});
+}, 1);
+
+add_action('wp_footer', function() {
+	?>
+	<script id="pd-server-mobile-account-modal-js">
+	document.addEventListener('click', function(event) {
+	  var trigger = event.target.closest && event.target.closest('.pd-mobile-account-server');
+	  if (!trigger) return;
+
+	  var nativeAccount = document.querySelector('[data-device="desktop"] .ct-account-item[href="#account-modal"]');
+	  if (nativeAccount && nativeAccount !== trigger) {
+	    event.preventDefault();
+	    nativeAccount.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+	  }
+	});
+	</script>
+	<?php
+}, 1030);
+/* PRIME_DROP_SERVER_MOBILE_ACCOUNT_END */
+
+/* PRIME_DROP_NAV_MENU_SECTIONS_START */
+add_action('wp_head', function() {
+	?>
+	<style id="pd-nav-menu-sections">
+	/* Estado activo del menú en PC, tablet y Android */
+	.ct-menu-link.pd-menu-active,
+	.current-menu-item > .ct-menu-link,
+	.current_page_item > .ct-menu-link {
+	  color: #000000 !important;
+	  opacity: 1 !important;
+	}
+
+	[data-device="desktop"] .ct-menu-link.pd-menu-active,
+	[data-device="desktop"] .current-menu-item > .ct-menu-link {
+	  position: relative !important;
+	}
+
+	[data-device="desktop"] .ct-menu-link.pd-menu-active::after,
+	[data-device="desktop"] .current-menu-item > .ct-menu-link::after {
+	  content: "" !important;
+	  position: absolute !important;
+	  left: 0 !important;
+	  right: 0 !important;
+	  bottom: -8px !important;
+	  height: 1px !important;
+	  background: #000000 !important;
+	}
+
+	/* Menú hamburguesa/off-canvas limpio */
+	#offcanvas,
+	#offcanvas .ct-panel-inner,
+	#offcanvas .ct-panel-content,
+	#offcanvas .ct-panel-content-inner {
+	  background: #000000 !important;
+	}
+
+	#offcanvas .ct-panel-content[data-device="desktop"] {
+	  display: none !important;
+	}
+
+	#offcanvas .ct-panel-content[data-device="mobile"] {
+	  display: flex !important;
+	  align-items: stretch !important;
+	  min-height: 100% !important;
+	}
+
+	#offcanvas .ct-panel-content[data-device="mobile"] .ct-panel-content-inner {
+	  width: 100% !important;
+	  padding: 58px 30px 34px !important;
+	  display: flex !important;
+	  flex-direction: column !important;
+	  justify-content: center !important;
+	}
+
+	#offcanvas nav[data-id="mobile-menu"],
+	#offcanvas .mobile-menu {
+	  width: 100% !important;
+	}
+
+	#offcanvas nav[data-id="mobile-menu"] ul,
+	#offcanvas .mobile-menu ul {
+	  display: flex !important;
+	  flex-direction: column !important;
+	  gap: 0 !important;
+	  margin: 0 !important;
+	  padding: 0 !important;
+	  list-style: none !important;
+	}
+
+	#offcanvas nav[data-id="mobile-menu"] li,
+	#offcanvas .mobile-menu li {
+	  margin: 0 !important;
+	  padding: 0 !important;
+	  border-bottom: 1px solid rgba(255,255,255,0.14) !important;
+	}
+
+	#offcanvas nav[data-id="mobile-menu"] li:first-child,
+	#offcanvas .mobile-menu li:first-child {
+	  border-top: 1px solid rgba(255,255,255,0.14) !important;
+	}
+
+	#offcanvas nav[data-id="mobile-menu"] a.ct-menu-link,
+	#offcanvas .mobile-menu a.ct-menu-link {
+	  display: flex !important;
+	  align-items: center !important;
+	  justify-content: space-between !important;
+	  min-height: 58px !important;
+	  padding: 16px 0 !important;
+	  color: #ffffff !important;
+	  font-family: 'Inter', sans-serif !important;
+	  font-size: 18px !important;
+	  font-weight: 600 !important;
+	  line-height: 1.35 !important;
+	  letter-spacing: 2.2px !important;
+	  text-transform: uppercase !important;
+	  text-decoration: none !important;
+	  opacity: 0.86 !important;
+	  transition: opacity 0.2s ease, padding-left 0.2s ease !important;
+	}
+
+	#offcanvas nav[data-id="mobile-menu"] a.ct-menu-link:hover,
+	#offcanvas .mobile-menu a.ct-menu-link:hover {
+	  opacity: 1 !important;
+	  padding-left: 8px !important;
+	}
+
+	#offcanvas nav[data-id="mobile-menu"] a.ct-menu-link.pd-menu-active,
+	#offcanvas .mobile-menu a.ct-menu-link.pd-menu-active,
+	#offcanvas .mobile-menu .current-menu-item > a.ct-menu-link {
+	  opacity: 1 !important;
+	  color: #ffffff !important;
+	  padding-left: 12px !important;
+	  border-left: 2px solid #ffffff !important;
+	}
+
+	/* Ocultar redes genéricas con enlaces # dentro del menú móvil */
+	#offcanvas .ct-header-socials {
+	  display: none !important;
+	}
+
+	#offcanvas .ct-toggle-close {
+	  color: #ffffff !important;
+	  border: 1px solid rgba(255,255,255,0.35) !important;
+	  border-radius: 50% !important;
+	  width: 38px !important;
+	  height: 38px !important;
+	  display: flex !important;
+	  align-items: center !important;
+	  justify-content: center !important;
+	}
+
+	#offcanvas .ct-toggle-close svg {
+	  fill: #ffffff !important;
+	  color: #ffffff !important;
+	}
+
+	@media (max-width: 768px) {
+	  [data-header*="type-1"] #offcanvas,
+	  #offcanvas {
+	    --side-panel-width: 84vw !important;
+	    max-width: 360px !important;
+	  }
+
+	  #offcanvas .ct-panel-content[data-device="mobile"] .ct-panel-content-inner {
+	    padding: 52px 26px 30px !important;
+	  }
+
+	  #offcanvas nav[data-id="mobile-menu"] a.ct-menu-link,
+	  #offcanvas .mobile-menu a.ct-menu-link {
+	    font-size: 17px !important;
+	    letter-spacing: 2px !important;
+	  }
+	}
+
+	@media (min-width: 769px) and (max-width: 999px) {
+	  [data-header*="type-1"] #offcanvas,
+	  #offcanvas {
+	    --side-panel-width: 420px !important;
+	    max-width: 420px !important;
+	  }
+	}
+	</style>
+	<?php
+}, 1040);
+
+add_action('wp_footer', function() {
+	?>
+	<script id="pd-nav-menu-sections-js">
+	(function() {
+	  function normalize(path) {
+	    path = (path || '/').split('?')[0].split('#')[0];
+	    if (!path.startsWith('/')) {
+	      try { path = new URL(path, window.location.origin).pathname; } catch (e) {}
+	    }
+	    path = path.replace(/\/+$/, '/');
+	    return path || '/';
+	  }
+
+	  function sectionFor(path) {
+	    path = normalize(path);
+	    if (path === '/') return 'inicio';
+	    if (path.indexOf('/categoria-producto/mujer/') === 0 || path.indexOf('/product-category/mujer/') === 0) return 'mujer';
+	    if (path.indexOf('/categoria-producto/hombre/') === 0 || path.indexOf('/product-category/hombre/') === 0) return 'hombre';
+	    if (path.indexOf('/bolsos/') === 0 || path.indexOf('/product-category/bolsos/') === 0 || path.indexOf('/tienda/') === 0) return 'bolsos';
+	    if (path.indexOf('/mundo-prime/') === 0) return 'mundo-prime';
+	    return '';
+	  }
+
+	  function labelForHref(href) {
+	    var path;
+	    try { path = new URL(href, window.location.origin).pathname; } catch (e) { path = href; }
+	    return sectionFor(path);
+	  }
+
+	  function markActiveMenu() {
+	    var current = sectionFor(window.location.pathname);
+	    document.querySelectorAll('a.ct-menu-link').forEach(function(link) {
+	      link.classList.remove('pd-menu-active');
+	      var linkSection = labelForHref(link.getAttribute('href') || '');
+	      if (current && linkSection && current === linkSection) {
+	        link.classList.add('pd-menu-active');
+	        var li = link.closest('li');
+	        if (li) li.classList.add('current-menu-item');
+	      }
+	    });
+	  }
+
+	  document.addEventListener('DOMContentLoaded', markActiveMenu);
+	  window.addEventListener('load', markActiveMenu);
+	  setTimeout(markActiveMenu, 800);
+	})();
+	</script>
+	<?php
+}, 1040);
+/* PRIME_DROP_NAV_MENU_SECTIONS_END */
+
+/* PRIME_DROP_PRODUCT_GRID_RESPONSIVE_START */
+add_action('wp_head', function() {
+	?>
+	<style id="pd-product-grid-responsive">
+	/* Grilla productos Prime Drop - móvil/tablet/PC */
+	@media (max-width: 768px) {
+	  body.woocommerce-shop ul.products,
+	  body.woocommerce-page ul.products,
+	  body.archive.woocommerce ul.products,
+	  .woocommerce ul.products.columns-3,
+	  .woocommerce ul.products[data-products] {
+	    display: grid !important;
+	    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	    gap: 28px 14px !important;
+	    width: 100% !important;
+	    max-width: 100% !important;
+	    margin: 0 !important;
+	    padding: 0 16px 90px !important;
+	    box-sizing: border-box !important;
+	    align-items: start !important;
+	    justify-content: center !important;
+	  }
+
+	  body.woocommerce-shop ul.products li.product,
+	  body.woocommerce-page ul.products li.product,
+	  body.archive.woocommerce ul.products li.product,
+	  .woocommerce ul.products.columns-3 li.product,
+	  .woocommerce ul.products[data-products] li.product {
+	    width: 100% !important;
+	    max-width: 100% !important;
+	    min-width: 0 !important;
+	    flex: none !important;
+	    float: none !important;
+	    clear: none !important;
+	    display: flex !important;
+	    flex-direction: column !important;
+	    height: auto !important;
+	    min-height: 0 !important;
+	    overflow: visible !important;
+	    margin: 0 !important;
+	    padding: 0 !important;
+	    text-align: center !important;
+	    box-sizing: border-box !important;
+	  }
+
+	  .woocommerce ul.products li.product figure,
+	  .woocommerce ul.products li.product .ct-media-container {
+	    width: 100% !important;
+	    margin: 0 !important;
+	    display: block !important;
+	  }
+
+	  .woocommerce ul.products li.product a img,
+	  .woocommerce ul.products li.product img {
+	    width: 100% !important;
+	    height: 180px !important;
+	    min-height: 180px !important;
+	    max-height: 180px !important;
+	    object-fit: cover !important;
+	    object-position: center !important;
+	    border-radius: 4px !important;
+	    display: block !important;
+	  }
+
+	  .woocommerce ul.products li.product .woocommerce-loop-product__title {
+	    min-height: 38px !important;
+	    max-height: 42px !important;
+	    height: auto !important;
+	    margin: 12px 0 5px !important;
+	    padding: 0 !important;
+	    overflow: hidden !important;
+	    display: -webkit-box !important;
+	    -webkit-line-clamp: 2 !important;
+	    -webkit-box-orient: vertical !important;
+	    font-size: 12px !important;
+	    line-height: 1.35 !important;
+	    letter-spacing: 0.4px !important;
+	    text-align: center !important;
+	  }
+
+	  .woocommerce ul.products li.product .woocommerce-loop-product__title a {
+	    font-size: inherit !important;
+	    line-height: inherit !important;
+	    letter-spacing: inherit !important;
+	    color: #000000 !important;
+	  }
+
+	  .woocommerce ul.products li.product .price {
+	    min-height: 22px !important;
+	    height: auto !important;
+	    margin: 0 0 8px !important;
+	    font-size: 13px !important;
+	    line-height: 1.2 !important;
+	    font-weight: 700 !important;
+	    color: #000000 !important;
+	  }
+
+	  /* Ocultar categorías/marcas en cards móviles: ensucian mucho la grilla */
+	  .woocommerce ul.products li.product .entry-meta,
+	  .woocommerce ul.products li.product .meta-categories,
+	  .woocommerce ul.products li.product [class*="brand"],
+	  .woocommerce ul.products li.product .woo-brand,
+	  .woocommerce ul.products li.product .branded-product-brand {
+	    display: none !important;
+	  }
+
+	  .woocommerce ul.products li.product .ct-woo-card-actions {
+	    margin-top: auto !important;
+	    width: 100% !important;
+	  }
+
+	  .woocommerce ul.products li.product .button,
+	  .woocommerce ul.products li.product a.button,
+	  .woocommerce ul.products li.product .add_to_cart_button {
+	    display: inline-flex !important;
+	    align-items: center !important;
+	    justify-content: center !important;
+	    width: 100% !important;
+	    max-width: 138px !important;
+	    min-height: 42px !important;
+	    margin: 8px auto 0 !important;
+	    padding: 10px 12px !important;
+	    border-radius: 22px !important;
+	    background: #000000 !important;
+	    color: #ffffff !important;
+	    font-size: 10px !important;
+	    line-height: 1.2 !important;
+	    font-weight: 700 !important;
+	    letter-spacing: 1.1px !important;
+	    text-transform: uppercase !important;
+	    white-space: normal !important;
+	    text-align: center !important;
+	  }
+	}
+
+	@media (max-width: 380px) {
+	  .woocommerce ul.products li.product a img,
+	  .woocommerce ul.products li.product img {
+	    height: 165px !important;
+	    min-height: 165px !important;
+	    max-height: 165px !important;
+	  }
+
+	  .woocommerce ul.products li.product .button,
+	  .woocommerce ul.products li.product a.button,
+	  .woocommerce ul.products li.product .add_to_cart_button {
+	    max-width: 126px !important;
+	    font-size: 9.5px !important;
+	    letter-spacing: 0.9px !important;
+	  }
+	}
+
+	@media (min-width: 769px) and (max-width: 999px) {
+	  .woocommerce ul.products.columns-3,
+	  .woocommerce ul.products[data-products] {
+	    display: grid !important;
+	    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+	    gap: 34px 22px !important;
+	    padding-left: 24px !important;
+	    padding-right: 24px !important;
+	  }
+
+	  .woocommerce ul.products li.product {
+	    width: 100% !important;
+	    max-width: 100% !important;
+	    flex: none !important;
+	    height: auto !important;
+	  }
+
+	  .woocommerce ul.products li.product a img,
+	  .woocommerce ul.products li.product img {
+	    height: 240px !important;
+	    min-height: 240px !important;
+	    max-height: 240px !important;
+	  }
+
+	  .woocommerce ul.products li.product .entry-meta,
+	  .woocommerce ul.products li.product .meta-categories {
+	    display: none !important;
+	  }
+
+	  .woocommerce ul.products li.product .button {
+	    max-width: 170px !important;
+	    font-size: 11px !important;
+	    padding: 11px 16px !important;
+	  }
+	}
+	</style>
+	<?php
+}, 1050);
+/* PRIME_DROP_PRODUCT_GRID_RESPONSIVE_END */
+
+/* PRIME_DROP_EMPTY_CATEGORY_STYLE_START */
+add_action('wp_head', function() {
+	?>
+	<style id="pd-empty-category-style">
+	.pd-empty-category {
+	  min-height: 420px;
+	  padding: 90px 22px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  text-align: center;
+	  background: #ffffff;
+	}
+
+	.pd-empty-category h1 {
+	  font-family: 'Playfair Display', Georgia, serif;
+	  font-size: clamp(42px, 7vw, 72px);
+	  line-height: 1;
+	  margin: 0 0 18px;
+	  color: #000000;
+	  letter-spacing: 0;
+	}
+
+	.pd-empty-category p {
+	  max-width: 540px;
+	  margin: 0 auto 28px;
+	  font-family: 'Inter', sans-serif;
+	  font-size: 15px;
+	  line-height: 1.7;
+	  color: #333333;
+	}
+
+	.pd-empty-category-btn {
+	  display: inline-flex;
+	  align-items: center;
+	  justify-content: center;
+	  min-height: 46px;
+	  padding: 13px 28px;
+	  border-radius: 25px;
+	  background: #000000;
+	  color: #ffffff !important;
+	  font-family: 'Inter', sans-serif;
+	  font-size: 12px;
+	  font-weight: 700;
+	  letter-spacing: 1.6px;
+	  text-transform: uppercase;
+	  text-decoration: none;
+	}
+
+	.pd-empty-category-btn:hover {
+	  background: #333333;
+	  color: #ffffff !important;
+	}
+	</style>
+	<?php
+}, 1055);
+/* PRIME_DROP_EMPTY_CATEGORY_STYLE_END */
+
+/* PRIME_DROP_BAGS_ONLY_CLEANUP_START */
+add_filter('wp_nav_menu_objects', function($items) {
+    return array_values(array_filter($items, function($item) {
+        $title = strtolower(trim(wp_strip_all_tags($item->title)));
+        $url = strtolower($item->url);
+
+        return !(
+            in_array($title, array('mujer', 'hombre'), true)
+            || strpos($url, '/categoria-producto/mujer/') !== false
+            || strpos($url, '/categoria-producto/hombre/') !== false
+        );
+    }));
+}, 20);
+
+add_action('template_redirect', function() {
+    $pd_path = isset($_SERVER['REQUEST_URI']) ? trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') : '';
+    $pd_legacy_paths = array(
+        'categoria-producto/mujer',
+        'categoria-producto/hombre',
+        'categoria-producto/ropa',
+        'categoria-producto/accesorios',
+        'product-category/mujer',
+        'product-category/hombre',
+        'product-category/ropa',
+        'product-category/accesorios',
+        'mujer',
+        'hombre',
+    );
+
+    if (
+        in_array($pd_path, $pd_legacy_paths, true)
+        || (function_exists('is_product_category') && is_product_category(array('mujer', 'hombre', 'ropa', 'accesorios')))
+    ) {
+        wp_safe_redirect(home_url('/bolsos/'), 301);
+        exit;
+    }
+});
+
+add_action('admin_init', function() {
+    if (!current_user_can('manage_options') || !isset($_GET['pd_visual_purge'])) {
+        return;
+    }
+
+    if (class_exists('LiteSpeed_Cache_API')) {
+        LiteSpeed_Cache_API::purge_all();
+    }
+
+    wp_send_json_success(array('purged' => true));
+});
+
+add_action('wp_head', function() {
+    echo '<style id="pd-visual-progress-fixes">
+    /* Home - sección Bolsos más editorial */
+    .pd-categories:not(.pd-categories-bags-only) {
+        padding: clamp(56px, 6vw, 96px) 24px !important;
+        background: #ffffff !important;
+    }
+
+    .pd-categories:not(.pd-categories-bags-only) > h2 {
+        text-align: center !important;
+        font-family: "Playfair Display", Georgia, serif !important;
+        font-size: clamp(42px, 5vw, 72px) !important;
+        line-height: 0.95 !important;
+        letter-spacing: 0 !important;
+        margin: 0 0 clamp(28px, 4vw, 48px) !important;
+    }
+
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-grid {
+        display: grid !important;
+        grid-template-columns: minmax(280px, 980px) !important;
+        justify-content: center !important;
+        max-width: 980px !important;
+        margin: 0 auto !important;
+    }
+
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(1),
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(3) {
+        display: none !important;
+    }
+
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) {
+        display: grid !important;
+        grid-template-columns: minmax(280px, 1.1fr) minmax(280px, 0.9fr) !important;
+        align-items: center !important;
+        background: #faf8f5 !important;
+        border: 1px solid #e8e1d8 !important;
+        overflow: hidden !important;
+        min-height: 430px !important;
+        box-shadow: 0 18px 45px rgba(0,0,0,0.06) !important;
+    }
+
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) img {
+        grid-row: 1 / 5 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 430px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
+    }
+
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) h3,
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) p,
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) a {
+        grid-column: 2 !important;
+        margin-left: clamp(30px, 4vw, 58px) !important;
+        margin-right: clamp(30px, 4vw, 58px) !important;
+    }
+
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) h3 {
+        align-self: end !important;
+        font-family: "Playfair Display", Georgia, serif !important;
+        font-size: clamp(38px, 4vw, 62px) !important;
+        line-height: 0.95 !important;
+        margin-bottom: 18px !important;
+    }
+
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) p {
+        align-self: center !important;
+        max-width: 360px !important;
+        font-size: 15px !important;
+        line-height: 1.75 !important;
+        color: #333333 !important;
+    }
+
+    .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) a {
+        align-self: start !important;
+        justify-self: start !important;
+        margin-top: 20px !important;
+    }
+
+    /* Productos - mostrar bolsos completos, no recortados */
+    .woocommerce ul.products li.product {
+        background: #ffffff !important;
+    }
+
+    .woocommerce ul.products li.product a img,
+    .woocommerce ul.products li.product img {
+        width: 100% !important;
+        height: 300px !important;
+        min-height: 300px !important;
+        max-height: 300px !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        background: #f6f6f6 !important;
+        padding: 14px !important;
+        box-sizing: border-box !important;
+        display: block !important;
+        transition: transform 0.35s ease, filter 0.35s ease !important;
+        will-change: transform !important;
+    }
+
+    .home .woocommerce ul.products li.product a img,
+    .home .woocommerce ul.products li.product img {
+        height: 320px !important;
+        min-height: 320px !important;
+        max-height: 320px !important;
+        padding: 18px !important;
+    }
+
+    .woocommerce ul.products li.product:hover img {
+        transform: scale(1.025) !important;
+        filter: contrast(1.02) !important;
+    }
+
+    .woocommerce ul.products li.product {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .woocommerce ul.products li.product.pd-shop-card-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .woocommerce ul.products li.product .woocommerce-loop-product__title {
+        font-size: 12px !important;
+        line-height: 1.45 !important;
+        min-height: 44px !important;
+    }
+
+    /* Buscador tienda alineado */
+    @media (min-width: 1000px) {
+        .woocommerce .woocommerce-result-count {
+            float: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            height: 42px !important;
+            margin: 0 18px 24px 0 !important;
+            vertical-align: middle !important;
+            line-height: 1 !important;
+        }
+
+        .woocommerce .pd-shop-search {
+            display: inline-flex !important;
+            align-items: center !important;
+            vertical-align: middle !important;
+            margin: 0 24px 24px 0 !important;
+        }
+
+        .woocommerce .pd-shop-search form {
+            height: 42px !important;
+            max-width: 360px !important;
+        }
+
+        .woocommerce .pd-shop-search input[type="search"] {
+            height: 42px !important;
+        }
+
+        .woocommerce .pd-shop-search button[type="submit"] {
+            height: 42px !important;
+        }
+
+        .woocommerce .woocommerce-ordering {
+            float: right !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            margin: 0 0 24px 18px !important;
+            height: 42px !important;
+        }
+
+        .woocommerce .woocommerce-ordering select {
+            height: 42px !important;
+            min-width: 195px !important;
+        }
+    }
+
+    @media (max-width: 999px) {
+        .woocommerce .woocommerce-result-count,
+        .woocommerce .pd-shop-search,
+        .woocommerce .woocommerce-ordering {
+            float: none !important;
+            display: block !important;
+            width: 100% !important;
+            margin: 0 0 14px 0 !important;
+        }
+
+        .woocommerce .pd-shop-search form {
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .pd-categories:not(.pd-categories-bags-only) {
+            padding: 52px 16px !important;
+        }
+
+        .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) {
+            grid-template-columns: 1fr !important;
+            min-height: auto !important;
+        }
+
+        .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) img {
+            grid-row: auto !important;
+            min-height: 320px !important;
+            height: 320px !important;
+        }
+
+        .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) h3,
+        .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) p,
+        .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) a {
+            grid-column: 1 !important;
+            margin-left: 24px !important;
+            margin-right: 24px !important;
+        }
+
+        .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) h3 {
+            margin-top: 28px !important;
+            font-size: 40px !important;
+        }
+
+        .pd-categories:not(.pd-categories-bags-only) .pd-category-card:nth-child(2) a {
+            margin-bottom: 30px !important;
+        }
+
+        .woocommerce ul.products li.product a img,
+        .woocommerce ul.products li.product img,
+        .home .woocommerce ul.products li.product a img,
+        .home .woocommerce ul.products li.product img {
+            height: 210px !important;
+            min-height: 210px !important;
+            max-height: 210px !important;
+            padding: 10px !important;
+        }
+
+        .woocommerce ul.products li.product .button {
+            min-height: 42px !important;
+            padding: 10px 14px !important;
+            font-size: 10px !important;
+            line-height: 1.3 !important;
+        }
+    }
+
+    html.pd-cart-scroll-fixed,
+    body.pd-cart-scroll-fixed {
+        overflow: hidden !important;
+        overscroll-behavior: none !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .woocommerce ul.products li.product,
+        .woocommerce ul.products li.product img {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+    </style>';
+}, 120);
+
+add_action('wp_footer', function() {
+    echo '<script id="pd-visual-progress-js">
+    (function() {
+        function isMobileCartGuardEnabled() {
+            return window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+        }
+
+        function initPrimeDropHomeBags() {
+            document.querySelectorAll(".pd-categories:not(.pd-categories-bags-only)").forEach(function(section) {
+                var heading = section.querySelector("h2");
+                var cards = section.querySelectorAll(".pd-category-card");
+                var bagsCard = cards[1] || section.querySelector(".pd-category-card");
+
+                if (heading) heading.textContent = "BOLSOS";
+
+                if (bagsCard) {
+                    var title = bagsCard.querySelector("h3");
+                    var text = bagsCard.querySelector("p");
+                    var link = bagsCard.querySelector("a");
+
+                    if (title) title.textContent = "BOLSOS";
+                    if (text) text.textContent = "Diseños exclusivos, originales y seleccionados para elevar tu estilo diario.";
+                    if (link) {
+                        link.textContent = "VER BOLSOS";
+                        link.setAttribute("href", "/bolsos/");
+                    }
+                }
+            });
+        }
+
+        function initPrimeDropShopEffects() {
+            var cards = document.querySelectorAll(".woocommerce ul.products li.product");
+            if (!cards.length) return;
+
+            cards.forEach(function(card, index) {
+                card.style.transitionDelay = Math.min(index * 60, 420) + "ms";
+            });
+
+            if (!("IntersectionObserver" in window)) {
+                cards.forEach(function(card) { card.classList.add("pd-shop-card-visible"); });
+                return;
+            }
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("pd-shop-card-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            cards.forEach(function(card) { observer.observe(card); });
+        }
+
+        function initPrimeDropCartScrollGuard() {
+            var drawer = document.querySelector("#cart-drawer, .cart-drawer, [id*=cart-drawer]");
+            if (!drawer) return;
+
+            var locked = false;
+            var savedY = 0;
+
+            function drawerIsOpen() {
+                return drawer.classList.contains("active")
+                    || drawer.classList.contains("open")
+                    || drawer.getAttribute("aria-hidden") === "false";
+            }
+
+            function lockBody() {
+                if (locked || !isMobileCartGuardEnabled()) return;
+                savedY = window.pageYOffset || document.documentElement.scrollTop || 0;
+                document.documentElement.classList.add("pd-cart-scroll-fixed");
+                document.body.classList.add("pd-cart-scroll-fixed");
+                document.body.dataset.pdCartScrollY = String(savedY);
+                document.body.style.position = "fixed";
+                document.body.style.top = "-" + savedY + "px";
+                document.body.style.left = "0";
+                document.body.style.right = "0";
+                document.body.style.width = "100%";
+                document.body.style.overflow = "hidden";
+                document.documentElement.style.overflow = "hidden";
+                locked = true;
+            }
+
+            function unlockBody() {
+                if (!locked) return;
+                var restoreY = Math.abs(parseInt(document.body.style.top || "0", 10)) || parseInt(document.body.dataset.pdCartScrollY || savedY || 0, 10) || 0;
+
+                document.documentElement.classList.remove("pd-cart-scroll-fixed");
+                document.body.classList.remove("pd-cart-scroll-fixed");
+                document.body.style.position = "";
+                document.body.style.top = "";
+                document.body.style.left = "";
+                document.body.style.right = "";
+                document.body.style.width = "";
+                document.body.style.overflow = "";
+                document.documentElement.style.overflow = "";
+                delete document.body.dataset.pdCartScrollY;
+                locked = false;
+
+                requestAnimationFrame(function() { window.scrollTo(0, restoreY); });
+                setTimeout(function() { window.scrollTo(0, restoreY); }, 80);
+            }
+
+            function syncCartState() {
+                if (!isMobileCartGuardEnabled()) {
+                    unlockBody();
+                    return;
+                }
+
+                if (drawerIsOpen()) lockBody();
+                else unlockBody();
+            }
+
+            new MutationObserver(syncCartState).observe(drawer, {
+                attributes: true,
+                attributeFilter: ["class", "aria-hidden", "style"]
+            });
+
+            document.addEventListener("click", function() {
+                setTimeout(syncCartState, 0);
+                setTimeout(syncCartState, 120);
+            }, true);
+
+            window.addEventListener("resize", syncCartState);
+            syncCartState();
+        }
+
+        function init() {
+            initPrimeDropHomeBags();
+            initPrimeDropShopEffects();
+            initPrimeDropCartScrollGuard();
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init);
+        } else {
+            init();
+        }
+    })();
+    </script>';
+}, 120);
+/* PRIME_DROP_BAGS_ONLY_CLEANUP_END */
+
+/* PRIME_DROP_PC_VISUAL_REPAIR_START */
+add_action('wp_head', function() {
+    echo '<style id="pd-pc-visual-repair-css">
+    /* Reparacion desktop: homepage Bolsos y archivo /bolsos/ */
+    @media (min-width: 1000px) {
+      body.home .pd-about-heading-wrap,
+      body.page-id-14 .pd-about-heading-wrap {
+        width: 100vw !important;
+        max-width: none !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+        padding: 72px 40px 26px !important;
+        background: #ffffff !important;
+        text-align: center !important;
+      }
+
+      body.home .pd-about-heading-wrap .elementor-heading-title,
+      body.page-id-14 .pd-about-heading-wrap .elementor-heading-title {
+        font-family: "Playfair Display", serif !important;
+        font-size: 46px !important;
+        line-height: 1.08 !important;
+        font-weight: 700 !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        letter-spacing: 0 !important;
+      }
+
+      body.home .pd-about.about-section,
+      body.page-id-14 .pd-about.about-section {
+        width: min(1080px, calc(100vw - 150px)) !important;
+        max-width: 1080px !important;
+        min-height: 430px !important;
+        margin: 0 auto 74px !important;
+        padding: 0 !important;
+        display: grid !important;
+        grid-template-columns: minmax(420px, 1fr) minmax(380px, .92fr) !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+        background: #ffffff !important;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+      }
+
+      body.home .pd-about-copy,
+      body.page-id-14 .pd-about-copy {
+        padding: 56px 62px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+      }
+
+      body.home .pd-about-copy p,
+      body.page-id-14 .pd-about-copy p {
+        font-family: Inter, sans-serif !important;
+        font-size: 17px !important;
+        line-height: 1.85 !important;
+        color: #333333 !important;
+        max-width: 520px !important;
+        margin: 0 0 20px !important;
+      }
+
+      body.home .pd-about .pd-history-button,
+      body.page-id-14 .pd-about .pd-history-button {
+        margin-top: 18px !important;
+        padding: 14px 30px !important;
+        border-radius: 999px !important;
+        font-size: 12px !important;
+        letter-spacing: 2px !important;
+      }
+
+      body.home .pd-about-image,
+      body.page-id-14 .pd-about-image {
+        min-height: 430px !important;
+        overflow: hidden !important;
+      }
+
+      body.home .pd-about-image img,
+      body.page-id-14 .pd-about-image img {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 430px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
+      }
+
+      body.home .pd-categories,
+      body.page-id-14 .pd-categories {
+        width: 100vw !important;
+        max-width: none !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+        padding: 70px max(48px, calc((100vw - 1120px) / 2)) 84px !important;
+        background: #ffffff !important;
+        text-align: center !important;
+        overflow: visible !important;
+      }
+
+      body.home .pd-categories > h2,
+      body.page-id-14 .pd-categories > h2 {
+        font-size: 0 !important;
+        line-height: 1 !important;
+        margin: 0 0 34px !important;
+        padding: 0 !important;
+      }
+
+      body.home .pd-categories > h2::after,
+      body.page-id-14 .pd-categories > h2::after {
+        content: "BOLSOS";
+        display: block !important;
+        font-family: "Playfair Display", serif !important;
+        font-size: 46px !important;
+        line-height: 1.05 !important;
+        font-weight: 700 !important;
+        color: #000000 !important;
+        letter-spacing: 0 !important;
+      }
+
+      body.home .pd-categories .pd-category-grid,
+      body.page-id-14 .pd-categories .pd-category-grid {
+        width: min(980px, calc(100vw - 160px)) !important;
+        max-width: 980px !important;
+        margin: 0 auto !important;
+        display: block !important;
+      }
+
+      body.home .pd-categories .pd-category-card,
+      body.page-id-14 .pd-categories .pd-category-card {
+        display: none !important;
+      }
+
+      body.home .pd-categories .pd-category-card:nth-child(2),
+      body.page-id-14 .pd-categories .pd-category-card:nth-child(2) {
+        display: grid !important;
+        grid-template-columns: 58% 42% !important;
+        grid-template-rows: 1fr auto auto auto 1fr !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        max-width: 980px !important;
+        min-height: 430px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        border: 1px solid #e1dbd2 !important;
+        border-radius: 0 !important;
+        background: #f8f5f1 !important;
+        box-shadow: 0 22px 55px rgba(0,0,0,0.08) !important;
+        overflow: hidden !important;
+        text-align: left !important;
+      }
+
+      body.home .pd-categories .pd-category-card:nth-child(2) img,
+      body.page-id-14 .pd-categories .pd-category-card:nth-child(2) img {
+        grid-column: 1 !important;
+        grid-row: 1 / -1 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 430px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
+        margin: 0 !important;
+      }
+
+      body.home .pd-categories .pd-category-card:nth-child(2) h3,
+      body.page-id-14 .pd-categories .pd-category-card:nth-child(2) h3 {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        margin: 0 0 14px !important;
+        padding: 0 58px !important;
+        font-family: "Playfair Display", serif !important;
+        font-size: 34px !important;
+        line-height: 1.12 !important;
+        font-weight: 700 !important;
+        color: #000000 !important;
+        letter-spacing: 0 !important;
+        text-transform: none !important;
+      }
+
+      body.home .pd-categories .pd-category-card:nth-child(2) p,
+      body.page-id-14 .pd-categories .pd-category-card:nth-child(2) p {
+        grid-column: 2 !important;
+        grid-row: 3 !important;
+        margin: 0 0 26px !important;
+        padding: 0 58px !important;
+        max-width: 360px !important;
+        font-family: Inter, sans-serif !important;
+        font-size: 16px !important;
+        line-height: 1.8 !important;
+        color: #333333 !important;
+      }
+
+      body.home .pd-categories .pd-category-card:nth-child(2) a,
+      body.page-id-14 .pd-categories .pd-category-card:nth-child(2) a {
+        grid-column: 2 !important;
+        grid-row: 4 !important;
+        width: max-content !important;
+        min-width: 154px !important;
+        margin: 0 0 0 58px !important;
+        padding: 14px 30px !important;
+        border-radius: 999px !important;
+        background: #000000 !important;
+        color: #ffffff !important;
+        font-family: Inter, sans-serif !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        letter-spacing: 2px !important;
+        text-transform: uppercase !important;
+        text-align: center !important;
+        text-decoration: none !important;
+      }
+
+      body.page-id-547 .pd-page-hero {
+        display: none !important;
+      }
+
+      body.page-id-547 .elementor-element-0a7c205 {
+        padding-top: 34px !important;
+      }
+
+      body.page-id-547 .woo-listing-top {
+        display: grid !important;
+        grid-template-columns: minmax(210px, auto) minmax(280px, 360px) minmax(220px, 260px) !important;
+        gap: 22px !important;
+        align-items: center !important;
+        justify-content: start !important;
+        margin: 0 0 36px !important;
+      }
+
+      body.page-id-547 .woo-listing-top .woocommerce-result-count {
+        margin: 0 !important;
+        white-space: nowrap !important;
+        align-self: center !important;
+      }
+
+      body.page-id-547 .pd-shop-search,
+      body.page-id-547 .woocommerce-ordering {
+        margin: 0 !important;
+        align-self: center !important;
+      }
+
+      body.page-id-547 .pd-shop-search form {
+        width: 100% !important;
+        max-width: 360px !important;
+        height: 44px !important;
+        margin: 0 !important;
+      }
+
+      body.page-id-547 .woocommerce-ordering select {
+        height: 44px !important;
+        min-width: 220px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+    }
+    </style>';
+}, 1300);
+/* PRIME_DROP_PC_VISUAL_REPAIR_END */
+
+/* PRIME_DROP_HOME_COLLECTION_MUNDO_START */
+if (!function_exists('prime_drop_collection_showcase_markup')) {
+    function prime_drop_collection_showcase_markup() {
+        return '<section class="pd-collection-showcase" data-pd-collection-ready="1">
+          <div class="pd-collection-heading">
+            <h2>NUESTRA COLECCIÓN</h2>
+            <p>Bolsos originales Michael Kors, Steve Madden y Tommy Hilfiger</p>
+          </div>
+          <div class="pd-collection-layout">
+            <div class="pd-collection-media">
+              <img src="/wp-content/uploads/2026/05/bolsos-categoria-scaled.jpg" alt="Bolsos Prime Drop">
+            </div>
+            <div class="pd-collection-content">
+              <a class="pd-brand-row" href="/bolsos/"><span><strong>MICHAEL KORS</strong><span>15 estilos disponibles</span></span><em class="pd-brand-arrow">→</em></a>
+              <a class="pd-brand-row" href="/bolsos/"><span><strong>STEVE MADDEN</strong><span>10 estilos disponibles</span></span><em class="pd-brand-arrow">→</em></a>
+              <a class="pd-brand-row" href="/bolsos/"><span><strong>TOMMY HILFIGER</strong><span>3 estilos disponibles</span></span><em class="pd-brand-arrow">→</em></a>
+              <a class="pd-collection-btn" href="/bolsos/">VER TODA LA COLECCIÓN</a>
+            </div>
+          </div>
+        </section>';
+    }
+}
+
+add_action('template_redirect', function() {
+    if (is_admin()) {
+        return;
+    }
+
+    $replace_home_collection = is_front_page() || is_home();
+
+    ob_start(function($html) use ($replace_home_collection) {
+        $html = preg_replace('/<footer\b(?=[^>]*\bct-footer\b)[\s\S]*?<\/footer>/i', '', $html);
+
+        if ($replace_home_collection) {
+            $html = preg_replace(
+                '/<section\b(?=[^>]*\bpd-categories\b)[^>]*>[\s\S]*?<\/section>/i',
+                prime_drop_collection_showcase_markup(),
+                $html,
+                1
+            );
+        }
+
+        return $html;
+    });
+}, 0);
+
+add_action('wp_head', function() {
+    echo '<style id="pd-home-collection-mundo-css">
+    /* Eliminar footer falso de Blocksy starter. El footer real es .pd-footer */
+    footer.ct-footer,
+    .ct-footer:not(.pd-footer) {
+      display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .pd-footer {
+      display: block !important;
+      visibility: visible !important;
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Nueva seccion Nuestra Coleccion */
+    .pd-collection-showcase {
+      width: 100vw !important;
+      max-width: none !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: calc(50% - 50vw) !important;
+      padding: 82px max(24px, calc((100vw - 1120px) / 2)) 92px !important;
+      background: #ffffff !important;
+      color: #000000 !important;
+      box-sizing: border-box !important;
+    }
+
+    .pd-collection-heading {
+      text-align: center !important;
+      margin: 0 auto 42px !important;
+    }
+
+    .pd-collection-heading h2 {
+      font-family: "Playfair Display", serif !important;
+      font-size: 46px !important;
+      line-height: 1.08 !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      color: #000000 !important;
+      margin: 0 0 10px !important;
+      text-transform: uppercase !important;
+    }
+
+    .pd-collection-heading p {
+      font-family: Inter, sans-serif !important;
+      font-size: 14px !important;
+      line-height: 1.7 !important;
+      color: #444444 !important;
+      margin: 0 !important;
+    }
+
+    .pd-collection-layout {
+      width: min(1080px, 100%) !important;
+      margin: 0 auto !important;
+      display: grid !important;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr) !important;
+      align-items: stretch !important;
+      gap: 0 !important;
+      border: 1px solid #e3ded6 !important;
+      background: #f8f5f1 !important;
+      box-shadow: 0 24px 60px rgba(0,0,0,.08) !important;
+    }
+
+    .pd-collection-media {
+      min-height: 500px !important;
+      overflow: hidden !important;
+      background: #eee8df !important;
+    }
+
+    .pd-collection-media img {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 500px !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+    }
+
+    .pd-collection-content {
+      padding: 58px 58px 54px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      background: #ffffff !important;
+    }
+
+    .pd-brand-row {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 24px !important;
+      padding: 24px 0 !important;
+      border-bottom: 1px solid #dddddd !important;
+      color: #000000 !important;
+      text-decoration: none !important;
+    }
+
+    .pd-brand-row:first-child {
+      border-top: 1px solid #dddddd !important;
+    }
+
+    .pd-brand-row strong {
+      display: block !important;
+      font-family: "Playfair Display", serif !important;
+      font-size: 25px !important;
+      line-height: 1.1 !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      color: #000000 !important;
+      margin: 0 0 7px !important;
+    }
+
+    .pd-brand-row span {
+      display: block !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 13px !important;
+      color: #555555 !important;
+    }
+
+    .pd-brand-arrow {
+      font-family: Inter, sans-serif !important;
+      font-size: 28px !important;
+      line-height: 1 !important;
+      color: #000000 !important;
+      transition: transform .22s ease !important;
+    }
+
+    .pd-brand-row:hover .pd-brand-arrow {
+      transform: translateX(6px) !important;
+    }
+
+    .pd-collection-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: max-content !important;
+      margin-top: 34px !important;
+      padding: 15px 32px !important;
+      border-radius: 999px !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      letter-spacing: 2px !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+    }
+
+    .pd-collection-btn:hover {
+      background: #333333 !important;
+      color: #ffffff !important;
+    }
+
+    @media (max-width: 999px) {
+      .pd-collection-showcase {
+        padding: 58px 22px 66px !important;
+      }
+
+      .pd-collection-heading {
+        margin-bottom: 28px !important;
+      }
+
+      .pd-collection-heading h2 {
+        font-size: 32px !important;
+      }
+
+      .pd-collection-layout {
+        grid-template-columns: 1fr !important;
+      }
+
+      .pd-collection-media,
+      .pd-collection-media img {
+        min-height: 330px !important;
+      }
+
+      .pd-collection-content {
+        padding: 30px 24px 34px !important;
+      }
+
+      .pd-brand-row strong {
+        font-size: 21px !important;
+      }
+
+      .pd-collection-btn {
+        width: 100% !important;
+      }
+    }
+
+    /* Productos destacados — cards uniformes */
+    .woocommerce ul.products li.product {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .woocommerce ul.products li.product a img {
+        width: 100% !important;
+        height: 320px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+    .woocommerce ul.products li.product .woocommerce-loop-product__title {
+        font-family: "Playfair Display", serif !important;
+        font-size: 15px !important;
+        color: #000 !important;
+        margin-top: 12px !important;
+    }
+    .woocommerce ul.products li.product .price {
+        color: #000 !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+    }
+    .woocommerce ul.products li.product .button {
+        background: #000 !important;
+        color: #fff !important;
+        border-radius: 25px !important;
+        font-size: 11px !important;
+        letter-spacing: 1.5px !important;
+        padding: 10px 20px !important;
+        margin-top: auto !important;
+        text-transform: uppercase !important;
+        border: none !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    .woocommerce ul.products li.product .button:hover {
+        background: #333 !important;
+        color: #fff !important;
+    }
+    .productos-destacados-heading {
+        text-align: center !important;
+        font-family: "Playfair Display", serif !important;
+        font-size: 32px !important;
+        margin-bottom: 8px !important;
+        color: #000 !important;
+    }
+
+    /* Mundo Prime */
+    .pd-mundo-prime-page {
+      background: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    .pd-mundo-hero {
+      background: #000000 !important;
+      color: #ffffff !important;
+      text-align: center !important;
+      padding: 94px 24px 100px !important;
+    }
+
+    .pd-mundo-hero h1 {
+      font-family: "Playfair Display", serif !important;
+      font-size: clamp(44px, 7vw, 84px) !important;
+      line-height: 1 !important;
+      letter-spacing: 0 !important;
+      margin: 0 0 16px !important;
+      color: #ffffff !important;
+    }
+
+    .pd-mundo-hero p {
+      font-family: Inter, sans-serif !important;
+      font-size: 16px !important;
+      color: rgba(255,255,255,.82) !important;
+      margin: 0 !important;
+    }
+
+    .pd-mundo-story {
+      width: min(920px, calc(100vw - 44px)) !important;
+      margin: 0 auto !important;
+      padding: 76px 0 56px !important;
+      text-align: center !important;
+    }
+
+    .pd-mundo-story h2 {
+      font-family: "Playfair Display", serif !important;
+      font-size: 38px !important;
+      line-height: 1.15 !important;
+      color: #000000 !important;
+      margin: 0 0 24px !important;
+    }
+
+    .pd-mundo-story p {
+      font-family: Inter, sans-serif !important;
+      font-size: 17px !important;
+      line-height: 1.9 !important;
+      color: #333333 !important;
+      margin: 0 !important;
+    }
+
+    .pd-mundo-values {
+      width: min(1040px, calc(100vw - 44px)) !important;
+      margin: 0 auto !important;
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 18px !important;
+      padding: 0 0 46px !important;
+    }
+
+    .pd-mundo-value {
+      border: 1px solid #e2e2e2 !important;
+      padding: 30px 24px !important;
+      text-align: center !important;
+      background: #ffffff !important;
+    }
+
+    .pd-mundo-value svg {
+      width: 28px !important;
+      height: 28px !important;
+      margin-bottom: 16px !important;
+      color: #000000 !important;
+      stroke: #000000 !important;
+    }
+
+    .pd-mundo-value h3 {
+      font-family: Inter, sans-serif !important;
+      font-size: 13px !important;
+      letter-spacing: 2px !important;
+      font-weight: 800 !important;
+      color: #000000 !important;
+      margin: 0 0 10px !important;
+    }
+
+    .pd-mundo-value p {
+      font-family: Inter, sans-serif !important;
+      font-size: 14px !important;
+      line-height: 1.7 !important;
+      color: #555555 !important;
+      margin: 0 !important;
+    }
+
+    .pd-mundo-cta {
+      text-align: center !important;
+      padding: 0 24px 82px !important;
+    }
+
+    .pd-mundo-cta a {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 15px 34px !important;
+      border-radius: 999px !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      letter-spacing: 2px !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .pd-mundo-hero {
+        padding: 70px 22px 74px !important;
+      }
+
+      .pd-mundo-story {
+        padding: 56px 0 42px !important;
+      }
+
+      .pd-mundo-story h2 {
+        font-size: 30px !important;
+      }
+
+      .pd-mundo-values {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    </style>';
+}, 1500);
+
+add_action('wp_footer', function() {
+    if (!is_front_page() && !is_home()) {
+        return;
+    }
+
+    echo '<script id="pd-home-collection-rebuild-js">
+    (function() {
+      function rebuildCollection() {
+        var section = document.querySelector(".pd-categories, .pd-collection-showcase");
+        if (!section || section.dataset.pdCollectionReady === "1") return;
+
+        section.dataset.pdCollectionReady = "1";
+        section.className = "pd-collection-showcase";
+        section.innerHTML =
+          "<div class=\"pd-collection-heading\">" +
+            "<h2>NUESTRA COLECCIÓN</h2>" +
+            "<p>Bolsos originales Michael Kors, Steve Madden y Tommy Hilfiger</p>" +
+          "</div>" +
+          "<div class=\"pd-collection-layout\">" +
+            "<div class=\"pd-collection-media\">" +
+              "<img src=\"/wp-content/uploads/2026/05/bolsos-categoria-scaled.jpg\" alt=\"Bolsos Prime Drop\">" +
+            "</div>" +
+            "<div class=\"pd-collection-content\">" +
+              "<a class=\"pd-brand-row\" href=\"/bolsos/\"><span><strong>MICHAEL KORS</strong><span>15 estilos disponibles</span></span><em class=\"pd-brand-arrow\">→</em></a>" +
+              "<a class=\"pd-brand-row\" href=\"/bolsos/\"><span><strong>STEVE MADDEN</strong><span>10 estilos disponibles</span></span><em class=\"pd-brand-arrow\">→</em></a>" +
+              "<a class=\"pd-brand-row\" href=\"/bolsos/\"><span><strong>TOMMY HILFIGER</strong><span>3 estilos disponibles</span></span><em class=\"pd-brand-arrow\">→</em></a>" +
+              "<a class=\"pd-collection-btn\" href=\"/bolsos/\">VER TODA LA COLECCIÓN</a>" +
+            "</div>" +
+          "</div>";
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", rebuildCollection);
+      } else {
+        rebuildCollection();
+      }
+      window.addEventListener("load", rebuildCollection);
+      setTimeout(rebuildCollection, 700);
+    })();
+    </script>';
+}, 1500);
+
+add_filter('the_content', function($content) {
+    if (is_admin() || !is_page('mundo-prime') || !in_the_loop() || !is_main_query()) {
+        return $content;
+    }
+
+    return '<main class="pd-mundo-prime-page">
+      <section class="pd-mundo-hero">
+        <h1>MUNDO PRIME</h1>
+        <p>La historia detrás de Prime Drop Elite</p>
+      </section>
+      <section class="pd-mundo-story">
+        <h2>Moda auténtica, elegida para Colombia</h2>
+        <p>Prime Drop Elite nace con una visión clara: Acercar las mejores marcas del mundo a quienes realmente saben de estilo. Nos especializamos en traer productos 100% originales de Michael Kors, Steve Madden y Tommy Hilfiger. Sin intermediarios, sin sobreprecios. Solo moda auténtica, exclusiva y al mejor precio para Colombia.</p>
+      </section>
+      <section class="pd-mundo-values" aria-label="Valores Prime Drop">
+        <article class="pd-mundo-value">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>ORIGINALES</h3>
+          <p>Productos seleccionados con autenticidad y marcas reconocidas.</p>
+        </article>
+        <article class="pd-mundo-value">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h16M12 4v16" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke-width="1.8"/></svg>
+          <h3>SIN INTERMEDIARIOS</h3>
+          <p>Compras más directas para mantener precios justos.</p>
+        </article>
+        <article class="pd-mundo-value">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11Z" stroke-width="1.8"/><circle cx="12" cy="10" r="2.4" stroke-width="1.8"/></svg>
+          <h3>PARA COLOMBIA</h3>
+          <p>Una experiencia pensada para clientes que compran desde Colombia.</p>
+        </article>
+      </section>
+      <div class="pd-mundo-cta">
+        <a href="/bolsos/">VER COLECCIÓN</a>
+      </div>
+    </main>';
+}, 20);
+/* PRIME_DROP_HOME_COLLECTION_MUNDO_END */
+
+/* PRIME_DROP_LUXIUM_NAV_SHOP_START */
+add_action('template_redirect', function() {
+    if (is_admin()) {
+        return;
+    }
+
+    ob_start(function($html) {
+        if (is_page('bolsos')) {
+            $html = preg_replace('/<section class="pd-page-hero">[\s\S]*?<\/section>/i', '', $html, 1);
+
+            if (strpos($html, 'pd-shop-collection-hero') === false) {
+                $hero = '<section class="pd-shop-collection-hero">
+                    <div class="pd-shop-collection-inner">
+                        <span>COLECCIÓN PRIME DROP</span>
+                        <h1>BOLSOS</h1>
+                        <p>Bolsos originales seleccionados para elevar tu estilo diario con marcas internacionales.</p>
+                    </div>
+                </section>';
+
+                $html = preg_replace(
+                    '/(<section class="elementor-section elementor-top-section elementor-element elementor-element-0a7c205\b[^>]*>)/i',
+                    $hero . '$1',
+                    $html,
+                    1
+                );
+            }
+        }
+
+        return $html;
+    });
+}, 1);
+
+add_action('wp_head', function() {
+    echo '<style id="pd-luxium-nav-shop-css">
+    /* Menú hamburguesa estilo Luxium / Prime Drop */
+    #offcanvas,
+    #offcanvas .ct-panel-inner,
+    #offcanvas .ct-panel-content,
+    #offcanvas .ct-panel-content-inner,
+    .ct-drawer-canvas,
+    .ct-off-canvas-panel {
+      background: #000000 !important;
+      color: #ffffff !important;
+    }
+
+    #offcanvas {
+      --side-panel-width: min(420px, 86vw) !important;
+    }
+
+    #offcanvas .ct-panel-content[data-device="desktop"] {
+      display: none !important;
+    }
+
+    #offcanvas .ct-panel-content[data-device="mobile"] {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    #offcanvas .ct-panel-content-inner {
+      width: 100% !important;
+      min-height: 100% !important;
+      padding: 34px 30px 30px !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .pd-mobile-menu-head {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 16px !important;
+      padding: 0 0 26px !important;
+      border-bottom: 1px solid rgba(255,255,255,.16) !important;
+      margin-bottom: 18px !important;
+    }
+
+    .pd-mobile-menu-head strong {
+      font-family: "Playfair Display", serif !important;
+      font-size: 22px !important;
+      line-height: 1 !important;
+      color: #ffffff !important;
+      letter-spacing: 0 !important;
+    }
+
+    .pd-mobile-menu-close {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      border: 1px solid rgba(255,255,255,.32) !important;
+      border-radius: 999px !important;
+      padding: 8px 12px !important;
+      color: #ffffff !important;
+      background: transparent !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 11px !important;
+      letter-spacing: 1.4px !important;
+      text-transform: uppercase !important;
+      cursor: pointer !important;
+    }
+
+    #offcanvas .ct-toggle-close {
+      color: #ffffff !important;
+    }
+
+    #offcanvas nav[data-id="mobile-menu"],
+    #offcanvas .mobile-menu,
+    #offcanvas .ct-menu {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+
+    #offcanvas nav[data-id="mobile-menu"] ul,
+    #offcanvas .mobile-menu ul,
+    #offcanvas .ct-menu {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    #offcanvas nav[data-id="mobile-menu"] li,
+    #offcanvas .mobile-menu li,
+    #offcanvas .ct-menu li {
+      list-style: none !important;
+      margin: 0 !important;
+      border-bottom: 1px solid rgba(255,255,255,.14) !important;
+    }
+
+    #offcanvas nav[data-id="mobile-menu"] a.ct-menu-link,
+    #offcanvas .mobile-menu a.ct-menu-link,
+    #offcanvas .ct-menu a {
+      width: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      color: #ffffff !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 17px !important;
+      font-weight: 700 !important;
+      letter-spacing: 2.4px !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+      padding: 18px 0 !important;
+      transition: color .22s ease, padding-left .22s ease !important;
+    }
+
+    #offcanvas nav[data-id="mobile-menu"] a.ct-menu-link::after,
+    #offcanvas .mobile-menu a.ct-menu-link::after,
+    #offcanvas .ct-menu a::after {
+      content: "→" !important;
+      font-size: 17px !important;
+      font-weight: 400 !important;
+      opacity: .72 !important;
+      transform: translateX(0) !important;
+      transition: transform .22s ease !important;
+    }
+
+    #offcanvas nav[data-id="mobile-menu"] a.ct-menu-link:hover,
+    #offcanvas .mobile-menu a.ct-menu-link:hover,
+    #offcanvas .ct-menu a:hover {
+      color: #d9d9d9 !important;
+      padding-left: 8px !important;
+    }
+
+    #offcanvas nav[data-id="mobile-menu"] a.ct-menu-link:hover::after,
+    #offcanvas .mobile-menu a.ct-menu-link:hover::after,
+    #offcanvas .ct-menu a:hover::after {
+      transform: translateX(5px) !important;
+    }
+
+    .pd-mobile-trust {
+      margin-top: auto !important;
+      padding-top: 26px !important;
+      display: grid !important;
+      gap: 12px !important;
+    }
+
+    .pd-mobile-trust-item {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      color: rgba(255,255,255,.86) !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 12px !important;
+      letter-spacing: 1.2px !important;
+      text-transform: uppercase !important;
+    }
+
+    .pd-mobile-trust-item svg {
+      width: 18px !important;
+      height: 18px !important;
+      stroke: #ffffff !important;
+      color: #ffffff !important;
+      flex: 0 0 18px !important;
+    }
+
+    .ct-panel-overlay,
+    .ct-drawer-canvas ~ .ct-overlay {
+      background: rgba(0,0,0,.68) !important;
+      backdrop-filter: blur(2px) !important;
+    }
+
+    @media (min-width: 1000px) {
+      #offcanvas {
+        --side-panel-width: 420px !important;
+      }
+    }
+
+    /* /bolsos/ como colección premium */
+    body.page-id-547 .pd-page-hero {
+      display: none !important;
+    }
+
+    .pd-shop-collection-hero {
+      width: 100vw !important;
+      max-width: none !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: calc(50% - 50vw) !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      padding: 72px 24px 76px !important;
+      text-align: center !important;
+    }
+
+    .pd-shop-collection-inner {
+      width: min(920px, 100%) !important;
+      margin: 0 auto !important;
+    }
+
+    .pd-shop-collection-inner span {
+      display: block !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      letter-spacing: 2.8px !important;
+      color: rgba(255,255,255,.74) !important;
+      text-transform: uppercase !important;
+      margin-bottom: 14px !important;
+    }
+
+    .pd-shop-collection-inner h1 {
+      font-family: "Playfair Display", serif !important;
+      font-size: clamp(46px, 7vw, 82px) !important;
+      line-height: .98 !important;
+      font-weight: 700 !important;
+      letter-spacing: 0 !important;
+      color: #ffffff !important;
+      margin: 0 0 18px !important;
+    }
+
+    .pd-shop-collection-inner p {
+      width: min(620px, 100%) !important;
+      margin: 0 auto !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 16px !important;
+      line-height: 1.8 !important;
+      color: rgba(255,255,255,.82) !important;
+    }
+
+    body.page-id-547 .elementor-element-0a7c205 {
+      padding-top: 42px !important;
+      padding-bottom: 80px !important;
+    }
+
+    body.page-id-547 .pd-shop-filters {
+      border: 1px solid #e4e0da !important;
+      background: #ffffff !important;
+      padding: 26px 24px !important;
+      position: sticky !important;
+      top: 92px !important;
+    }
+
+    body.page-id-547 .pd-shop-filters h3 {
+      font-family: "Playfair Display", serif !important;
+      font-size: 26px !important;
+      color: #000000 !important;
+      margin: 0 0 18px !important;
+    }
+
+    body.page-id-547 .pd-shop-filters a {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 13px 0 !important;
+      border-bottom: 1px solid #eeeeee !important;
+      color: #000000 !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      letter-spacing: 1.4px !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+      transition: opacity .22s ease, padding-left .22s ease !important;
+    }
+
+    body.page-id-547 .pd-shop-filters a::after {
+      content: "→" !important;
+      opacity: .48 !important;
+    }
+
+    body.page-id-547 .pd-shop-filters a:hover {
+      opacity: .72 !important;
+      padding-left: 6px !important;
+    }
+
+    body.page-id-547 .woo-listing-top {
+      display: grid !important;
+      grid-template-columns: minmax(190px, auto) minmax(280px, 360px) minmax(210px, 250px) !important;
+      align-items: center !important;
+      justify-content: start !important;
+      gap: 20px !important;
+      margin: 0 0 34px !important;
+    }
+
+    body.page-id-547 .woo-listing-top .woocommerce-result-count {
+      margin: 0 !important;
+      white-space: nowrap !important;
+      color: #000000 !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: 1.3px !important;
+      text-transform: uppercase !important;
+    }
+
+    body.page-id-547 .pd-shop-search,
+    body.page-id-547 .woocommerce-ordering {
+      margin: 0 !important;
+    }
+
+    body.page-id-547 .pd-shop-search form {
+      height: 44px !important;
+      width: 100% !important;
+      max-width: 360px !important;
+      border: 1.5px solid #000000 !important;
+      border-radius: 999px !important;
+      overflow: hidden !important;
+      background: #ffffff !important;
+    }
+
+    body.page-id-547 .pd-shop-search input[type="search"] {
+      height: 44px !important;
+      padding: 0 18px !important;
+    }
+
+    body.page-id-547 .pd-shop-search button {
+      width: 52px !important;
+      height: 44px !important;
+      border-radius: 0 !important;
+    }
+
+    body.page-id-547 .woocommerce-ordering select {
+      height: 44px !important;
+      min-width: 230px !important;
+      border: 1px solid #dedede !important;
+      border-radius: 0 !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 13px !important;
+      color: #000000 !important;
+      background: #ffffff !important;
+    }
+
+    body.page-id-547 .woocommerce ul.products li.product,
+    body.home .woocommerce ul.products li.product {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity .55s ease, transform .55s ease, box-shadow .28s ease !important;
+    }
+
+    body.page-id-547 .woocommerce ul.products li.product.pd-product-visible,
+    body.home .woocommerce ul.products li.product.pd-product-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    body.page-id-547 .woocommerce ul.products li.product figure,
+    body.home .woocommerce ul.products li.product figure {
+      overflow: hidden !important;
+      background: #f4f4f4 !important;
+    }
+
+    body.page-id-547 .woocommerce ul.products li.product img,
+    body.home .woocommerce ul.products li.product img {
+      transition: transform .35s ease !important;
+      will-change: transform !important;
+    }
+
+    body.page-id-547 .woocommerce ul.products li.product:hover img,
+    body.home .woocommerce ul.products li.product:hover img {
+      transform: scale(1.035) !important;
+    }
+
+    body.page-id-547 .woocommerce ul.products li.product .button,
+    body.home .woocommerce ul.products li.product .button {
+      transition: background .25s ease, transform .25s ease !important;
+    }
+
+    body.page-id-547 .woocommerce ul.products li.product .button:hover,
+    body.home .woocommerce ul.products li.product .button:hover {
+      background: #333333 !important;
+      transform: translateY(-1px) !important;
+    }
+
+    @media (max-width: 999px) {
+      .pd-shop-collection-hero {
+        padding: 56px 22px 58px !important;
+      }
+
+      body.page-id-547 .elementor-element-0a7c205 {
+        padding-top: 26px !important;
+      }
+
+      body.page-id-547 .pd-shop-filters {
+        position: relative !important;
+        top: auto !important;
+        margin-bottom: 24px !important;
+      }
+
+      body.page-id-547 .woo-listing-top {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        margin-bottom: 26px !important;
+      }
+
+      body.page-id-547 .woo-listing-top .woocommerce-result-count {
+        white-space: normal !important;
+        text-align: center !important;
+      }
+
+      body.page-id-547 .pd-shop-search form,
+      body.page-id-547 .woocommerce-ordering select {
+        width: 100% !important;
+        max-width: none !important;
+      }
+    }
+    </style>';
+}, 1600);
+
+add_action('wp_footer', function() {
+    echo '<script id="pd-luxium-nav-shop-js">
+    (function() {
+      function icon(type) {
+        if (type === "check") return "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M20 6 9 17l-5-5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>";
+        if (type === "truck") return "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M3 7h11v10H3zM14 11h3l3 3v3h-6z\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linejoin=\"round\"/><circle cx=\"7\" cy=\"18\" r=\"1.7\" stroke=\"currentColor\" stroke-width=\"1.7\"/><circle cx=\"17\" cy=\"18\" r=\"1.7\" stroke=\"currentColor\" stroke-width=\"1.7\"/></svg>";
+        return "<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 3 5 6v5c0 4.4 2.9 7.4 7 9 4.1-1.6 7-4.6 7-9V6z\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linejoin=\"round\"/></svg>";
+      }
+
+      function enhanceMobileMenu() {
+        var panel = document.querySelector("#offcanvas .ct-panel-content[data-device=\\"mobile\\"] .ct-panel-content-inner, #offcanvas .ct-panel-content-inner");
+        if (!panel || panel.dataset.pdLuxiumMenu === "1") return;
+        panel.dataset.pdLuxiumMenu = "1";
+
+        var head = document.createElement("div");
+        head.className = "pd-mobile-menu-head";
+        head.innerHTML = "<strong>PRIME DROP</strong><button class=\\"pd-mobile-menu-close\\" type=\\"button\\">Cerrar menú ×</button>";
+        panel.insertBefore(head, panel.firstChild);
+
+        head.querySelector(".pd-mobile-menu-close").addEventListener("click", function() {
+          var close = document.querySelector("#offcanvas .ct-toggle-close, .ct-toggle-close");
+          if (close) close.click();
+        });
+
+        var nav = panel.querySelector("nav[data-id=\\"mobile-menu\\"] ul, .mobile-menu ul, .ct-menu");
+        if (nav && !nav.querySelector(".pd-policy-mobile-link")) {
+          [
+            ["POLÍTICA DE PRIVACIDAD", "/politica-de-privacidad/"],
+            ["POLÍTICA DE REEMBOLSO", "/politica-de-reembolso/"]
+          ].forEach(function(item) {
+            var li = document.createElement("li");
+            li.className = "menu-item pd-policy-mobile-link";
+            li.innerHTML = "<a class=\\"ct-menu-link\\" href=\\"" + item[1] + "\\">" + item[0] + "</a>";
+            nav.appendChild(li);
+          });
+        }
+
+        var trust = document.createElement("div");
+        trust.className = "pd-mobile-trust";
+        trust.innerHTML =
+          "<div class=\\"pd-mobile-trust-item\\">" + icon("check") + "<span>Productos originales</span></div>" +
+          "<div class=\\"pd-mobile-trust-item\\">" + icon("truck") + "<span>Envíos a Colombia</span></div>" +
+          "<div class=\\"pd-mobile-trust-item\\">" + icon("shield") + "<span>Pago seguro</span></div>";
+        panel.appendChild(trust);
+      }
+
+      function animateProducts() {
+        var products = document.querySelectorAll(".woocommerce ul.products li.product");
+        if (!products.length) return;
+        products.forEach(function(product, index) {
+          product.style.transitionDelay = Math.min(index * 55, 385) + "ms";
+        });
+
+        if (!("IntersectionObserver" in window)) {
+          products.forEach(function(product) { product.classList.add("pd-product-visible"); });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("pd-product-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .12 });
+
+        products.forEach(function(product) { observer.observe(product); });
+      }
+
+      function init() {
+        enhanceMobileMenu();
+        animateProducts();
+      }
+
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+      else init();
+      window.addEventListener("load", init);
+      setTimeout(init, 700);
+    })();
+    </script>';
+}, 1600);
+/* PRIME_DROP_LUXIUM_NAV_SHOP_END */
+

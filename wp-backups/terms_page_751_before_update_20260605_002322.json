@@ -1,0 +1,135 @@
+{
+  "id": 751,
+  "date": "2026-06-01T13:23:48",
+  "date_gmt": "2026-06-01T18:23:48",
+  "guid": {
+    "rendered": "https://primedropelite.com/terminos-y-condiciones/",
+    "raw": "https://primedropelite.com/terminos-y-condiciones/"
+  },
+  "modified": "2026-06-03T23:06:58",
+  "modified_gmt": "2026-06-04T04:06:58",
+  "password": "",
+  "slug": "terminos-y-condiciones",
+  "status": "publish",
+  "type": "page",
+  "link": "https://primedropelite.com/terminos-y-condiciones/",
+  "title": {
+    "raw": "Términos y Condiciones",
+    "rendered": "Términos y Condiciones"
+  },
+  "content": {
+    "raw": "\n<!-- wp:group {\"className\":\"pd-policy-page\",\"layout\":{\"type\":\"constrained\"}} -->\n<div class=\"wp-block-group pd-policy-page\">\n<!-- wp:heading {\"level\":1} -->\n<h1>Términos y Condiciones</h1>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Bienvenido a Prime Drop. Estos términos y condiciones describen las reglas de uso del sitio web de Prime Drop Elite, ubicado en https://primedropelite.com.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Al acceder y utilizar este sitio web, aceptas estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, por favor no continúes usando el sitio.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Cookies</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>El sitio puede utilizar cookies para ayudar a personalizar la experiencia de navegación, mejorar el funcionamiento de la tienda y analizar el uso del sitio. Algunas cookies son necesarias para el funcionamiento correcto de la página.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Licencia y propiedad intelectual</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Salvo que se indique lo contrario, Prime Drop Elite conserva los derechos de propiedad intelectual sobre el contenido, imágenes, textos, logotipos y materiales publicados en el sitio. El contenido puede ser consultado para uso personal, pero no puede ser copiado, revendido, sublicenciado, duplicado o redistribuido sin autorización.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Uso del sitio</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>El usuario se compromete a utilizar el sitio de forma correcta, sin realizar actividades que afecten su funcionamiento, seguridad, reputación o disponibilidad. Prime Drop Elite se reserva el derecho de modificar, suspender o retirar contenido cuando lo considere necesario.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Comentarios y contenido de usuarios</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Si el sitio permite comentarios, reseñas u otro contenido generado por usuarios, estos reflejan la opinión de quien los publica. Prime Drop Elite puede revisar, moderar o eliminar contenido que sea inapropiado, ofensivo o que incumpla estos términos.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Enlaces externos</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Este sitio puede contener enlaces a páginas externas o servicios de terceros. Prime Drop Elite no se hace responsable por el contenido, políticas o prácticas de sitios externos.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Responsabilidad</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Prime Drop Elite trabaja para mantener la información del sitio actualizada y correcta, pero no garantiza que todo el contenido esté libre de errores, interrupciones o cambios. El uso del sitio se realiza bajo responsabilidad del usuario, dentro de lo permitido por la ley aplicable.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Modificaciones</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Prime Drop Elite se reserva el derecho de actualizar estos términos y condiciones en cualquier momento. El uso continuo del sitio después de cualquier cambio implica la aceptación de la versión actualizada.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:heading {\"level\":2} -->\n<h2>Contacto</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Para consultas relacionadas con estos términos, puedes escribir a: <a href=\"mailto:primedropelite@gmail.com\">primedropelite@gmail.com</a>.</p>\n<!-- /wp:paragraph -->\n</div>\n<!-- /wp:group -->\n",
+    "rendered": "\n\n<div class=\"wp-block-group pd-policy-page is-layout-constrained wp-block-group-is-layout-constrained\">\n\n<h1 class=\"wp-block-heading\">Términos y Condiciones</h1>\n\n\n\n<p class=\"wp-block-paragraph\">Bienvenido a Prime Drop. Estos términos y condiciones describen las reglas de uso del sitio web de Prime Drop Elite, ubicado en https://primedropelite.com.</p>\n\n\n\n<p class=\"wp-block-paragraph\">Al acceder y utilizar este sitio web, aceptas estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, por favor no continúes usando el sitio.</p>\n\n\n\n<h2 class=\"wp-block-heading\">Cookies</h2>\n\n\n\n<p class=\"wp-block-paragraph\">El sitio puede utilizar cookies para ayudar a personalizar la experiencia de navegación, mejorar el funcionamiento de la tienda y analizar el uso del sitio. Algunas cookies son necesarias para el funcionamiento correcto de la página.</p>\n\n\n\n<h2 class=\"wp-block-heading\">Licencia y propiedad intelectual</h2>\n\n\n\n<p class=\"wp-block-paragraph\">Salvo que se indique lo contrario, Prime Drop Elite conserva los derechos de propiedad intelectual sobre el contenido, imágenes, textos, logotipos y materiales publicados en el sitio. El contenido puede ser consultado para uso personal, pero no puede ser copiado, revendido, sublicenciado, duplicado o redistribuido sin autorización.</p>\n\n\n\n<h2 class=\"wp-block-heading\">Uso del sitio</h2>\n\n\n\n<p class=\"wp-block-paragraph\">El usuario se compromete a utilizar el sitio de forma correcta, sin realizar actividades que afecten su funcionamiento, seguridad, reputación o disponibilidad. Prime Drop Elite se reserva el derecho de modificar, suspender o retirar contenido cuando lo considere necesario.</p>\n\n\n\n<h2 class=\"wp-block-heading\">Comentarios y contenido de usuarios</h2>\n\n\n\n<p class=\"wp-block-paragraph\">Si el sitio permite comentarios, reseñas u otro contenido generado por usuarios, estos reflejan la opinión de quien los publica. Prime Drop Elite puede revisar, moderar o eliminar contenido que sea inapropiado, ofensivo o que incumpla estos términos.</p>\n\n\n\n<h2 class=\"wp-block-heading\">Enlaces externos</h2>\n\n\n\n<p class=\"wp-block-paragraph\">Este sitio puede contener enlaces a páginas externas o servicios de terceros. Prime Drop Elite no se hace responsable por el contenido, políticas o prácticas de sitios externos.</p>\n\n\n\n<h2 class=\"wp-block-heading\">Responsabilidad</h2>\n\n\n\n<p class=\"wp-block-paragraph\">Prime Drop Elite trabaja para mantener la información del sitio actualizada y correcta, pero no garantiza que todo el contenido esté libre de errores, interrupciones o cambios. El uso del sitio se realiza bajo responsabilidad del usuario, dentro de lo permitido por la ley aplicable.</p>\n\n\n\n<h2 class=\"wp-block-heading\">Modificaciones</h2>\n\n\n\n<p class=\"wp-block-paragraph\">Prime Drop Elite se reserva el derecho de actualizar estos términos y condiciones en cualquier momento. El uso continuo del sitio después de cualquier cambio implica la aceptación de la versión actualizada.</p>\n\n\n\n<h2 class=\"wp-block-heading\">Contacto</h2>\n\n\n\n<p class=\"wp-block-paragraph\">Para consultas relacionadas con estos términos, puedes escribir a: <a href=\"mailto:primedropelite@gmail.com\">primedropelite@gmail.com</a>.</p>\n\n</div>\n\n",
+    "protected": false,
+    "block_version": 1
+  },
+  "excerpt": {
+    "raw": "",
+    "rendered": "<p>Términos y Condiciones Bienvenido a Prime Drop. Estos términos y condiciones describen las reglas de uso del sitio web de Prime Drop Elite, ubicado en https://primedropelite.com. Al acceder y utilizar este sitio web, aceptas estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, por favor no continúes usando el [&hellip;]</p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "parent": 0,
+  "menu_order": 0,
+  "comment_status": "closed",
+  "ping_status": "closed",
+  "template": "",
+  "meta": {
+    "_joinchat": [],
+    "footnotes": "",
+    "_elementor_edit_mode": "",
+    "_elementor_template_type": "",
+    "_elementor_data": "",
+    "_elementor_page_settings": null
+  },
+  "permalink_template": "https://primedropelite.com/%pagename%/",
+  "generated_slug": "terminos-y-condiciones",
+  "class_list": [
+    "post-751",
+    "page",
+    "type-page",
+    "status-publish",
+    "hentry"
+  ],
+  "blocksy_meta": [],
+  "_hostinger_reach_plugin_has_subscription_block": false,
+  "_hostinger_reach_plugin_is_elementor": false,
+  "_links": {
+    "self": [
+      {
+        "href": "https://primedropelite.com/wp-json/wp/v2/pages/751",
+        "targetHints": {
+          "allow": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://primedropelite.com/wp-json/wp/v2/pages"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://primedropelite.com/wp-json/wp/v2/types/page"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://primedropelite.com/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://primedropelite.com/wp-json/wp/v2/comments?post=751"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 1,
+        "href": "https://primedropelite.com/wp-json/wp/v2/pages/751/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 961,
+        "href": "https://primedropelite.com/wp-json/wp/v2/pages/751/revisions/961"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://primedropelite.com/wp-json/wp/v2/media?parent=751"
+      }
+    ],
+    "wp:action-publish": [
+      {
+        "href": "https://primedropelite.com/wp-json/wp/v2/pages/751"
+      }
+    ],
+    "wp:action-unfiltered-html": [
+      {
+        "href": "https://primedropelite.com/wp-json/wp/v2/pages/751"
+      }
+    ],
+    "wp:action-assign-author": [
+      {
+        "href": "https://primedropelite.com/wp-json/wp/v2/pages/751"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,1234 @@
+
+### PRIME_DROP_WISHLIST_PAGE_START 190708 200807
+/* PRIME_DROP_WISHLIST_PAGE_START */
+add_action('wp_footer', function() {
+    if (!is_page('wishlist') && !is_page(591)) {
+        return;
+    }
+    ?>
+    <style id="prime-drop-wishlist-page">
+    body.woocommerce-wishlist .entry-header {
+      max-width: 1180px !important;
+      margin: 0 auto !important;
+      padding: 44px 24px 28px !important;
+      text-align: center !important;
+      background: #ffffff !important;
+    }
+
+    body.woocommerce-wishlist .entry-title,
+    body.woocommerce-wishlist .page-title {
+      margin: 0 !important;
+      color: #000000 !important;
+      font-size: clamp(34px, 4vw, 54px) !important;
+      line-height: 1.05 !important;
+      letter-spacing: 0 !important;
+    }
+
+    body.woocommerce-wishlist .entry-content {
+      max-width: 1180px !important;
+      margin: 0 auto 90px !important;
+      padding: 0 24px !important;
+      box-sizing: border-box !important;
+    }
+
+    body.woocommerce-wishlist .yith-wcwl-form {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+    }
+
+    body.woocommerce-wishlist .wishlist-title-container,
+    body.woocommerce-wishlist .wishlist-title {
+      text-align: center !important;
+      margin: 0 0 28px !important;
+    }
+
+    body.woocommerce-wishlist .wishlist-title h2,
+    body.woocommerce-wishlist .yith-wcwl-form h2 {
+      margin: 0 !important;
+      font-size: clamp(28px, 3vw, 42px) !important;
+      line-height: 1.1 !important;
+      color: #000000 !important;
+      text-align: center !important;
+    }
+
+    body.woocommerce-wishlist .wishlist_table {
+      width: 100% !important;
+      border: 1px solid #eeeeee !important;
+      border-radius: 14px !important;
+      overflow: hidden !important;
+      background: #ffffff !important;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.05) !important;
+      border-collapse: separate !important;
+      border-spacing: 0 !important;
+      margin: 0 !important;
+    }
+
+    body.woocommerce-wishlist .wishlist_table th {
+      padding: 18px 16px !important;
+      background: #f7f7f7 !important;
+      color: #000000 !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: 1.4px !important;
+      text-transform: uppercase !important;
+      text-align: center !important;
+      border: 0 !important;
+    }
+
+    body.woocommerce-wishlist .wishlist_table td {
+      padding: 18px 16px !important;
+      vertical-align: middle !important;
+      text-align: center !important;
+      border-top: 1px solid #f0f0f0 !important;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+    }
+
+    body.woocommerce-wishlist .wishlist_table .product-thumbnail img {
+      width: 92px !important;
+      height: 92px !important;
+      object-fit: contain !important;
+      background: #f7f7f7 !important;
+      border-radius: 10px !important;
+      padding: 8px !important;
+    }
+
+    body.woocommerce-wishlist .wishlist_table .product-name a {
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+      font-size: 15px !important;
+      font-weight: 700 !important;
+      line-height: 1.35 !important;
+      text-decoration: none !important;
+    }
+
+    body.woocommerce-wishlist .wishlist_table .product-price,
+    body.woocommerce-wishlist .wishlist_table .product-price * {
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+      font-weight: 600 !important;
+    }
+
+    body.woocommerce-wishlist .wishlist_table .product-stock-status span {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-height: 30px !important;
+      padding: 6px 13px !important;
+      border-radius: 20px !important;
+      background: #f3f3f3 !important;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: 1px !important;
+      text-transform: uppercase !important;
+    }
+
+    body.woocommerce-wishlist .wishlist_table .product-add-to-cart a,
+    body.woocommerce-wishlist .wishlist_table .product-add-to-cart .button {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-height: 42px !important;
+      padding: 11px 24px !important;
+      border-radius: 25px !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      border: 0 !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: 1.5px !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+      white-space: nowrap !important;
+    }
+
+    body.woocommerce-wishlist .wishlist_table .product-remove a {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 50% !important;
+      border: 1px solid #eeeeee !important;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+      background: #ffffff !important;
+      text-decoration: none !important;
+    }
+
+    body.woocommerce-wishlist.pd-wishlist-empty .wishlist_table thead {
+      display: none !important;
+    }
+
+    body.woocommerce-wishlist .wishlist-empty {
+      padding: 58px 24px !important;
+      text-align: center !important;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+      font-size: 0 !important;
+      border: 0 !important;
+    }
+
+    body.woocommerce-wishlist .wishlist-empty::before {
+      content: "♡" !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 58px !important;
+      height: 58px !important;
+      margin: 0 auto 18px !important;
+      border-radius: 50% !important;
+      border: 1px solid #e4e4e4 !important;
+      color: #000000 !important;
+      font-size: 30px !important;
+      line-height: 1 !important;
+    }
+
+    body.woocommerce-wishlist .wishlist-empty::after {
+      content: "Tu lista de deseos está vacía" !important;
+      display: block !important;
+      max-width: 360px !important;
+      margin: 0 auto !important;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+      font-size: 22px !important;
+      font-weight: 700 !important;
+      line-height: 1.25 !important;
+      text-align: center !important;
+    }
+
+    body.woocommerce-wishlist .pd-wishlist-empty-copy {
+      max-width: 430px !important;
+      margin: 12px auto 0 !important;
+      color: #555555 !important;
+      -webkit-text-fill-color: #555555 !important;
+      font-size: 14px !important;
+      line-height: 1.55 !important;
+      text-align: center !important;
+    }
+
+    body.woocommerce-wishlist .pd-wishlist-empty-cta {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-height: 44px !important;
+      margin: 22px auto 0 !important;
+      padding: 12px 28px !important;
+      border-radius: 25px !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      letter-spacing: 1.8px !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+    }
+
+    @media (max-width: 768px) {
+      body.woocommerce-wishlist .entry-header {
+        padding: 34px 18px 18px !important;
+      }
+
+      body.woocommerce-wishlist .entry-content {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        margin-bottom: 64px !important;
+      }
+
+      body.woocommerce-wishlist .wishlist_table,
+      body.woocommerce-wishlist .wishlist_table thead,
+      body.woocommerce-wishlist .wishlist_table tbody,
+      body.woocommerce-wishlist .wishlist_table tr,
+      body.woocommerce-wishlist .wishlist_table td {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      body.woocommerce-wishlist .wishlist_table thead {
+        display: none !important;
+      }
+
+      body.woocommerce-wishlist .wishlist_table tr {
+        padding: 18px !important;
+        border-top: 1px solid #f0f0f0 !important;
+      }
+
+      body.woocommerce-wishlist .wishlist_table td {
+        padding: 8px 0 !important;
+        border: 0 !important;
+      }
+
+      body.woocommerce-wishlist .wishlist_table .product-thumbnail img {
+        width: 140px !important;
+        height: 140px !important;
+      }
+
+      body.woocommerce-wishlist .wishlist-empty {
+        padding: 48px 20px !important;
+      }
+    }
+    </style>
+    <script id="prime-drop-wishlist-page-js">
+    (function() {
+      function polishWishlist() {
+        var emptyCell = document.querySelector('body.woocommerce-wishlist .wishlist-empty');
+        if (!emptyCell) return;
+        document.body.classList.add('pd-wishlist-empty');
+
+        if (!emptyCell.querySelector('.pd-wishlist-empty-copy')) {
+          var copy = document.createElement('p');
+          copy.className = 'pd-wishlist-empty-copy';
+          copy.textContent = 'Guarda aquí tus bolsos favoritos para encontrarlos rápido cuando quieras comprarlos.';
+          emptyCell.appendChild(copy);
+        }
+
+        if (!emptyCell.querySelector('.pd-wishlist-empty-cta')) {
+          var cta = document.createElement('a');
+          cta.className = 'pd-wishlist-empty-cta';
+          cta.href = '/bolsos/';
+          cta.textContent = 'VER BOLSOS';
+          emptyCell.appendChild(cta);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', polishWishlist);
+      window.addEventListener('load', polishWishlist);
+      setTimeout(polishWishlist, 600);
+    })();
+    </script>
+    <?php
+}, 10002);
+/* PRIME_DROP_WISHLIST_PAGE_END */
+
+
+
+### PRIME_DROP_CHECKOUT_MOBILE_PAYMENT_DRAWER_START 200840 213503
+/* PRIME_DROP_CHECKOUT_MOBILE_PAYMENT_DRAWER_START */
+add_action('wp_footer', function() {
+    if (!is_checkout()) {
+        return;
+    }
+    ?>
+    <style id="prime-drop-checkout-mobile-payment-drawer">
+    /* Checkout: titulo realmente centrado */
+    body.woocommerce-checkout .entry-header,
+    body.woocommerce-checkout header.entry-header,
+    body.woocommerce-checkout .hero-section,
+    body.woocommerce-checkout .page-title-wrapper {
+      width: 100% !important;
+      max-width: 1180px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding-left: 24px !important;
+      padding-right: 24px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+    }
+
+    body.woocommerce-checkout .entry-title,
+    body.woocommerce-checkout .page-title,
+    body.woocommerce-checkout h1 {
+      width: 100vw !important;
+      max-width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: calc(50% - 50vw) !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Checkout: caja de pago no se desborda */
+    body.woocommerce-checkout #order_review,
+    body.woocommerce-checkout #payment,
+    body.woocommerce-checkout #payment ul.payment_methods {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      overflow-x: hidden !important;
+    }
+
+    body.woocommerce-checkout #payment {
+      position: relative !important;
+    }
+
+    /* Titulo visible de metodos de pago */
+    body.woocommerce-checkout #payment::before {
+      content: none !important;
+      display: none !important;
+    }
+
+    body.woocommerce-checkout #payment .pd-payment-title {
+      display: block !important;
+      margin: 0 0 14px !important;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.8px !important;
+      text-transform: none !important;
+      line-height: 1.3 !important;
+      padding: 0 0 0 28px !important;
+      text-align: left !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods {
+      border: 1px solid #eeeeee !important;
+      border-radius: 12px !important;
+      background: #ffffff !important;
+      padding: 0 !important;
+      margin: 0 0 22px !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      background: #ffffff !important;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+      border-bottom: 1px solid #f2f2f2 !important;
+      position: relative !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method:last-child {
+      border-bottom: 0 !important;
+    }
+
+    /* Ocultar por completo el radio nativo del metodo de pago */
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > input.input-radio,
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > input[name="payment_method"] {
+      position: absolute !important;
+      width: 0 !important;
+      height: 0 !important;
+      min-width: 0 !important;
+      opacity: 0 !important;
+      overflow: hidden !important;
+      clip: rect(0 0 0 0) !important;
+      clip-path: inset(50%) !important;
+      pointer-events: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 58px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      padding: 15px 16px 15px 52px !important;
+      margin: 0 !important;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+      background: transparent !important;
+      opacity: 1 !important;
+      cursor: pointer !important;
+      position: relative !important;
+      line-height: 1.35 !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 18px !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      width: 18px !important;
+      height: 18px !important;
+      border: 1.5px solid #d7d7d7 !important;
+      border-radius: 50% !important;
+      background: #ffffff !important;
+      box-sizing: border-box !important;
+      flex: 0 0 auto !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > input.input-radio:checked + label::before,
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > input[name="payment_method"]:checked + label::before {
+      border-color: #000000 !important;
+      background: radial-gradient(circle at center, #ffffff 0 3px, #000000 3.4px 100%) !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > input.input-radio:checked + label,
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > input[name="payment_method"]:checked + label {
+      font-weight: 700 !important;
+    }
+
+    body.woocommerce-checkout #payment .payment_box,
+    body.woocommerce-checkout #payment .payment_box *,
+    body.woocommerce-checkout #payment [class*="mercado"],
+    body.woocommerce-checkout #payment [class*="Mercado"],
+    body.woocommerce-checkout #payment [class*="wompi"],
+    body.woocommerce-checkout #payment [class*="Wompi"] {
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    body.woocommerce-checkout #payment .payment_box {
+      margin: 0 !important;
+      padding: 18px !important;
+      border-top: 1px solid #f2f2f2 !important;
+      background: #ffffff !important;
+      overflow-x: hidden !important;
+    }
+
+    /* Checkboxes/radios generales de checkout: circulares y visibles */
+    body.woocommerce-checkout input[type="checkbox"].input-checkbox,
+    body.woocommerce-checkout input[type="checkbox"].woocommerce-form__input-checkbox,
+    body.woocommerce-checkout input[type="radio"]:not([name="payment_method"]) {
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      width: 18px !important;
+      height: 18px !important;
+      min-width: 18px !important;
+      border: 1.5px solid #d7d7d7 !important;
+      border-radius: 50% !important;
+      background: #ffffff !important;
+      box-shadow: none !important;
+      vertical-align: middle !important;
+      margin-right: 10px !important;
+      display: inline-block !important;
+      box-sizing: border-box !important;
+    }
+
+    body.woocommerce-checkout input[type="checkbox"].input-checkbox:checked,
+    body.woocommerce-checkout input[type="checkbox"].woocommerce-form__input-checkbox:checked,
+    body.woocommerce-checkout input[type="radio"]:not([name="payment_method"]):checked {
+      border-color: #000000 !important;
+      background: radial-gradient(circle at center, #ffffff 0 3px, #000000 3.4px 100%) !important;
+    }
+
+    body.woocommerce-checkout .woocommerce-info,
+    body.woocommerce-checkout .woocommerce-form-login-toggle {
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+    }
+
+    @media (max-width: 1024px) {
+      body.woocommerce-checkout .entry-header,
+      body.woocommerce-checkout header.entry-header {
+        max-width: 760px !important;
+        padding-left: 22px !important;
+        padding-right: 22px !important;
+      }
+
+      body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label {
+        min-height: 56px !important;
+        padding-left: 50px !important;
+        padding-right: 14px !important;
+      }
+
+      body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label::before {
+        left: 17px !important;
+      }
+    }
+    </style>
+    <script id="prime-drop-checkout-drawer-tablet-fix">
+    (function() {
+      var lastScroll = window.scrollY || 0;
+
+      function ensurePaymentTitle() {
+        var payment = document.querySelector('#payment');
+        if (!payment) {
+          return;
+        }
+
+        var methods = payment.querySelector('ul.payment_methods');
+        if (!methods || payment.querySelector('.pd-payment-title')) {
+          return;
+        }
+
+        var title = document.createElement('h3');
+        title.className = 'pd-payment-title';
+        title.textContent = 'Metodos de pago:';
+        payment.insertBefore(title, methods);
+      }
+
+      function unlockBody(restore) {
+        var top = document.body.style.top;
+        var lockedY = 0;
+        if (top && top.indexOf('-') === 0) {
+          lockedY = Math.abs(parseInt(top, 10)) || 0;
+        }
+
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+
+        if (restore) {
+          window.scrollTo(0, lockedY || lastScroll || window.scrollY || 0);
+        }
+      }
+
+      function closeDrawer(restoreScroll) {
+        document.querySelectorAll('#cart-drawer, .cart-drawer, .pd-cart-drawer, [id*="cart-drawer"], [class*="cart-drawer"]').forEach(function(el) {
+          el.classList.remove('active', 'open', 'show', 'is-open', 'ct-open');
+          el.setAttribute('aria-hidden', 'true');
+        });
+
+        document.querySelectorAll('#cart-drawer-overlay, .cart-drawer-overlay, .pd-cart-overlay, .pd-cart-drawer-overlay, [class*="cart-overlay"]').forEach(function(el) {
+          el.classList.remove('active', 'open', 'show', 'is-open', 'ct-open');
+        });
+
+        unlockBody(!!restoreScroll);
+      }
+
+      function isCheckout() {
+        return document.body.classList.contains('woocommerce-checkout') || /\/checkout\/?/.test(window.location.pathname);
+      }
+
+      window.addEventListener('scroll', function() {
+        if (!document.body.style.position || document.body.style.position !== 'fixed') {
+          lastScroll = window.scrollY || lastScroll;
+        }
+      }, { passive: true });
+
+      document.addEventListener('click', function(event) {
+        var checkoutLink = event.target.closest('a[href*="checkout"], a[href*="/checkout/"]');
+        if (checkoutLink) {
+          sessionStorage.setItem('pd_force_close_cart_checkout', '1');
+          closeDrawer(false);
+          setTimeout(function() { closeDrawer(false); }, 80);
+          setTimeout(function() { closeDrawer(false); }, 450);
+          return;
+        }
+
+        var closeClick = event.target.closest('.pd-cart-drawer-close, .cart-drawer-close, #cart-drawer-overlay, .cart-drawer-overlay, .pd-cart-overlay');
+        if (closeClick) {
+          setTimeout(function() { closeDrawer(true); }, 80);
+          setTimeout(function() { closeDrawer(true); }, 350);
+        }
+      }, true);
+
+      function checkoutGuard() {
+        ensurePaymentTitle();
+        if (isCheckout() || sessionStorage.getItem('pd_force_close_cart_checkout') === '1') {
+          closeDrawer(false);
+          if (isCheckout()) {
+            setTimeout(function() { sessionStorage.removeItem('pd_force_close_cart_checkout'); }, 1800);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', checkoutGuard);
+      window.addEventListener('pageshow', checkoutGuard);
+      window.addEventListener('load', checkoutGuard);
+      document.body && document.body.addEventListener('updated_checkout', ensurePaymentTitle);
+      if (document.body && window.MutationObserver) {
+        new MutationObserver(function() {
+          ensurePaymentTitle();
+        }).observe(document.body, { childList: true, subtree: true });
+      }
+      [0, 50, 100, 200, 300, 500, 700, 1200, 2200, 3600, 5200].forEach(function(delay) {
+        setTimeout(checkoutGuard, delay);
+      });
+    })();
+    </script>
+    <?php
+}, 10003);
+/* PRIME_DROP_CHECKOUT_MOBILE_PAYMENT_DRAWER_END */
+
+
+
+### PRIME_DROP_CHECKOUT_WISHLIST_CART_NAV_START 213553 234947
+/* PRIME_DROP_CHECKOUT_WISHLIST_CART_NAV_START */
+add_filter('default_checkout_billing_country', function() {
+    return 'CO';
+});
+
+add_filter('default_checkout_shipping_country', function() {
+    return 'CO';
+});
+
+add_filter('woocommerce_checkout_fields', function($fields) {
+    foreach (['billing', 'shipping'] as $section) {
+        if (isset($fields[$section][$section . '_country'])) {
+            $fields[$section][$section . '_country']['default'] = 'CO';
+            $fields[$section][$section . '_country']['priority'] = 40;
+            $fields[$section][$section . '_country']['class'] = ['form-row-wide', 'pd-country-hidden'];
+        }
+
+        if (isset($fields[$section][$section . '_state'])) {
+            $fields[$section][$section . '_state']['label'] = 'Departamento';
+            $fields[$section][$section . '_state']['priority'] = 55;
+            $fields[$section][$section . '_state']['class'] = ['form-row-wide'];
+        }
+
+        if (isset($fields[$section][$section . '_city'])) {
+            $fields[$section][$section . '_city']['label'] = 'Localidad / Ciudad';
+            $fields[$section][$section . '_city']['priority'] = 60;
+            $fields[$section][$section . '_city']['class'] = ['form-row-wide'];
+        }
+
+        if (isset($fields[$section][$section . '_address_1'])) {
+            $fields[$section][$section . '_address_1']['priority'] = 65;
+        }
+
+        if (isset($fields[$section][$section . '_address_2'])) {
+            $fields[$section][$section . '_address_2']['priority'] = 70;
+        }
+    }
+
+    return $fields;
+}, 30);
+
+add_filter('woocommerce_default_address_fields', function($fields) {
+    if (isset($fields['state'])) {
+        $fields['state']['label'] = 'Departamento';
+        $fields['state']['priority'] = 55;
+    }
+
+    if (isset($fields['city'])) {
+        $fields['city']['label'] = 'Localidad / Ciudad';
+        $fields['city']['priority'] = 60;
+    }
+
+    return $fields;
+}, 40);
+
+add_filter('woocommerce_get_country_locale', function($locale) {
+    if (!isset($locale['CO'])) {
+        $locale['CO'] = [];
+    }
+
+    $locale['CO']['state']['label'] = 'Departamento';
+    $locale['CO']['state']['priority'] = 55;
+    $locale['CO']['city']['label'] = 'Localidad / Ciudad';
+    $locale['CO']['city']['priority'] = 60;
+
+    return $locale;
+}, 40);
+
+add_filter('woocommerce_product_get_name', function($name) {
+    return html_entity_decode($name, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+}, 20);
+
+add_filter('the_title', function($title, $post_id = null) {
+    if ($post_id && get_post_type($post_id) === 'product') {
+        return html_entity_decode($title, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    }
+
+    return $title;
+}, 20, 2);
+
+function prime_drop_checkout_policy_text() {
+    return 'Tus datos personales se utilizarán para procesar tu pedido, gestionar tu experiencia en esta tienda y otros fines descritos en nuestra <a href="' . esc_url(home_url('/politica-de-privacidad/')) . '">Política de Privacidad</a> y <a href="' . esc_url(home_url('/politica-de-reembolso/')) . '">Política de Reembolso</a>.';
+}
+
+add_filter('woocommerce_get_privacy_policy_text', function($text, $type = '') {
+    if ($type === 'checkout') {
+        return prime_drop_checkout_policy_text();
+    }
+
+    return $text;
+}, 20, 2);
+
+add_filter('woocommerce_checkout_privacy_policy_text', function() {
+    return prime_drop_checkout_policy_text();
+}, 20);
+
+add_filter('woocommerce_ship_to_different_address_checked', '__return_false');
+
+add_action('wp_head', function() {
+    ?>
+    <style id="prime-drop-head-bag-guard">
+    header [data-id="cart"] svg:not(.pd-bag-icon),
+    .ct-header-cart svg:not(.pd-bag-icon),
+    header a[href*="cart"] svg:not(.pd-bag-icon),
+    .ct-cart-item svg:not(.pd-bag-icon) {
+      opacity: 0 !important;
+      transition: none !important;
+    }
+
+    header [data-id="cart"] svg.pd-bag-icon,
+    .ct-header-cart svg.pd-bag-icon,
+    header a[href*="cart"] svg.pd-bag-icon,
+    .ct-cart-item svg.pd-bag-icon {
+      opacity: 1 !important;
+    }
+    </style>
+    <script id="prime-drop-head-bag-guard-js">
+    (function() {
+      var bagSvg = '<svg class="ct-icon pd-bag-icon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V7a5 5 0 0 1 10 0v2"/><path d="M5.4 8.5h13.2l.9 11.2a2 2 0 0 1-2 2.1H6.5a2 2 0 0 1-2-2.1l.9-11.2Z"/></svg>';
+
+      function replaceBagIconEarly() {
+        document.querySelectorAll('header [data-id="cart"] svg, .ct-header-cart svg, header a[href*="cart"] svg, .ct-cart-item svg').forEach(function(svg) {
+          if (svg.classList.contains('pd-bag-icon')) return;
+          var holder = document.createElement('span');
+          holder.innerHTML = bagSvg;
+          svg.replaceWith(holder.firstChild);
+        });
+      }
+
+      replaceBagIconEarly();
+      document.addEventListener('DOMContentLoaded', replaceBagIconEarly);
+      window.addEventListener('pageshow', replaceBagIconEarly);
+      [25, 75, 150, 300, 600, 1200].forEach(function(delay) {
+        setTimeout(replaceBagIconEarly, delay);
+      });
+
+      if (window.MutationObserver) {
+        var rootObserver = new MutationObserver(function() {
+          replaceBagIconEarly();
+          var header = document.querySelector('header');
+          if (header) {
+            rootObserver.disconnect();
+            new MutationObserver(replaceBagIconEarly).observe(header, { childList: true, subtree: true });
+          }
+        });
+        rootObserver.observe(document.documentElement, { childList: true, subtree: true });
+        setTimeout(function() {
+          rootObserver.disconnect();
+        }, 3500);
+      }
+    })();
+    </script>
+    <?php
+}, 1);
+
+add_action('woocommerce_thankyou', function($order_id) {
+    if (!$order_id) {
+        return;
+    }
+
+    $order = wc_get_order($order_id);
+    if (!$order) {
+        return;
+    }
+
+    $paid = $order->is_paid();
+    ?>
+    <div class="pd-thankyou-finish">
+      <h2><?php echo esc_html($paid ? 'Pago realizado' : 'Pedido recibido'); ?></h2>
+      <p><?php echo esc_html($paid ? 'Te enviamos el comprobante y los detalles de tu pedido al correo registrado.' : 'Cuando el pago sea confirmado, recibirás el comprobante en tu correo.'); ?></p>
+      <a href="<?php echo esc_url(home_url('/bolsos/')); ?>">Finalizar</a>
+    </div>
+    <?php
+}, 25);
+
+add_action('wp_footer', function() {
+    ?>
+    <style id="prime-drop-checkout-wishlist-cart-nav">
+    /* Checkout: campos, selectores y selects */
+    body.woocommerce-checkout .pd-country-hidden {
+      display: none !important;
+    }
+
+    body.woocommerce-checkout .select2-search,
+    body.woocommerce-checkout .select2-search--dropdown {
+      display: none !important;
+    }
+
+    body.woocommerce-checkout .select2-container,
+    body.woocommerce-checkout .select2-selection,
+    body.woocommerce-checkout select,
+    body.woocommerce-checkout input,
+    body.woocommerce-checkout textarea {
+      border-radius: 25px !important;
+      box-sizing: border-box !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method {
+      overflow: visible !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label {
+      padding-left: 62px !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label::before {
+      left: 24px !important;
+      width: 18px !important;
+      height: 18px !important;
+      border-color: #cfcfcf !important;
+      background: #ffffff !important;
+    }
+
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > input.input-radio:checked + label::before,
+    body.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > input[name="payment_method"]:checked + label::before {
+      border-color: #000000 !important;
+      background: radial-gradient(circle at center, #ffffff 0 2.4px, #000000 2.8px 100%) !important;
+    }
+
+    body.woocommerce-checkout input[type="checkbox"].input-checkbox:checked,
+    body.woocommerce-checkout input[type="checkbox"].woocommerce-form__input-checkbox:checked {
+      background-color: #000000 !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      background-size: 12px 12px !important;
+      border-color: #000000 !important;
+    }
+
+    body.woocommerce-checkout .woocommerce-form-login-toggle .woocommerce-info {
+      align-items: center !important;
+      border: 1px solid #eeeeee !important;
+      border-radius: 14px !important;
+      background: #fafafa !important;
+      padding: 18px 22px !important;
+      gap: 12px !important;
+    }
+
+    body.woocommerce-checkout .woocommerce-privacy-policy-text {
+      margin-top: 22px !important;
+      color: #111111 !important;
+      -webkit-text-fill-color: #111111 !important;
+      font-size: 14px !important;
+      line-height: 1.55 !important;
+    }
+
+    body.woocommerce-checkout .woocommerce-privacy-policy-text a {
+      color: #000000 !important;
+      font-weight: 800 !important;
+      text-decoration: underline !important;
+      text-underline-offset: 3px !important;
+    }
+
+    body.woocommerce-checkout label[for="createaccount"],
+    body.woocommerce-checkout label[for="ship-to-different-address-checkbox"] {
+      line-height: 1.4 !important;
+      color: #111111 !important;
+      -webkit-text-fill-color: #111111 !important;
+    }
+
+    @media (max-width: 1024px) {
+      body.woocommerce-checkout .select2-container {
+        display: none !important;
+      }
+
+      body.woocommerce-checkout select.select2-hidden-accessible {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        opacity: 1 !important;
+        clip: auto !important;
+        clip-path: none !important;
+        pointer-events: auto !important;
+        display: block !important;
+      }
+    }
+
+    /* Wishlist limpio */
+    body.pd-wishlist-page .entry-header,
+    body.pd-wishlist-page .page-title,
+    body.pd-wishlist-page h1.entry-title,
+    body.pd-wishlist-page .ct-breadcrumbs {
+      display: none !important;
+    }
+
+    body.pd-wishlist-page .site-main,
+    body.pd-wishlist-page main {
+      padding-top: 48px !important;
+    }
+
+    .pd-wishlist-empty-clean {
+      max-width: 880px !important;
+      margin: 30px auto 90px !important;
+      padding: 56px 28px !important;
+      border: 1px solid #eeeeee !important;
+      border-radius: 18px !important;
+      background: #ffffff !important;
+      box-shadow: 0 18px 55px rgba(0,0,0,0.06) !important;
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 18px !important;
+    }
+
+    .pd-wishlist-empty-clean .pd-wishlist-icon {
+      width: 56px !important;
+      height: 56px !important;
+      border: 1px solid #e5e5e5 !important;
+      border-radius: 50% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 24px !important;
+      line-height: 1 !important;
+    }
+
+    .pd-wishlist-empty-clean h2 {
+      margin: 0 !important;
+      font-family: 'Roboto Serif', Georgia, serif !important;
+      font-size: clamp(28px, 4vw, 44px) !important;
+      line-height: 1.1 !important;
+      color: #000000 !important;
+    }
+
+    .pd-wishlist-empty-clean p {
+      max-width: 520px !important;
+      margin: 0 !important;
+      font-size: 16px !important;
+      line-height: 1.6 !important;
+      color: #333333 !important;
+    }
+
+    .pd-wishlist-empty-clean a {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-width: 150px !important;
+      min-height: 44px !important;
+      padding: 12px 28px !important;
+      border-radius: 25px !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      text-decoration: none !important;
+      font-size: 12px !important;
+      font-weight: 800 !important;
+      letter-spacing: 1.5px !important;
+      text-transform: uppercase !important;
+    }
+
+    /* Pagina carrito */
+    body.woocommerce-cart .entry-header,
+    body.woocommerce-cart .page-title,
+    body.woocommerce-cart h1.entry-title {
+      text-align: center !important;
+    }
+
+    body.woocommerce-cart .woocommerce {
+      max-width: 1180px !important;
+      margin: 0 auto !important;
+      padding: 36px 24px 80px !important;
+      box-sizing: border-box !important;
+    }
+
+    body.woocommerce-cart table.shop_table {
+      border: 1px solid #eeeeee !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      background: #ffffff !important;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.05) !important;
+    }
+
+    body.woocommerce-cart table.shop_table th,
+    body.woocommerce-cart table.shop_table td {
+      padding: 18px !important;
+      border-color: #eeeeee !important;
+      vertical-align: middle !important;
+    }
+
+    body.woocommerce-cart table.shop_table img {
+      width: 92px !important;
+      height: 92px !important;
+      object-fit: contain !important;
+      background: #ffffff !important;
+      border-radius: 12px !important;
+    }
+
+    body.woocommerce-cart .cart_totals {
+      border: 1px solid #eeeeee !important;
+      border-radius: 16px !important;
+      padding: 24px !important;
+      background: #ffffff !important;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.05) !important;
+    }
+
+    body.woocommerce-cart .cart_totals h2 {
+      margin-top: 0 !important;
+      font-size: 24px !important;
+    }
+
+    body.woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
+    body.woocommerce-cart .return-to-shop a.button,
+    body.woocommerce-cart button.button,
+    body.woocommerce-cart a.button {
+      border-radius: 25px !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      border: none !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1.4px !important;
+    }
+
+    body.woocommerce-cart .cart-empty {
+      max-width: 720px !important;
+      margin: 40px auto 18px !important;
+      padding: 44px 24px !important;
+      border: 1px solid #eeeeee !important;
+      border-radius: 18px !important;
+      text-align: center !important;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.05) !important;
+      background: #ffffff !important;
+    }
+
+    .pd-thankyou-finish {
+      max-width: 760px !important;
+      margin: 32px auto !important;
+      padding: 34px 28px !important;
+      border: 1px solid #eeeeee !important;
+      border-radius: 18px !important;
+      text-align: center !important;
+      background: #ffffff !important;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.05) !important;
+    }
+
+    .pd-thankyou-finish h2 {
+      margin: 0 0 10px !important;
+      font-size: 34px !important;
+    }
+
+    .pd-thankyou-finish a {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-top: 18px !important;
+      padding: 13px 34px !important;
+      border-radius: 25px !important;
+      background: #000000 !important;
+      color: #ffffff !important;
+      text-decoration: none !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1.5px !important;
+      font-size: 12px !important;
+      font-weight: 800 !important;
+    }
+    </style>
+
+    <script id="prime-drop-checkout-wishlist-cart-nav-js">
+    (function() {
+      var bagSvg = '<svg class="ct-icon pd-bag-icon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V7a5 5 0 0 1 10 0v2"/><path d="M5.4 8.5h13.2l.9 11.2a2 2 0 0 1-2 2.1H6.5a2 2 0 0 1-2-2.1l.9-11.2Z"/></svg>';
+
+      function replaceBagIcon() {
+        document.querySelectorAll('header [data-id="cart"] svg, .ct-header-cart svg, header a[href*="cart"] svg, .ct-cart-item svg').forEach(function(svg) {
+          if (svg.classList.contains('pd-bag-icon')) return;
+          var holder = document.createElement('span');
+          holder.innerHTML = bagSvg;
+          svg.replaceWith(holder.firstChild);
+        });
+      }
+
+      function fixBolsosClick() {
+        document.querySelectorAll('header a, .ct-header a, .site-header a').forEach(function(a) {
+          if ((a.textContent || '').trim().toUpperCase() !== 'BOLSOS') return;
+          if (a.dataset.pdBolsosFixed === '1') return;
+          a.dataset.pdBolsosFixed = '1';
+          a.setAttribute('href', '/bolsos/');
+          a.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            window.location.href = '/bolsos/';
+          }, true);
+        });
+      }
+
+      function fixCheckoutLabels() {
+        function setLabel(label, input, text) {
+          if (!label) return;
+          var inputInside = input && label.contains(input) ? input : null;
+          label.textContent = '';
+          if (inputInside) {
+            label.appendChild(inputInside);
+            label.appendChild(document.createTextNode(' '));
+          }
+          label.appendChild(document.createTextNode(text + ' '));
+          var optional = document.createElement('span');
+          optional.className = 'pd-optional';
+          optional.textContent = '(opcional)';
+          label.appendChild(optional);
+        }
+
+        var accountInput = document.querySelector('#createaccount, input[name="createaccount"]');
+        var account = document.querySelector('label[for="createaccount"]') || accountInput?.closest('label') || accountInput?.parentElement?.querySelector('label');
+        setLabel(account, accountInput, 'Crear cuenta para guardar tus pedidos');
+
+        var shipInput = document.querySelector('#ship-to-different-address-checkbox, input[name="ship_to_different_address"]');
+        var ship = document.querySelector('label[for="ship-to-different-address-checkbox"]') || shipInput?.closest('label') || shipInput?.parentElement?.querySelector('label');
+        setLabel(ship, shipInput, 'Enviar a otra direccion');
+
+        [['billing_state_field', 'billing_city_field'], ['shipping_state_field', 'shipping_city_field']].forEach(function(pair) {
+          var state = document.getElementById(pair[0]);
+          var city = document.getElementById(pair[1]);
+          if (state && city && state.compareDocumentPosition(city) & Node.DOCUMENT_POSITION_PRECEDING) {
+            city.parentNode.insertBefore(state, city);
+          }
+        });
+
+        if (window.innerWidth <= 1024 && window.jQuery) {
+          jQuery('#billing_state, #shipping_state, #billing_country, #shipping_country').each(function() {
+            var $el = jQuery(this);
+            try {
+              if ($el.data('select2')) $el.select2('destroy');
+              if ($el.data('selectWoo')) $el.selectWoo('destroy');
+            } catch (e) {}
+            $el.removeClass('select2-hidden-accessible').show();
+            $el.next('.select2-container').remove();
+          });
+        }
+      }
+
+      function cleanWishlist() {
+        if (!/\/wishlist\/?/.test(window.location.pathname)) return;
+        document.body.classList.add('pd-wishlist-page');
+
+        document.querySelectorAll('h1,h2,h3').forEach(function(h) {
+          var text = (h.textContent || '').trim().toLowerCase();
+          if (text === 'lista de deseos' || text === 'mi lista de deseos') {
+            h.style.display = 'none';
+          }
+        });
+
+        var existing = document.querySelector('.pd-wishlist-empty-clean');
+        if (existing) return;
+
+        var target = document.querySelector('.woocommerce') || document.querySelector('.yith-wcwl-form') || document.querySelector('main');
+        if (!target) return;
+
+        var text = target.textContent || '';
+        if (!/vac[ií]a|no se ha añadido|no products/i.test(text)) return;
+
+        target.innerHTML = '<div class="pd-wishlist-empty-clean"><div class="pd-wishlist-icon">♡</div><h2>Tu lista de deseos esta vacia</h2><p>Guarda aqui tus bolsos favoritos para encontrarlos rapido cuando quieras comprarlos.</p><a href="/bolsos/">VER BOLSOS</a></div>';
+      }
+
+      function runAll() {
+        replaceBagIcon();
+        fixBolsosClick();
+        fixCheckoutLabels();
+        cleanWishlist();
+      }
+
+      document.addEventListener('DOMContentLoaded', runAll);
+      window.addEventListener('pageshow', runAll);
+      window.addEventListener('load', runAll);
+      [100, 300, 700, 1400, 2600].forEach(function(delay) {
+        setTimeout(runAll, delay);
+      });
+
+      if (document.body && window.MutationObserver) {
+        var header = document.querySelector('header');
+        if (header) {
+          new MutationObserver(function() {
+            replaceBagIcon();
+            fixBolsosClick();
+          }).observe(header, { childList: true, subtree: true });
+        }
+      }
+    })();
+    </script>
+    <?php
+}, 10006);
+/* PRIME_DROP_CHECKOUT_WISHLIST_CART_NAV_END */
+
