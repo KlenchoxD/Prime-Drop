@@ -18,8 +18,7 @@ export default function Hero({ onExploreProducts, onJoinPrime }: HeroProps) {
       {/* ===== HERO SECTION — video de fondo, texto izquierda ===== */}
       <section
         id="hero-banner"
-        className="relative w-full overflow-hidden"
-        style={{ minHeight: 'clamp(480px, 90vh, 900px)' }}
+        className="relative w-full overflow-hidden h-[460px] sm:h-[520px] lg:h-[560px]"
       >
         {/* ── Video de fondo ── */}
         <video
@@ -36,20 +35,17 @@ export default function Hero({ onExploreProducts, onJoinPrime }: HeroProps) {
 
         {/* ── Contenido: alineado a la izquierda ── */}
         <div className="relative z-10 h-full w-full flex items-center">
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20 sm:py-28 w-full">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
             {/* Columna izquierda — máximo la mitad del ancho */}
-            <div className="max-w-[520px] space-y-6">
+            <div className="max-w-[520px] space-y-5">
 
               {/* Título principal */}
               <motion.h1
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
-                className="font-serif font-black text-white leading-[1.05]"
-                style={{
-                  fontSize: 'clamp(2.6rem, 6vw, 5.5rem)',
-                  letterSpacing: '-0.01em',
-                }}
+                className="font-serif font-black text-white leading-[1.05] text-5xl sm:text-6xl lg:text-7xl"
+                style={{ letterSpacing: '-0.01em' }}
               >
                 Prime Drop
               </motion.h1>
@@ -59,8 +55,7 @@ export default function Hero({ onExploreProducts, onJoinPrime }: HeroProps) {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.18 }}
-                className="font-serif text-white/90 leading-relaxed"
-                style={{ fontSize: 'clamp(0.82rem, 1.4vw, 1rem)' }}
+                className="font-serif text-white/90 leading-relaxed text-sm sm:text-base max-w-[440px]"
               >
                 Armá el outfit perfecto con las mejores marcas. En PRIME DROP ELITE,
                 vas a encontrar esa prenda que completará tu estilo. Vestir de lujo
@@ -77,7 +72,6 @@ export default function Hero({ onExploreProducts, onJoinPrime }: HeroProps) {
                   id="hero-explore-products-btn"
                   onClick={onExploreProducts}
                   className="mt-2 px-8 py-3 rounded-full border-2 border-white text-white font-serif font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-charcoal-900 transition-all duration-300"
-                  style={{ fontSize: 'clamp(0.65rem, 1vw, 0.75rem)' }}
                 >
                   VER MÁS
                 </button>
