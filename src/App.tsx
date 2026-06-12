@@ -470,18 +470,18 @@ export default function App() {
             {/* Socios Comerciales — logos reales */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-neutral-200">
               <div className="text-center mb-6">
-                <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900">Nuestros Socios Comerciales</h3>
+                <h3 className="font-serif text-2xl sm:text-3xl font-black text-charcoal-900 uppercase tracking-widest">Nuestros Socios Comerciales</h3>
               </div>
               <div className="flex flex-wrap items-center justify-center w-full max-w-5xl mx-auto gap-x-10 gap-y-8 sm:gap-x-14">
                 {[
+                  { src: '/images/socio_wompi.png', alt: 'Wompi' },
+                  { src: '/images/socio_addi.png', alt: 'Addi' },
                   { src: '/images/socio_nequi.png', alt: 'Nequi' },
                   { src: '/images/socio_bancolombia.png', alt: 'Bancolombia' },
                   { src: '/images/socio_davivienda.png', alt: 'Davivienda' },
                   { src: '/images/socio_pse.png', alt: 'PSE' },
-                  { src: '/images/socio_wompi.png', alt: 'Wompi' },
-                  { src: '/images/socio_addi.png', alt: 'Addi' },
                 ].map((logo) => (
-                  <div key={logo.alt} className="flex items-center justify-center h-12 w-[130px] sm:w-[150px] shrink-0">
+                  <div key={logo.alt} className="flex items-center justify-center h-14 w-[140px] sm:w-[160px] shrink-0">
                     <img
                       src={logo.src}
                       alt={logo.alt}
