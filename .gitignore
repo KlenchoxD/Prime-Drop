@@ -1,7 +1,7 @@
 node_modules/
-dist/
 .env
 .env.local
 
 # Backend secrets (never commit)
 backend/config.php
+
