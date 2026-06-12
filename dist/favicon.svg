@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#0a0a0a"/>
+  <text x="32" y="29" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="22" fill="#ffffff" letter-spacing="1">PD</text>
+  <rect x="16" y="36" width="32" height="2.5" fill="#ffffff"/>
+  <text x="32" y="52" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="8" fill="#ffffff" letter-spacing="2">ELITE</text>
+</svg>
